@@ -15,7 +15,8 @@
 - If you want to add anything new to the server, you can create and test it localy
 - After that you can request me to udpate it to server
 
-`{
+<code>
+{
   "users": [
     {
       "id": 1,
@@ -34,4 +35,4 @@
   "offers": [],
   "feature_modals": []
 }
-`
+</code>
