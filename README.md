@@ -12,8 +12,9 @@
 
 ### The structure of the data
 
-- If you want to add anything new to the server, you can create and test it localy
+- If you want to add anything new object to the server, you can create and test it localy
 - After that you can request me to udpate it to server
+- Other things needs to be done using FETCH API crud requests
 
 <code>
 {
