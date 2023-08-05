@@ -34,6 +34,12 @@
   "featured_products": [],
   "blogs": [],
   "offers": [],
-  "feature_modals": []
+  "feature_modals": [],
+  "coupons": [
+    {
+      "code": "masai20",
+      "discount": 20
+    }
+  ]
 }
 </code>
