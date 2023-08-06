@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.nav_top {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 30px;
+  color: rgb(0, 0, 0, 0.4);
+  height: 48px;
+  align-items: center;
+  padding: 16px 0px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 3px 5px;
+  font-size: 15px;
+  padding: 0 5%;
+}
+
+.top_first {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top_first > a {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.vertical_line {
+  height: 12px;
+  border-left: 2px solid rgb(184, 184, 187);
+  margin: 0px 8px;
+}
+
+.top_third {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top_second > span > strong {
+  font-weight: 600;
+  color: rgb(0, 0, 0, 0.4);
+}
+
+.logo-text {
+  color: rgb(243, 182, 8);
+  font-weight: 600;
+}
+
+.middle_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 30px;
+  height: 80px;
+  background-color: rgb(248, 248, 248);
+}
+
+.middle_nav > .middle_second {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  width: 30%;
+}
+
+.middle_nav > .middle_second > .searchbox_outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 400px;
+}
+
+.middle_nav > .middle_second > .searchbox_outer > #searchbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  width: 45px;
+  background-color: rgb(248, 200, 8);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: text;
+}
+
+.middle_nav > .middle_second > .searchbox_outer > input {
+  height: inherit;
+  width: 100%;
+  padding: 0px 10px;
+  border: none;
+  background-color: white;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.middle_nav > .middle_second > .searchbox_outer > input::placeholder {
+  color: rgb(0, 0, 0, 0.3);
+}
+
+div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
+  border: none;
+  outline: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.middle_third {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.middle_third > a {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.4);
+  vertical-align: middle;
+}
+
+.middle_third > a:nth-of-type(2) > i {
+  transform: translateY(1px);
+  margin-left: 4px;
+}
+
+.middle_third > a > i {
+  position: relative;
+}
+
+.middle_third > a > i > div {
+  font-size: 15px;
+}
+
+.middle_third > a:last-of-type {
+  transform: translateY(2px);
+}
+
+.item_count {
+  box-sizing: content-box;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -25px;
+  right: -12px;
+  background-color: rgb(248, 200, 8);
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.bottom_nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  height: 50px;
+  align-items: center;
+  padding: 16px 0px;
+  background-color: white;
+  font-size: 15px;
+}
+
+.bottom_nav > a {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.5);
+  font-weight: 500;
+}
