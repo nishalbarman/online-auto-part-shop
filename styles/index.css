@@ -1,0 +1,9 @@
+.con-first-half {
+  background-image: url("../img/car_image.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+  width: 100%;
+  object-fit: contain;
+}
