@@ -1,9 +1,124 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .con-first-half {
-  background-image: url("../img/car_image.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("../img/car_image20.jpg");
   background-size: cover;
-  height: 700px;
+  background-position: center;
+  height: 455px;
+  width: 100% !important;
+  background-repeat: no-repeat;
+  user-select: none;
+}
+
+.con-first-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 5%;
+  padding-left: 15%;
+}
+
+.con-first-half > h1 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1px;
+}
+
+.con-first-half > p {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.sl_option {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-right: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(67, 64, 67);
+  width: 300px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.sl_option > .row_number {
+  width: 60px;
+  background-color: rgb(88, 88, 88);
+  height: inherit;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sl_option > p {
   width: 100%;
-  object-fit: contain;
+  padding-left: 15px;
+}
+
+.category_container {
+  margin-top: 3%;
+  padding: 0px 3%;
+}
+
+.category_container > h1 {
+  font-family: n;
+  margin: auto;
+  text-align: center;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2%;
+}
+
+.category_list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  overflow-x: auto;
+  margin-bottom: 3%;
+}
+
+.category_card {
+  position: relative;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px;
+}
+
+.category_card > img {
+  position: absolute;
+  height: 70px;
+  width: auto;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: darken;
+  user-zoom: fixed;
+  -webkit-user-drag: none;
+}
+
+.category_card > p {
+  position: absolute;
+  font-size: 18px;
+  color: rgb(0, 0, 0, 0.4);
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
