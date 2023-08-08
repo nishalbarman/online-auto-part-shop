@@ -17,15 +17,32 @@ window.onload = () => {
 // for cart
 var arr=[{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
 name:"clutch plate",
-price:"250",
+original_price:"2500",
+discount_price:"2000",
+},
+{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
+name:"clutch plate",
+original_price:"2500",
+discount_price:"2000",
+},
+{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
+name:"clutch plate",
+original_price:"2500",
+discount_price:"2000",
+},
+{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
+name:"clutch plate",
+original_price:"2500",
+discount_price:"2000",
 }]
 
+// var arr=[];
 
 
 
 
 //display update function
-function UpdateDisplay(){
+function UpdateDisplay(arr){
 var tbody=document.querySelector("tbody");
 tbody.innerHTML=null;
 
@@ -33,7 +50,7 @@ tbody.innerHTML=null;
 
 if(arr.length!=0)
 {
-  arr.forEach(function(ele){
+  arr.forEach(function(ele,index){
     var tr=document.createElement("tr");
     var td1=document.createElement("td");
     var div_img=document.createElement("div");
@@ -58,7 +75,8 @@ if(arr.length!=0)
     //product price
     var td4=document.createElement("td");
     var price=document.createElement("h5");
-    price.innerText=ele.price;
+    price.setAttribute("id","price");
+    price.innerText="Rs. "+ele.original_price;
     td4.append(price);
     
     //remove item
@@ -70,34 +88,31 @@ if(arr.length!=0)
     remove.append(icon);
     td5.append(remove);
     
-    //total
+    
+    //discount price
     var td6=document.createElement("td");
-    var total=document.createElement("h5");
-    total.innerText=ele.price;
-    td6.append(total);
+    var discount=document.createElement("h5");
+    discount.innerText="Rs. "+ele.discount_price;
+    td6.append(discount);
+
+    // remove function
+    remove.addEventListener("click",function(){
+      arr.splice(index,1);
+      UpdateDisplay();
+    })
     
     
     
-    tr.append(td1,td2,td3,td4,td5,td6);
+    tr.append(td1,td2,td3,td4,td6,td5);
     tbody.append(tr);
     });
-    var cart_bottom=document.getElementById("cart-bottom").style="display=block";
+   document.getElementById("cart-bottom").style="display=block";
 }
 else{
-  var blank=document.getElementById("cart-container");
-
-  blank.innerHTML=null;
-
-  var update=`<div id="emptyDisplay" class="no-item">
-  <img src="https://images.bewakoof.com/images/doodles/empty-cart-page-doodle.png" alt="empty-bag" style="
-  width: 150px;" />
-  <p>Nothing in the bag</p>
-  <a id="continuetohome" href="/index.html">Continue Shopping</a>`
-
-  blank.innerHTML=update;
-
-
+ document.getElementById("cart-container").innerHTML=null;
+ document.getElementById("Empty_Display").style="display=block";
+ 
 }
 }
 
-UpdateDisplay();
+UpdateDisplay(arr);
