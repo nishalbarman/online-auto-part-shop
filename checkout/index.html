@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/checkout.css">
+</head>
+<body>
+    <div id="parent">
+        <div id="addressdetail">
+            <h2>CONTACT  DETAILS</h2>
+            <input type="text" placeholder="Full Name">
+            <input type="text" placeholder="Mobile No">
+            <h2 style="margin-top: 0%;">ADDRESS</h2>
+            <input type="text" placeholder="Full Address(House no,area/street etc.)">
+            <input type="text" placeholder="Locality/Town">
+            <input type="text" placeholder="District">
+            <input type="text" placeholder="Pin Code">
+            <input type="text" placeholder="State">
+        </div>
+        <div id="paymentdetails">
+                <h2>Payment</h2>
+                <div>
+                    <h3>Subtotal</h3>
+                     <p>2000</p>
+                </div>
+                <div>
+                    <h3>Convenience Fess</h3>
+                     <p>99</p>
+                </div>
+                <div>
+                    <h3>Shipping Cost</h3>
+                     <p>20</p>
+                </div>
+                <hr>
+                <div>
+                    <h2>Total</h2>
+                     <p>22000</p>
+                </div>
+                <button id="oredeBtn">Place Order</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    "key": "rzp_test_y0dj0ip5NJmJJs", // Enter the Key ID generated from the Dashboard
+    "amount": 2200*100,
+    "currency": "INR",
+    "description": "Acme Corp",
+    "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
+    "prefill":
+    {
+      "email": "gaurav.kumar@example.com",
+      "contact": +919900000000,
+    }
+}
+  var rzp1 = new Razorpay(options);
+  document.getElementById('oredeBtn').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+    
+  }
+</script>
