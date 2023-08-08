@@ -14,6 +14,59 @@ let dealsList = null;
 
 let splide = null;
 
+new Splide(".splideBlog", {
+  // type: "loop",
+  // heightRatio: 0.5,
+  perPage: 3,
+  rewind: true,
+  breakpoints: {
+    1024: {
+      perPage: 2,
+    },
+    767: {
+      perPage: 2,
+    },
+    640: {
+      perPage: 1,
+    },
+  },
+  autoplay: true,
+  duration: {
+    delay: 1000,
+  },
+  focus: "center",
+  gap: "2em",
+  updateOnMove: true,
+  pagination: false,
+}).mount();
+
+new Splide(".splideOffer", {
+  // type: "loop",
+  // heightRatio: 0.5,
+  perPage: 2,
+  rewind: true,
+  breakpoints: {
+    1024: {
+      perPage: 2,
+    },
+    767: {
+      perPage: 2,
+    },
+    640: {
+      perPage: 1,
+    },
+  },
+  autoplay: true,
+  duration: {
+    delay: 1000,
+  },
+  focus: "center",
+  gap: "2em",
+  updateOnMove: true,
+  pagination: false,
+  cover: true,
+}).mount();
+
 window.onload = () => {
   const nav = document.querySelector("#navbar");
   nav.innerHTML = top_navbar() + middle_navbar() + bottom_navbar();
