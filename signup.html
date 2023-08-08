@@ -5,7 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup page</title>
 </head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
+        background-size: 150%;
+        /* background-position: left center; */
+
+
+    }
+    .main{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    /* css for left part starts */
+    .left{
+        display: flex;
+        flex: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .left>img{
+        height: 40px;
+        margin-right: 16px
+    }
+    .left>h1{
+        font-size: 36px;
+        line-height: 47px;
+        font-weight: 400;
+        color: #f4f4f4;
+    }
+    /* left part ends */
+
+
+    /* css for right part starts */
+    .right{
+        padding: 30px;
+        width: 514px;
+        height: 600px;
+        margin-right:10%;
+        margin-left: 10%;
+        margin-top: 15px;
+        background-color: white;
+        border-color: 5px solid black;
+        border-radius: 1%;
+        
+    }
+    /* header css here */
+    .signup-step{
+        color: #747474;
+    }
+    .create-account{
+        font-style: normal;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+    /* header ends */
+
+
+    .av {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 22px;
+      padding: 15px;
+    }
+    .av .ax {
+      background-color: gray;
+      height: 1px;
+      width: 43%;
+    }
+    .av .az {
+      color: #626669;
+      font-size: 20px;
+      margin: 0 24px;
+    }
+    .images img{
+        width: 50px;
+        border:1px solid #EBEBEB;
+        border-radius: 50%;
+        border-width: 2px;
+    }
+
+    .images img :hover{
+        border-width: 3px;
+        border-color: green;
+    }
+
+    .right>.images{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    /* right ends */
+    @media (min-width: 300px) and (max-width: 860px){
+        .left{
+            display: none;
+        }
+    }
+</style>
 <body>
-    <h2>sign up page</h2>
+    <!-- <img src="https://auth.services.adobe.com/img/canvas/Leonardoworx.jpg" alt=""> -->
+    <div class="main">
+        <!-- this is the left part of the page (img and name)-->
+        <div class="left">
+            <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png" alt="">
+            <h1>Behance</h1>
+        </div>
+        <!-- this is right part (the signUp form) -->
+        <div class="right">
+            <header class="right-header">
+                <strong class="signup-step">Step<span>1</span> of <span>2</span></strong>
+                <h1 class="create-account">Create an account</h1>
+            </header>
+            <div class="images">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png" alt="">
+                <img id="facebook" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQgOEDUS3cCP5GsfADjV2W0BkZdMK17FAiQ&usqp=CAU" alt="">
+                <img src="https://img.freepik.com/free-icon/mac-os_318-10374.jpg" alt="">
+            </div>
+            <form action="">
+                <div class="av">
+                    <div class="ax"></div>
+                    <div class="az">OR</div>
+                    <div class="ax"></div>
+                </div>
+                
+            </form>
+            <div></div>
+        </div>
+    </div>
 </body>
 </html>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCmlAudB7h-7HUnd2ALxmtVm2rHBsr4dKc",
+    authDomain: "cw-project-893df.firebaseapp.com",
+    projectId: "cw-project-893df",
+    storageBucket: "cw-project-893df.appspot.com",
+    messagingSenderId: "350845505692",
+    appId: "1:350845505692:web:23d6c82acf6203679f5d59"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  console.log(app);
+</script>
