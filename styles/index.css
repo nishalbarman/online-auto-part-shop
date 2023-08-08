@@ -195,6 +195,8 @@
   background-color: rgb(248, 248, 248);
   padding: 50px;
   border-radius: 5px;
+  cursor: pointer;
+  height: 500px;
 }
 
 .feature_card > img {
@@ -236,4 +238,80 @@
 .deals_container {
   margin-top: 4%;
   margin-bottom: 4%;
+  padding: 0 5%;
+}
+
+.deals_list {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  place-content: center;
+  gap: 25px;
+}
+
+.deals_card {
+  width: 250px;
+  height: fit-content;
+  padding: 20px 24px 30px 24px;
+  background-color: rgb(248, 248, 248);
+  border-radius: 6px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.deals_card > .deal_image_outer {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.deals_card > .deal_image_outer > img {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  mix-blend-mode: darken;
+}
+
+.deals_card > .deals_body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  color: rgb(0, 0, 0, 0.6);
+  margin-top: 20px;
+}
+
+.deals_card > .deals_body > p:nth-child(1) {
+  font-size: 18px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+}
+
+.deals_card > .deals_body > p:nth-child(3) {
+  color: black;
+  font-size: 17px;
+}
+
+.deals_card > .deals_body > div {
+  display: flex;
+  gap: 10px;
+}
+
+.deals_card > .deals_body > button {
+  background-color: rgb(171, 171, 171, 0.5);
+  padding: 13px 10px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.deals_card > .deals_body > button:hover {
+  background-color: rgb(248, 200, 8);
+  transition-duration: 400ms;
 }
