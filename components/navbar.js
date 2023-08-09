@@ -50,7 +50,7 @@ function middle_navbar() {
           <a href="#">
               <i class="fa-solid fa-heart fa-lg" style="color: rgb(0, 0, 0, 0.4);">
 
-                  <div id="item_count" class="item_count">
+                  <div id="item_count_fav" class="item_count" style="display:none;">
                       0
                   </div>
 
@@ -58,7 +58,7 @@ function middle_navbar() {
           </a>
           <a href="#">
               <i class="fa-solid fa-cart-shopping fa-lg" style="color: rgb(0, 0, 0, 0.4);">
-                  <div id="item_count" class="item_count">
+                  <div id="item_count_cart" class="item_count" style="display:none;">
                       0
                   </div>
               </i>
