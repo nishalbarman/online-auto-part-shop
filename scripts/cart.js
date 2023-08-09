@@ -94,12 +94,14 @@ if(arr.length!=0)
     td3.append(quantity,q_button);
      
     //getting value from input field
+    var dis_price=ele.discount_price;
     q_button.addEventListener("click",function(){
       var u_p=document.getElementById("Quantity").value;
       console.log(u_p);
-      updated_discount=ele.discount_price*u_p;
+      var updated_discount=dis_price* +u_p;
+      console.log(updated_discount)
       td6.innerHTML=null;
-      var discount=document.createElement("h5");
+      let discount=document.createElement("h5");
       discount.innerText="Rs. "+updated_discount;
       td6.append(discount);
     })
