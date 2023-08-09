@@ -2,71 +2,22 @@ import {
   top_navbar,
   middle_navbar,
   bottom_navbar,
+  inputSearchEventListener,
+  cartItemUpdate,
 } from "/components/navbar.js";
 import { getFooter, scrollTop } from "/components/footer.js";
 import API from "/components/api.js";
 import getCategoryCard from "/components/category_card.js";
 import getFeaturedCard from "/components/featured_card.js";
 import getDealsWeekCard from "/components/deals_card.js";
+import getBlogCard from "/components/blog_card.js";
+import getOfferCard from "/components/offer_card.js";
+import { searchCardAppend } from "/components/search_card.js";
 
 let categoryList = null;
 let featuredList = null;
 let dealsList = null;
-
-let splide = null;
-
-new Splide(".splideBlog", {
-  // type: "loop",
-  // heightRatio: 0.5,
-  perPage: 3,
-  rewind: true,
-  breakpoints: {
-    1024: {
-      perPage: 2,
-    },
-    767: {
-      perPage: 2,
-    },
-    640: {
-      perPage: 1,
-    },
-  },
-  autoplay: true,
-  duration: {
-    delay: 1000,
-  },
-  focus: "center",
-  gap: "2em",
-  updateOnMove: true,
-  pagination: false,
-}).mount();
-
-new Splide(".splideOffer", {
-  // type: "loop",
-  // heightRatio: 0.5,
-  perPage: 2,
-  rewind: true,
-  breakpoints: {
-    1024: {
-      perPage: 2,
-    },
-    767: {
-      perPage: 2,
-    },
-    640: {
-      perPage: 1,
-    },
-  },
-  autoplay: true,
-  duration: {
-    delay: 1000,
-  },
-  focus: "center",
-  gap: "2em",
-  updateOnMove: true,
-  pagination: false,
-  cover: true,
-}).mount();
+let categorySlide = null;
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
@@ -77,17 +28,61 @@ window.onload = () => {
   const scrollAdd = scrollTop();
   scrollAdd(); // calling this will add scroll to top funcion
 
-  const item_cart = document.querySelector("#item_count_cart");
-  let cartItems = localStorage.getItem("cart-total-items") || 0;
-  if (!(cartItems == 0 || cartItems == null)) {
-    item_cart.textContent = cartItems;
-    item_cart.style.display = "flex";
-  }
+  const searchAppend = searchCardAppend(); //getting the appending function for search result
+  const inputListener = inputSearchEventListener(searchAppend, 400); // searchbar listener from component
+  inputListener(); // input listener initialised
+
+  cartItemUpdate(); // Update the cart items
 
   categoryRequest();
   featuredProductRequest();
   dealsWeekRequest();
+  ourBlogRequest();
+  ourOfferRequest();
 };
+
+async function ourOfferRequest() {
+  const res = await fetch(`${API}/offers?_limit=10`);
+  const data = await res.json();
+  dealsList = data;
+  ourOfferAppend(data);
+}
+
+function ourOfferAppend(list) {
+  const append = document.querySelector("#offer_list");
+  append.innerHTML = "";
+  list.forEach((element, index) => {
+    append.append(
+      getOfferCard(element, (event) => {
+        console.log(event);
+      })
+    );
+  });
+  new Splide(".splideOffer", {
+    perPage: 2,
+    rewind: true,
+    breakpoints: {
+      1024: {
+        perPage: 2,
+      },
+      767: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+      },
+    },
+    autoplay: true,
+    duration: {
+      delay: 1000,
+    },
+    focus: "center",
+    gap: "2em",
+    updateOnMove: true,
+    pagination: false,
+    cover: true,
+  }).mount();
+}
 
 async function dealsWeekRequest() {
   const res = await fetch(`${API}/products?_limit=10`);
@@ -95,6 +90,51 @@ async function dealsWeekRequest() {
   dealsList = data;
   console.log(dealsList);
   dealsWeekAppend(data);
+}
+
+async function ourBlogRequest() {
+  const res = await fetch(`${API}/blogs?_limit=10`);
+  const data = await res.json();
+  // dealsList = data;
+  console.log(data);
+  ourBlogAppend(data);
+}
+
+function ourBlogAppend(list) {
+  const append = document.querySelector("#blog_list");
+  append.innerHTML = "";
+  list.forEach((element, index) => {
+    append.append(
+      getBlogCard(element, (event) => {
+        console.log(event);
+      })
+    );
+  });
+  new Splide(".splideBlog", {
+    // type: "loop",
+    // heightRatio: 0.5,
+    perPage: 3,
+    rewind: true,
+    breakpoints: {
+      1024: {
+        perPage: 2,
+      },
+      767: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+      },
+    },
+    autoplay: true,
+    duration: {
+      delay: 1000,
+    },
+    focus: "center",
+    gap: "2em",
+    updateOnMove: true,
+    pagination: false,
+  }).mount();
 }
 
 function dealsWeekAppend(list) {
@@ -122,12 +162,7 @@ function dealsWeekAppend(list) {
       }
     }
     p += `</p>`;
-    append.append(
-      getDealsWeekCard(element, p, (event) => {
-        alert("Clicked");
-        console.log(event);
-      })
-    );
+    append.append(getDealsWeekCard(element, p, [(event) => {}, () => {}]));
   });
 }
 
@@ -196,7 +231,7 @@ function categoryAppend(list) {
       })
     );
   });
-  splide = new Splide(".splideCategory", {
+  categorySlide = new Splide(".splideCategory", {
     // type: "loop",
     heightRatio: 0.5,
     perPage: 5,
@@ -228,9 +263,9 @@ function categoryAppend(list) {
 }
 
 function goNext() {
-  splide.go("+5");
+  categorySlide.go("+5");
 }
 
 function goPrev() {
-  splide.go("-5");
+  categorySlide.go("-5");
 }

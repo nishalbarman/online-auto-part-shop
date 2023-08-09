@@ -3,6 +3,9 @@ function getDealsWeekCard(element, ptagrate, callback) {
 
   const card = document.createElement("div");
   card.classList.add("deals_card");
+
+  card.addEventListener("click", callback);
+
   card.innerHTML = `
   <div class="deal_image_outer">
     <img

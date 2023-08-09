@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+#footer {
+  width: 100%;
+}
+
 .top_footer {
   position: relative;
   padding: 60px 20% 10px 20%;
@@ -63,6 +67,12 @@ html {
   border-radius: 5px;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+.top_footer > .fourth_footer > button:hover {
+  background-color: rgb(248, 200, 8, 0.7);
+  transition-duration: 300ms;
 }
 
 .fourth_footer > .social_footer_btn {
@@ -77,18 +87,18 @@ html {
   border-radius: 3px;
 }
 
-.fifth_footer {
+#fifth_footer {
   position: absolute;
   top: 45%;
   right: 100px;
   height: fit-content !important;
-  
-}
-
-.fifth_footer > i {
   padding: 10px 11px;
   background-color: rgb(248, 200, 8);
   cursor: pointer;
+}
+#fifth_footer:hover {
+  background-color: rgb(248, 200, 8, 0.7);
+  transition-duration: 300ms;
 }
 
 .footer_bottom {
@@ -108,4 +118,9 @@ html {
   text-align: center;
   font-size: 13px;
   line-height: 20px;
+}
+
+.pay_logo_image {
+  -webkit-user-drag: none;
+  user-select: none;
 }
