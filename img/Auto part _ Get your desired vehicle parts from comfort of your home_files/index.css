@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body {
+  /* overflow-x: hidden; */
+}
+
 .con-first-half {
   position: relative;
   background-image: url("../img/car_image21.jpg");
@@ -16,10 +20,16 @@
 
 .con-first-half > img {
   position: absolute;
-  top: 110px;
-  right: 15px;
+  /* top: -100px; */
+  top: -170px;
+  /* top: 10px; */
+  /* rotate: 2deg; */
+  /* right: -80px; */
+  /* top: 0; */
+  /* right: 0; */
+  right: 10px;
   width: 70rem;
-  width: 60rem;
+  /* height: 38rem; */
   -webkit-user-drag: none;
   animation: mover 2s infinite alternate;
   transition-timing-function: ease-in-out;
@@ -520,8 +530,4 @@ div.offer_card_body > p:nth-child(2) {
 .last_buttons:hover {
   background-color: rgb(248, 200, 8);
   transition-duration: 300ms;
-}
-
-body ~ * {
-  display: none;
 }

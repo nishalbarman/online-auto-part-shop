@@ -3,7 +3,6 @@ import {
   middle_navbar,
   bottom_navbar,
 } from "/components/navbar.js";
-import { getFooter, scrollTop } from "/components/footer.js";
 import API from "/components/api.js";
 import getCategoryCard from "/components/category_card.js";
 import getFeaturedCard from "/components/featured_card.js";
@@ -71,12 +70,6 @@ new Splide(".splideOffer", {
 window.onload = () => {
   const nav = document.querySelector("#navbar");
   nav.innerHTML = top_navbar() + middle_navbar() + bottom_navbar();
-  const footer = document.querySelector("#footer");
-  footer.innerHTML = getFooter();
-  // scroll to top adding
-  const scrollAdd = scrollTop();
-  scrollAdd(); // calling this will add scroll to top funcion
-
   const item_cart = document.querySelector("#item_count_cart");
   let cartItems = localStorage.getItem("cart-total-items") || 0;
   if (!(cartItems == 0 || cartItems == null)) {
