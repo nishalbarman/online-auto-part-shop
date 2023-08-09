@@ -1,0 +1,16 @@
+#parent{
+    display: flex;
+    justify-content: space-evenly;
+}
+#addressdetail{
+    display: flex;
+    flex-direction:column;
+}
+input{
+    height: 20px;
+   margin-bottom: 10%;
+}
+#paymentdetails >div{
+    display: flex;
+    justify-content: space-between;
+}
