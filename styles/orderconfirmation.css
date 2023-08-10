@@ -1,0 +1,19 @@
+/* #part1 {
+  background-color: yellow;
+} */
+#part1 > div {
+  margin: auto;
+  width: 50%;
+ 
+  padding: 10px;
+}
+#part1 > div > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+h1,
+p {
+  text-align: center;
+}

@@ -1,16 +1,61 @@
-#parent{
-    display: flex;
-    justify-content: space-evenly;
+
+form{
+    height:74%;
+    width: 30%;
+    box-shadow: 0 0px 10px yellow;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  margin: auto;
+  padding: 2%;
+  border-radius: 5%;
+  background-color: white;
 }
-#addressdetail{
-    display: flex;
-    flex-direction:column;
+#parent { 
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
-input{
-    height: 20px;
-   margin-bottom: 10%;
+#addressdetail {
+  display: flex;
+  flex-direction: column;
 }
-#paymentdetails >div{
-    display: flex;
-    justify-content: space-between;
+#convinientfee{
+  text-decoration: line-through;
+}
+h2{
+  background-color: yellow;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  border-radius: 6px;
+}
+#error{
+  display: none;
+  margin: auto;
+  color: red;
+}
+form input {
+  background-color: #e8f0febd;
+  height: 35px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: none;
+  padding: 0 0  0 10px;
+}
+form input:focus{
+  outline: solid yellow;
+}
+#paymentdetails > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+button{
+    width: 100%;
+    background-color: yellow;
+    border: none;
+    height: 8%;
+    border-radius: 6px;
 }
