@@ -1,9 +1,9 @@
 function getBlogCard(element, callback) {
-  const { name, date, category_display, image_url } = element;
+  const { name, data: date, category_display, image_url } = element;
 
   const card = document.createElement("li");
   card.classList.add("blog_card", "splide__slide");
-  card.addEventListener("click", callback)
+  card.addEventListener("click", callback);
   card.innerHTML = `
     <img src="${image_url}" />
     <div class="blog_body">

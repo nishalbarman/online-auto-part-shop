@@ -25,7 +25,7 @@ function top_navbar() {
     <!------------------------------------>`;
 }
 
-function middle_navbar() {
+function middle_navbar(hide = false) {
   const logged = localStorage.getItem("logged") || false;
   let data = null;
   if (logged == true || logged === "true") {
@@ -44,6 +44,28 @@ function middle_navbar() {
     data = `<a href="/login.html" style="font-weight: bold;">Login</a>`;
   }
 
+  let middle = null;
+  if (hide == true) {
+    middle = `<div class="middle_second"></div>`;
+  } else {
+    middle = ` <div class="middle_second">
+    <div class="searchbox_outer">
+
+        <!-- make this input text display to one to hide this -->
+        <input type="text" placeholder="Search by Make Model Year, Product Type Part Number ..."
+            id="searchbar" />
+        <div id="searchbtn">
+            <i class="fa-solid fa-magnifying-glass " style="color: #000000;"></i>
+        </div>
+        <div id="searchresult" class="search_result_list"></div>
+       <div class="uparrow">
+       <div class="arrow-up"></div>
+       </div>
+        <div id="blackscreen" class="blackBack"></div>
+    </div>
+</div>`;
+  }
+
   return ` <!---------------------------------------------->
   <!-- Middle/Common part of the navigation bar -->
   <!---------------------------------------------->
@@ -51,22 +73,7 @@ function middle_navbar() {
       <div class="middle_first">
           <h1 class="logo-text">AUTO PLAY</h1>
       </div>
-      <div class="middle_second">
-          <div class="searchbox_outer">
-
-              <!-- make this input text display to one to hide this -->
-              <input type="text" placeholder="Search by Make Model Year, Product Type Part Number ..."
-                  id="searchbar" />
-              <div id="searchbtn">
-                  <i class="fa-solid fa-magnifying-glass " style="color: #000000;"></i>
-              </div>
-              <div id="searchresult" class="search_result_list"></div>
-             <div class="uparrow">
-             <div class="arrow-up"></div>
-             </div>
-              <div id="blackscreen" class="blackBack"></div>
-          </div>
-      </div>
+     ${middle}
       <div class="middle_third">
           ${data}
           <a href="#">Garage&nbsp;<i class="fa-solid fa-angle-down fa-sm"

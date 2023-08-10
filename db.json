@@ -6,6 +6,15 @@
       "email": "demo@gmail.com",
       "phone": "7347423834",
       "password": "password",
+      "address": {
+        "fullname": "",
+        "mobile_no": "",
+        "full_address": "",
+        "locality": "",
+        "district": "",
+        "pin_code": "",
+        "state": ""
+      },
       "cart": [
         {
           "id": 1,
