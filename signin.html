@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,56 +12,64 @@
         margin: 0;
         padding: 0;
     }
+
     body {
-        background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
+        background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_247535207_XL.jpg');
         background-size: 150%;
         /* background-position: left center; */
 
 
     }
-    .main{
+
+    .main {
         display: flex;
         justify-content: flex-start;
         align-items: center;
     }
+
     /* css for left part starts */
-    .left{
+    .left {
         display: flex;
         flex: auto;
         justify-content: center;
         align-items: center;
     }
-    .left>img{
+
+    .left>img {
         height: 40px;
         margin-right: 16px
     }
-    .left>h1{
+
+    .left>h1 {
         font-size: 36px;
         line-height: 47px;
         font-weight: 400;
         color: #f4f4f4;
     }
+
     /* left part ends */
 
 
     /* css for right part starts */
-    .right{
+    .right {
         padding: 30px;
         width: 514px;
         height: 600px;
-        margin-right:10%;
+        margin-right: 10%;
         margin-left: 10%;
         margin-top: 15px;
         background-color: white;
         border-color: 5px solid black;
         border-radius: 1%;
-        
+
     }
+
     /* header css here */
-    .signup-step{
+    .signup-step {
         color: #747474;
     }
-    .create-account{
+
+    .create-account {
         font-style: normal;
         font-size: 36px;
         font-weight: 700;
@@ -68,86 +77,107 @@
         letter-spacing: 0;
         text-transform: none;
     }
+
     /* header ends */
 
 
     .av {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      margin: 8px 0 22px;
-      padding: 15px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 8px 0 22px;
+        padding: 15px;
     }
+
     .av .ax {
-      background-color: gray;
-      height: 1px;
-      width: 43%;
+        background-color: gray;
+        height: 1px;
+        width: 43%;
     }
+
     .av .az {
-      color: #626669;
-      font-size: 20px;
-      margin: 0 24px;
+        color: #626669;
+        font-size: 20px;
+        margin: 0 24px;
     }
-    .images img{
+
+    .images img {
         width: 50px;
-        border:1px solid #EBEBEB;
+        border: 1px solid #EBEBEB;
         border-radius: 50%;
         border-width: 2px;
     }
 
-    .images img :hover{
+    .images img :hover {
         border-width: 3px;
         border-color: green;
     }
 
-    .right>.images{
+    .right>.images {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
+
+    .text-box {
+        border-radius: 0;
+        border-width: 0 0 1px;
+        padding-left: 0;
+        padding-right: 0;
+        resize: none;
+        overflow-y: hidden;
+        color: #505050;
+    }
+
     /* right ends */
-    @media (min-width: 300px) and (max-width: 860px){
-        .left{
+    @media (min-width: 300px) and (max-width: 860px) {
+        .left {
             display: none;
         }
     }
 </style>
+
 <body>
     <!-- <img src="https://auth.services.adobe.com/img/canvas/Leonardoworx.jpg" alt=""> -->
     <div class="main">
         <!-- this is the left part of the page (img and name)-->
         <div class="left">
-            <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png" alt="">
+            <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png"
+                alt="">
             <h1>Behance</h1>
         </div>
         <!-- this is right part (the signUp form) -->
         <div class="right">
             <header class="right-header">
-                <strong class="signup-step">Step<span>2</span> of <span>2</span></strong>
                 <h1 class="create-account">Sign In</h1>
             </header>
-            <div class="images">
-                <img src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png" alt="">
-                <img id="facebook" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQgOEDUS3cCP5GsfADjV2W0BkZdMK17FAiQ&usqp=CAU" alt="">
-                <img src="https://img.freepik.com/free-icon/mac-os_318-10374.jpg" alt="">
-            </div>
+            <p class="new-user">New user? <a class="newuser-link"
+                    href="signup.html" rel="noopener noreferrer"> Create an account </a></p>
             <form action="">
+                <label for="email">Email Address</label><br>
+                <input type="email" class="text-box" id="email"><br>
+                <label for="password">password</label><br>
+                <input type="password" class="text-box" name="password" id="password"><br>
+                <button id="submit">Continue</button>
+
+
+
                 <div class="av">
                     <div class="ax"></div>
                     <div class="az">OR</div>
                     <div class="ax"></div>
                 </div>
-                <input type="email" name="email" id="email">
-                <input type="password" name="password" id="password">
             </form>
             <div></div>
         </div>
     </div>
 </body>
+
 </html>
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -164,4 +194,30 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   console.log(app);
+
+  
+    document.getElementById("submit").addEventListener("click", (event)=>{
+        event.preventDefault();
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+               window.location.href = "signup.html";
+                alert("susccessfll");
+                
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+
+
+        })
+    
+
 </script>
