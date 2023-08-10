@@ -1,15 +1,39 @@
+// import {
+//   top_navbar,
+//   middle_navbar,
+//   bottom_navbar,
+// } from "../components/navbar.js";
+
+// window.onload = () => {
+//   const nav = document.querySelector("#navbar");
+//   nav.innerHTML = top_navbar()+middle_navbar(true);
+//   const item_cart = document.querySelector("#item_count_cart");
+//   let cartItems = localStorage.getItem("cart-total-items") || 0;
+//   if (!(cartItems == 0 || cartItems == null)) {
+//     item_cart.textContent = cartItems;
+//     item_cart.style.display = "flex";
+//   }
+// };
+
+
 import {
   top_navbar,
   middle_navbar,
   bottom_navbar,
-} from "../components/navbar.js";
-
-
-
+} from "/components/navbar.js";
+import { getFooter, scrollTop } from "/components/footer.js";
+import API from "/components/api.js";
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
-  nav.innerHTML = top_navbar()+middle_navbar(true);
+  // nav.innerHTML = top_navbar() + middle_navbar() + bottom_navbar();
+  nav.innerHTML = middle_navbar();
+  const footer = document.querySelector("#footer");
+  footer.innerHTML = getFooter();
+  // scroll to top adding
+  const scrollAdd = scrollTop();
+  scrollAdd(); // calling this will add scroll to top funcion
+
   const item_cart = document.querySelector("#item_count_cart");
   let cartItems = localStorage.getItem("cart-total-items") || 0;
   if (!(cartItems == 0 || cartItems == null)) {
@@ -292,8 +316,21 @@ const debounce = (duration=400)=>{
     });   
 }
 else{
- document.getElementById("cart-container").innerHTML=null;
- document.getElementById("Empty_Display").style="display=block";
+ var upload=document.getElementById("cart-container");
+ upload.innerHTML=null;
+ var empty=`
+ <div id="Empty_Display">
+ <div id="emptyDisplay" class="no-item">
+     <img src="https://images.bewakoof.com/images/doodles/empty-cart-page-doodle.png" alt="empty-bag" style="
+     width: 150px;" />
+     <p>Nothing in the bag</p>
+     <a id="continuetohome" href="/index.html">Continue Shopping</a>
+ </div>
+
+</div>`
+
+upload.innerHTML=empty;
+//  document.getElementById("Empty_Display").style="display=block";
  
 }
 }

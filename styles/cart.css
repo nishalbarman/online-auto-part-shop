@@ -129,6 +129,9 @@ tbody tr td a i:hover{
 #cart-bottom .total div>div{
     padding: 0 12px;
 }
+.total{
+    margin-bottom: 50px;
+}
 .total div {
     display: flex;
     flex-direction: column;
@@ -177,4 +180,10 @@ tbody tr td a i:hover{
 }
 #price{
    text-decoration: line-through;
+}
+#cart-container #Empty_Display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
 }
