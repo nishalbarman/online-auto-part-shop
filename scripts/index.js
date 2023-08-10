@@ -29,7 +29,7 @@ window.onload = () => {
   scrollAdd(); // calling this will add scroll to top funcion
 
   const searchAppend = searchCardAppend(); //getting the appending function for search result
-  const inputListener = inputSearchEventListener(searchAppend, 400); // searchbar listener from component
+  const inputListener = inputSearchEventListener(searchAppend, 700); // searchbar listener from component
   inputListener(); // input listener initialised
 
   cartItemUpdate(); // Update the cart items
@@ -153,7 +153,8 @@ function dealsWeekAppend(list) {
     let count = 0;
     for (let i = 0; i < 5; i++) {
       if (count < element.rating) {
-        p += `<i class="fa-solid fa-star" style="color: #ff8800;"></i>`;
+        // p += `<i class="fa-solid fa-star" style="color: #ff8800;"></i>`;
+        p += `<i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>`;
         count++;
       } else {
         p += `<i
@@ -226,8 +227,11 @@ function categoryAppend(list) {
   list.forEach((element, index) => {
     append.append(
       getCategoryCard(element, (event) => {
-        alert("Category Clicked");
+        // alert("Category Clicked");
         console.log(event);
+        window.location.assign(
+          `/products.html?category=${element.name.toLowerCase()}`
+        );
       })
     );
   });

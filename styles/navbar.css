@@ -75,6 +75,7 @@
   font-weight: bold;
   font-size: 35px;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .middle_nav {
@@ -284,6 +285,7 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
   height: 100vh;
   background-color: rgb(0, 0, 0);
   opacity: 0.4;
+  opacity: 0.2;
 }
 
 .search_result_list {

@@ -1,0 +1,121 @@
+body {
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0 10%;
+  gap: 20px;
+}
+
+.side_bar {
+  width: 20%;
+  padding: 10px;
+  font-family: font-regular, font-bold, snapdeal_font2, times new roman,
+    helvetica neue, helvetica, arial, geneva, sans-serif;
+  border-right: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.sidbar_title {
+  font-weight: 600;
+  font-size: 14px;
+  color: rgb(0, 0, 0, 0.8);
+  /* padding: 0 5px; */
+}
+
+.vertical-line {
+  margin-bottom: 13px;
+}
+
+.main_grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  /* place-content: center; */
+  justify-content: flex-start;
+  gap: 20px;
+  /* align-items: center; */
+}
+
+.rating_filter {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rating_box > input {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.rating_box > input:checked {
+  background-color: gray;
+}
+
+.rating_box {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+}
+
+div.deals_card > div.product_body > p:first-child {
+  -webkit-line-clamp: 2;
+}
+
+div.deals_card {
+  animation: zoom_effect 250ms 1 alternate;
+}
+
+div.deals_card:hover {
+  scale: 1.02;
+  animation: zoom_effect 250ms 1 alternate;
+}
+
+@keyframes zoom_effect {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.02;
+  }
+}
+
+.grid_outer {
+  width: 100%;
+}
+
+.short_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100% !important;
+}
+.short_title > p {
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  color: rgb(0, 0, 0, 0.7);
+  white-space: nowrap;
+}
+
+select {
+  height: 35px;
+  width: 200px;
+  padding: 0px 8px;
+  border-radius: 4px;
+  font-size: 17px;
+}
+
+.checkedcheck {
+  background-color: gray !important;
+}

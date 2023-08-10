@@ -71,7 +71,7 @@ function middle_navbar(hide = false) {
   <!---------------------------------------------->
   <div class="middle_nav">
       <div class="middle_first">
-          <h1 class="logo-text">AUTO PLAY</h1>
+          <h1 id="logo_click" class="logo-text">AUTO PLAY</h1>
       </div>
      ${middle}
       <div class="middle_third">
@@ -114,10 +114,10 @@ function bottom_navbar() {
     <!---------------------------------------------->
     <div id="bottom_nav" class="bottom_nav">
 
-        <a href="#">Exterior</a>
-        <a href="#">Interior</a>
+        <a href="/products.html?category=exterior">Exterior</a>
+        <a href="/products.html?category=interior">Interior</a>
         <a href="#">Performance</a>
-        <a href="#">Wheels and Tires</a>
+        <a href="#"></a>
         <a href="#">Body parts</a>
         <a href="#">Repair parts</a>
         <a href="#">Electronics</a>
@@ -146,8 +146,8 @@ function inputSearchEventListener(callback, duration = 300) {
 
         if (data.length != 0) {
           search_result_container.style.display = "flex";
-          document.querySelector("body").style.backgroundColor =
-            "rgb(0, 0, 0, 0.1)";
+          // document.querySelector("body").style.backgroundColor =
+          //   "rgb(0, 0, 0, 0.1)";
           document.querySelector("#blackscreen").style.display = "block";
           document.querySelector(".uparrow").style.display = "flex";
           callback(data); // append call back function than we will get from index.js
@@ -173,7 +173,17 @@ function inputSearchEventListener(callback, duration = 300) {
   return () => {
     const input = document.querySelector("#searchbar");
     input.addEventListener("keyup", (event) => {
-      debounceData(event.target.value);
+      if (event.key == "Enter") {
+        window.location.assign(`/products.html?search=${event.target.value}`);
+      } else {
+        debounceData(event.target.value);
+      }
+    });
+
+    const logo = document.querySelector("#logo_click");
+    logo.addEventListener("click", () => {
+      let url = window.location.pathname;
+      if (url !== "/index.html") window.location.assign("/index.html");
     });
   };
 }
