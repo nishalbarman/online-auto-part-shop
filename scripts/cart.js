@@ -4,9 +4,12 @@ import {
   bottom_navbar,
 } from "../components/navbar.js";
 
+
+
+
 window.onload = () => {
   const nav = document.querySelector("#navbar");
-  nav.innerHTML = top_navbar() + middle_navbar() + bottom_navbar();
+  nav.innerHTML = top_navbar()+middle_navbar(true);
   const item_cart = document.querySelector("#item_count_cart");
   let cartItems = localStorage.getItem("cart-total-items") || 0;
   if (!(cartItems == 0 || cartItems == null)) {
@@ -14,39 +17,16 @@ window.onload = () => {
     item_cart.style.display = "flex";
   }
 };
-// for cart
-var arr=[{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
-name:"Break pad",
-original_price:"2500",
-discount_price:"2000",
-},
-{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
-name:"Break pad",
-original_price:"2500",
-discount_price:"2000",
-},
-{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
-name:"Break pad",
-original_price:"2500",
-discount_price:"2000",
-},
-{image:"https://th.bing.com/th/id/OIP.U8j_zjLYk6YE_TLvf_zeMAHaHa?w=171&h=180&c=7&r=0&o=5&pid=1.7",
-name:"Break pad",
-original_price:"2500",
-discount_price:"2000",
-}]
-// var api=`http://localhost:3000/users/${localStorage.getItem("userid") || 1}`
 
-// var arr=[];
-// Data.cart
+var api=`http://localhost:3000/users/${localStorage.getItem("userid") || 1}`
 
-// fetch("")
 
 async function fetch_data(){
   try{
     let response=await fetch(api);
     let data=await response.json();
     console.log(data.cart);
+    UpdateDisplay(data.cart);
   }
   catch(error){
     console.log(error);
@@ -55,63 +35,156 @@ async function fetch_data(){
 fetch_data();
 
 
+
 //display update function
 function UpdateDisplay(arr){
 var tbody=document.querySelector("tbody");
 tbody.innerHTML=null;
 
-
-
 if(arr.length!=0)
 {
-  var total=0;
-  arr.forEach(function(ele,index){
+  var Total=0;
+  
+  arr.forEach(function(ele,index, cartarray){
     var tr=document.createElement("tr");
     var td1=document.createElement("td");
     var div_img=document.createElement("div");
     var image=document.createElement("img");
     image.setAttribute("Style","width:70px")
-    image.src=ele.image;
+    image.src=ele.image_url;
     div_img.append(image);
     td1.append(div_img);
     
     //product name
     var td2=document.createElement("td");
-    var name=document.createElement("h5");
+    var name=document.createElement("p");
     name.innerText=ele.name;
     td2.append(name);
+
+    let plus = document.createElement("button");
+    let minus = document.createElement("button");
+
+    plus.textContent = "+";
+    minus.textContent = "-";
+
+    minus.classList.add("pm_button");
+    plus.classList.add("pm_button")
+
+const debounce = (duration=400)=>{
+  let timer;
+  return ()=>{
+    clearTimeout(timer);
+    timer = setTimeout(()=>{
+      console.log(quantity.value);
+      let options = {
+        method : "PATCH",
+        headers: {
+          "Content-Type":"application/json",
+        }
+        ,
+        body: JSON.stringify({
+          cart: cartarray
+        })
+      }
+
+      fetch(api, options).then(()=>{
+        // UpdateDisplay(cartarray);
+      }).catch(error=>{console.log(error)});
+
+
+    }, duration);
+  }
+}
+
+    const debouceAddQuantity = debounce(400)
+
+    plus.addEventListener("click", ()=>{
+      ele.quantity = +ele.quantity;
+      quantity.value = 1+ +quantity.value;
+      ele.quantity = +quantity.value;
+      debouceAddQuantity();
+    })
+
+    minus.addEventListener("click", ()=>{
+      ele.quantity = +ele.quantity;
+      quantity.value -= +1;
+      if(quantity.value <= 0)  {
+        cartarray.splice(index,1);
+        Total -=ele.discounted_price*(ele.quantity || 1);
+        console.log(cartarray.length);
+        // UpdateDisplay(arr);
+  
+        let options = {
+          method : "PATCH",
+          headers: {
+            "Content-Type":"application/json",
+          }
+          ,
+          body: JSON.stringify({
+            cart: cartarray
+          })
+        }
+  
+        fetch(api, options).then(()=>{
+          UpdateDisplay(cartarray);
+        }).catch(error=>{console.log(error)});
+        return false;
+      } else {
+        ele.quantity = +quantity.value;
+        debouceAddQuantity();
+      }
+      
+    })
     
     //product quantity
     var td3=document.createElement("td");
     var quantity=document.createElement("input");
     quantity.setAttribute("class", "w-25 pl-1");
     quantity.setAttribute("id", "Quantity");
-    quantity.setAttribute("value", "1");
+    quantity.setAttribute("value", ele.quantity || 1);
     var q_button=document.createElement("input");
     q_button.setAttribute("type","submit");
     q_button.setAttribute("id","Submit");
     q_button.setAttribute("value","Update");
-    td3.append(quantity,q_button);
+    td3.append(minus, quantity, plus);
+    // td3.append(minus, quantity, plusq_button);
      
-    //getting value from input field
-    var dis_price=ele.discount_price;
-    q_button.addEventListener("click",function(){
-      var u_p=document.getElementById("Quantity").value;
-      console.log(u_p);
-      var updated_discount=dis_price* +u_p;
-      console.log(updated_discount)
-      td6.innerHTML=null;
-      let discount=document.createElement("h5");
-      discount.innerText="Rs. "+updated_discount;
-      td6.append(discount);
+  
+    quantity.addEventListener("keyup", ()=>{
+      let q = +quantity.value;
+      console.log(q)
+      if(q <= 0)  {
+        cartarray.splice(index,1);
+        Total -=ele.discounted_price*(ele.quantity || 1);
+        console.log(cartarray.length);
+  
+        let options = {
+          method : "PATCH",
+          headers: {
+            "Content-Type":"application/json",
+          }
+          ,
+          body: JSON.stringify({
+            cart: cartarray
+          })
+        }
+  
+        fetch(api, options).then(()=>{
+          UpdateDisplay(cartarray);
+        }).catch(error=>{console.log(error)});
+        return false;
+      } else {
+        ele.quantity = +q;
+        debouceAddQuantity();
+      }
     })
-   
+
     
     //product price
     var td4=document.createElement("td");
-    var price=document.createElement("h5");
+    var price=document.createElement("p");
     price.setAttribute("id","price");
-    price.innerText="Rs. "+ele.original_price;
+    price.innerText="Rs. "+ele.original_price*(ele.quantity || 1);
     td4.append(price);
     
     //remove item
@@ -123,20 +196,39 @@ if(arr.length!=0)
     remove.append(icon);
     td5.append(remove);
     
+
     
     //discount price
     var td6=document.createElement("td");
-    var discount=document.createElement("h5");
-    discount.innerText="Rs. "+ele.discount_price;
+    var discount=document.createElement("p");
+    discount.innerText="Rs. "+ele.discounted_price*(ele.quantity || 1);
     td6.append(discount);
-    total=total+ +ele.discount_price;
-    console.log(total);
+    Total=Total+ +ele.discounted_price*(ele.quantity || 1);
+    console.log(Total);
 
     // remove function
     remove.addEventListener("click",function(){
-      arr.splice(index,1);
-      total=total- +ele.discount_price
-      UpdateDisplay(arr);
+      cartarray.splice(index,1);
+      Total -=ele.discounted_price*(ele.quantity || 1);
+      console.log(cartarray.length);
+      // UpdateDisplay(arr);
+
+      let options = {
+        method : "PATCH",
+        headers: {
+          "Content-Type":"application/json",
+        }
+        ,
+        body: JSON.stringify({
+          cart: cartarray
+        })
+      }
+
+      fetch(api, options).then(()=>{
+        UpdateDisplay(cartarray);
+      }).catch(error=>{console.log(error)});
+  
+
     })
     // appending to main cart
     tr.append(td1,td2,td3,td4,td6,td5);
@@ -152,8 +244,8 @@ if(arr.length!=0)
         <div>
           <h5>COUPON</h5>
           <p>Enter your coupon code</p>
-          <input type="text" placeholder="Coupon Code">
-          <button>Apply Coupon</button>
+          <input type="text" placeholder="Coupon Code" id="coupon_code">
+          <button id="coupon_button">Apply Coupon</button>
         </div>
       </div>
       <div class="total col-lg-6 col-md-6 col-12" >
@@ -161,7 +253,7 @@ if(arr.length!=0)
           <h5>Cart Total</h5>
           <div class="b_cart">
             <h6>Subtotal</h6>
-            <p>Rs. ${total}</p>
+            <p>Rs. ${Total}</p>
           </div>
           <div class="b_cart">
             <h6>Delivery Charges</h6>
@@ -170,7 +262,7 @@ if(arr.length!=0)
           <hr class="second-hr">
           <div class="b_cart">
             <h6>Total</h6>
-            <p>Rs. ${total}</p>
+            <p>Rs. ${Total}</p>
           </div>
           <button id="Checkout">Proceed To CheckOut </button>
         </div>
@@ -179,16 +271,25 @@ if(arr.length!=0)
 
     bottom.innerHTML=cart_bottom;
 
+
+      // storing for coupon
+      document.getElementById("coupon_button").addEventListener("click",function(){
+        apply_code(Total);
+        console.log(Total);
+      })
+
     // storing total amount in local storage for payment
     let CheckOut_button=document.getElementById("Checkout");
     CheckOut_button.addEventListener("click",function(){
       event.preventDefault();
-      localStorage.setItem("Total_Amount",total);
+      
+      localStorage.setItem("Total_Amount",Total);
+      
       console.log("clicked");
     })
-    });
-    
-   
+
+      
+    });   
 }
 else{
  document.getElementById("cart-container").innerHTML=null;
@@ -197,4 +298,70 @@ else{
 }
 }
 
-UpdateDisplay(arr);
+// for coupon code
+function apply_code(Total){
+
+  let coupons = null;
+  let code=document.getElementById("coupon_code").value;
+
+  if(code===""){
+    alert("Please Enter Your coupon code");
+  }
+  else{
+    fetch(`http://localhost:3000/coupons`).then((res)=>{
+    return res.json();
+  }).then((data)=>{
+    coupons = data;
+    console.log(coupons);
+    console.log(coupons[0].code);
+    if(coupons[0].code===code)
+    {
+      var dis=(Total*20)/100;
+
+      Total-=dis;
+      alert("Your Coupon is Successfully Applied")
+      var bottom=document.getElementById("cart-bottom");
+    bottom.innerHTML=null;
+    var cart_bottom=`
+    <div class="row">
+      <div class="coupon col-lg-6 col-md-6 col-12 mb-4">
+        <div>
+          <h5>COUPON</h5>
+          <p>Enter your coupon code</p>
+          <input type="text" placeholder="Coupon Code" id="coupon_code">
+          <button id="coupon_button">Apply Coupon</button>
+        </div>
+      </div>
+      <div class="total col-lg-6 col-md-6 col-12" >
+        <div>
+          <h5>Cart Total</h5>
+          <div class="b_cart">
+            <h6>Subtotal</h6>
+            <p>Rs. ${Total}</p>
+          </div>
+          <div class="b_cart">
+            <h6>Delivery Charges</h6>
+            <p>Free</p>
+          </div>
+          <hr class="second-hr">
+          <div class="b_cart">
+            <h6>Total</h6>
+            <p>Rs. ${Total}</p>
+          </div>
+          <button id="Checkout">Proceed To CheckOut </button>
+        </div>
+      </div>
+    </div>`
+
+    bottom.innerHTML=cart_bottom;
+
+    }
+    else{
+      alert("invalid Coupon");
+    }
+
+  })
+  }
+}
+
+// UpdateDisplay(arr);
