@@ -32,7 +32,7 @@ window.onload = () => {
   const inputListener = inputSearchEventListener(searchAppend, 700); // searchbar listener from component
   inputListener(); // input listener initialised
 
-  cartItemUpdate(); // Update the cart items
+  // cartItemUpdate(); // Update the cart items
 
   categoryRequest();
   featuredProductRequest();
@@ -163,8 +163,45 @@ function dealsWeekAppend(list) {
       }
     }
     p += `</p>`;
-    append.append(getDealsWeekCard(element, p, [(event) => {}, () => {}]));
+    append.append(
+      getDealsWeekCard(element, p, (event) => {
+        addToCart(element);
+      })
+    );
   });
+}
+
+async function addToCart(element) {
+  try {
+    const res = await fetch(`${API}/users/1`);
+    const data = await res.json();
+
+    let carts = data.cart;
+    carts.push(element);
+    postTheItemToserver(carts);
+  } catch (error) {
+    console.error();
+  }
+}
+
+async function postTheItemToserver(carts) {
+  try {
+    let options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: carts,
+      }),
+    };
+
+    const res = await fetch(`${API}/users/1`, options);
+    const data = res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function categoryRequest() {

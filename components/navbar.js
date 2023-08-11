@@ -71,7 +71,7 @@ function middle_navbar(hide = false) {
   <!---------------------------------------------->
   <div class="middle_nav">
       <div class="middle_first">
-          <h1 id="logo_click" class="logo-text">AUTO PLAY</h1>
+          <h1 id="logo_click" class="logo-text">AUTO PART</h1>
       </div>
      ${middle}
       <div class="middle_third">
@@ -117,7 +117,7 @@ function bottom_navbar() {
         <a href="/products.html?category=exterior">Exterior</a>
         <a href="/products.html?category=interior">Interior</a>
         <a href="#">Performance</a>
-        <a href="#"></a>
+        <a href="/products.html?category=wheels%20and%20tires">Wheels and Tires</a>
         <a href="#">Body parts</a>
         <a href="#">Repair parts</a>
         <a href="#">Electronics</a>

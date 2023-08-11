@@ -59,7 +59,7 @@ if (url.includes("=")) {
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
-  nav.innerHTML = middle_navbar();
+  nav.innerHTML = top_navbar() + middle_navbar();
   const footer = document.querySelector("#footer");
   footer.innerHTML = getFooter();
   // scroll to top adding
@@ -70,7 +70,7 @@ window.onload = () => {
   const inputListener = inputSearchEventListener(searchAppend, 400); // searchbar listener from component
   inputListener(); // input listener initialised
 
-  cartItemUpdate(); // Update the cart items
+  // cartItemUpdate(); // Update the cart items
 
   filterFunction();
   sideBarRatingFunction();
@@ -1271,6 +1271,35 @@ function productAppend(list) {
       }
     }
     p += `</p>`;
-    append.append(getProductCards(element, p, [(event) => {}, () => {}]));
+    append.append(
+      getProductCards(element, p, (event) => {
+        fetch(`${API}/users/1`)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            let carts = data.cart;
+            carts.push(element);
+
+            let options = {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                cart: carts,
+              }),
+            };
+
+            fetch(`${API}/users/1`, options)
+              .then((res) => {
+                return res.json();
+              })
+              .then((data) => {})
+              .catch((err) => {});
+          })
+          .catch((error) => {});
+      })
+    );
   });
 }
