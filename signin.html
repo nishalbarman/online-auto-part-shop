@@ -14,7 +14,7 @@
     }
 
     body {
-        background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_247535207_XL.jpg');
+        background-image: url('https://www.supercars.net/blog/wp-content/uploads/2020/09/wallpaperflare.com_wallpaper-1-1.jpg');
         background-size: 150%;
         /* background-position: left center; */
 
@@ -23,8 +23,9 @@
 
     .main {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     /* css for left part starts */
@@ -108,9 +109,10 @@
         border-width: 2px;
     }
 
-    .images img :hover {
+    .images img:hover {
         border-width: 3px;
-        border-color: green;
+        border-color: gray;
+        cursor:pointer;
     }
 
     .right>.images {
@@ -134,6 +136,13 @@
         .left {
             display: none;
         }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
     }
 </style>
 
@@ -144,7 +153,7 @@
         <div class="left">
             <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png"
                 alt="">
-            <h1>Behance</h1>
+            <h1>AutoPart</h1>
         </div>
         <!-- this is right part (the signUp form) -->
         <div class="right">
@@ -167,6 +176,8 @@
                     <div class="az">OR</div>
                     <div class="ax"></div>
                 </div>
+
+                <button id="googlesign">sign in using google</button>
             </form>
             <div></div>
         </div>
@@ -177,7 +188,7 @@
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -200,24 +211,68 @@
         event.preventDefault();
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
+        if(email == '' || password == ''){
+            alert("Please fill in the credentials");
+        }else{
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    // ...
+                window.location.href = "index.html";
+                    alert("Logged in Successfully");
+                    
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(`${error}`);
+                    
+                });
+        }
 
+        
+    });
+
+
+    document.getElementById("googlesign").addEventListener("click", ()=>{
+        event.preventDefault();
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
-               window.location.href = "signup.html";
-                alert("susccessfll");
-                
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
-
-
-        })
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+            window.location.href = "index.html";
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+    });
     
-
+        //logout button 
+        //logout button
+    document.getElementById("logout").addEventListener("click", function () {
+        signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            alert("logout successfully");
+            location.href = "./index.html";
+        })
+        .catch((error) => {
+            // An error happened.
+        });
+    });
 </script>
