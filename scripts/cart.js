@@ -1,19 +1,3 @@
-// import {
-//   top_navbar,
-//   middle_navbar,
-//   bottom_navbar,
-// } from "../components/navbar.js";
-
-// window.onload = () => {
-//   const nav = document.querySelector("#navbar");
-//   nav.innerHTML = top_navbar()+middle_navbar(true);
-//   const item_cart = document.querySelector("#item_count_cart");
-//   let cartItems = localStorage.getItem("cart-total-items") || 0;
-//   if (!(cartItems == 0 || cartItems == null)) {
-//     item_cart.textContent = cartItems;
-//     item_cart.style.display = "flex";
-//   }
-// };
 
 
 import {
@@ -257,6 +241,7 @@ const debounce = (duration=400)=>{
     // appending to main cart
     tr.append(td1,td2,td3,td4,td6,td5);
     tbody.append(tr);
+
     
     // for bottom part
     document.getElementById("cart-bottom").style="display=block";
@@ -295,13 +280,12 @@ const debounce = (duration=400)=>{
 
     bottom.innerHTML=cart_bottom;
 
-
-      // storing for coupon
-      document.getElementById("coupon_button").addEventListener("click",function(){
-        apply_code(Total);
-        console.log(Total);
-      })
-
+    // storing for coupon
+    document.getElementById("coupon_button").addEventListener("click",function(){
+      Total=apply_code(Total);
+      console.log(Total);
+    })
+      
     // storing total amount in local storage for payment
     let CheckOut_button=document.getElementById("Checkout");
     CheckOut_button.addEventListener("click",function(){
@@ -345,6 +329,7 @@ function apply_code(Total){
     alert("Please Enter Your coupon code");
   }
   else{
+    let popup=document.getElementById("popup");
     fetch(`http://localhost:3000/coupons`).then((res)=>{
     return res.json();
   }).then((data)=>{
@@ -356,7 +341,14 @@ function apply_code(Total){
       var dis=(Total*20)/100;
 
       Total-=dis;
-      alert("Your Coupon is Successfully Applied")
+      // alert("Your Coupon is Successfully Applied")
+
+      popup.classList.add("open-popup");
+
+      document.getElementById("ok_btn").addEventListener("click",function(){
+        popup.classList.remove("open-popup");
+      })
+
       var bottom=document.getElementById("cart-bottom");
     bottom.innerHTML=null;
     var cart_bottom=`
@@ -392,13 +384,31 @@ function apply_code(Total){
 
     bottom.innerHTML=cart_bottom;
 
+    let CheckOut_button=document.getElementById("Checkout");
+    CheckOut_button.addEventListener("click",function(){
+      event.preventDefault();
+      
+      localStorage.setItem("Total_Amount",Total);
+      
+      console.log("clicked");
+    })
+
+
     }
     else{
-      alert("invalid Coupon");
+      // alert("invalid Coupon");
+      let popup=document.getElementById("popup1");
+      popup.classList.add("open-popup");
+
+      document.getElementById("ok_btn1").addEventListener("click",function(){
+        popup.classList.remove("open-popup");
+      })
     }
 
   })
   }
+ 
 }
+
 
 // UpdateDisplay(arr);
