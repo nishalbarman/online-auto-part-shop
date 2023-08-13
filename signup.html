@@ -18,9 +18,14 @@
 
     body {
         background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
-        background-size: 150%;
-        /* background-position: left center; */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        /* background-size: %; */
 
+        /* background-position:  center; */
+        /* background: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg') 0 0 no-repeat; */
 
     }
 
@@ -37,6 +42,7 @@
         flex: auto;
         justify-content: center;
         align-items: center;
+        display: none;
     }
 
     .left>img {
@@ -58,9 +64,10 @@
     .right {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         padding: 30px;
         width: 514px;
-        height: 100%;
+        height: 39em;
         margin-right: 10%;
         margin-left: 10%;
         margin-top: 15px;
@@ -224,14 +231,18 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        #submit{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        }
+        
+        
 
         .right>form>button{
             justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 860px) {
+
+        #submit {
+            margin-left: 26%;
         }
     }
 </style>
@@ -270,14 +281,13 @@
                         href="signin.html"> Sign in </a></p>
                 </section>
 
-                <label id="label-for-email" for="email" class="labels">Email address</label><br>
+                <label id="label-for-email" for="email" class="labels">Email Address</label><br>
                 <input type="email" id="email" class="text-box"><br>
                 <label for="password" class="labels">Password</label><br>
                 <input type="password" name="password" id="password" class="text-box"> <br>
                 <!-- <input type="submit" id="submit" name="Continue" value="Continue"> -->
                 <button id="submit">Continue</button>
             </form>
-            <div></div>
         </div>
     </div>
 </body>
@@ -327,6 +337,7 @@
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 alert(error);
+                reset();
                 // ..
             });
         }
@@ -348,7 +359,7 @@
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
-                window.location.href = "signin.html";
+                window.location.href = "./index.html";
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -362,7 +373,10 @@
     });
     
 
-    
+    function reset(){
+        var form=document.getElementById("myform");
+        form.reset();
+    }
 
 
 
