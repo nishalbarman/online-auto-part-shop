@@ -1,0 +1,127 @@
+
+html {
+  scroll-behavior: smooth;
+}
+
+#footer {
+  width: 100%;
+}
+
+.top_footer {
+  position: relative;
+  padding: 60px 20% 10px 20%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: rgb(24, 24, 24);
+  height: 300px;
+  color: white;
+  font-family: Poppins, Roboto, sans-serif, monospace;
+  line-height: 25px;
+  font-size: 15px;
+}
+
+.top_footer > div {
+  height: 100% !important;
+  overflow: hidden;
+}
+
+.footer_heading {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.top_footer > div.second_footer > p:nth-child(3) {
+  margin: 10px 0px;
+}
+
+.top_footer > div.second_footer > p:last-child {
+  color: rgb(248, 200, 8);
+  text-decoration: 1px dotted rgb(248, 200, 8) underline;
+  text-underline-offset: 4px;
+}
+
+.top_footer > .fourth_footer > input {
+  display: block;
+  height: 40px;
+  width: 100%;
+  padding: 0px 18px;
+  border: none;
+  outline: none;
+  margin-top: 15px;
+}
+
+.top_footer > .fourth_footer > button {
+  display: block;
+  height: 36px;
+  padding: 0px 18px;
+  width: 50%;
+  border: none;
+  outline: none;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 12px 0px;
+  background-color: rgb(248, 200, 8);
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.top_footer > .fourth_footer > button:hover {
+  background-color: rgb(248, 200, 8, 0.7);
+  transition-duration: 300ms;
+}
+
+.fourth_footer > .social_footer_btn {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.fourth_footer > .social_footer_btn > i {
+  padding: 6px 8px;
+  border: 2px solid rgb(53, 53, 53);
+  border-radius: 3px;
+}
+
+#fifth_footer {
+  position: absolute;
+  top: 45%;
+  right: 100px;
+  height: fit-content !important;
+  padding: 10px 11px;
+  background-color: rgb(248, 200, 8);
+  cursor: pointer;
+}
+#fifth_footer:hover {
+  background-color: rgb(248, 200, 8, 0.7);
+  transition-duration: 300ms;
+}
+
+.footer_bottom {
+  display: flex;
+  background-color: rgb(8, 8, 8);
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 5%;
+}
+
+.footer_bottom > .bottom-copyright {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.pay_logo_image {
+  -webkit-user-drag: none;
+  user-select: none;
+}
