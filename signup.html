@@ -17,8 +17,8 @@
     }
 
     body {
-        background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
-        background-size: 150%;
+        /* background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
+        background-size: 150%; */
         /* background-position: left center; */
 
 
@@ -29,6 +29,11 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        height: 100vh;
+        background-image: url('./img/background.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
     }
 
     /* css for left part starts */
@@ -60,7 +65,7 @@
         flex-direction: column;
         padding: 30px;
         width: 514px;
-        height: 100%;
+        height: fit-content;
         margin-right: 10%;
         margin-left: 10%;
         margin-top: 15px;
@@ -68,11 +73,15 @@
         border-radius: 1%;
         padding-left: 53px;
         padding-top: 40px;
+        border-radius: 1%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding-bottom: 37px;
+        border-radius: 20px;
     }
 
     /* header css here */
     .signup-step {
-        color: rgb(81,80,81);
+        color: rgb(81, 80, 81);
     }
 
     .create-account {
@@ -98,12 +107,12 @@
         padding: 15px;
     }
 
-     .ax {
+    .ax {
         background-color: gray;
         height: 1px;
         width: 46%;
     }
-   
+
     .av .az {
         color: #626669;
         font-size: 20px;
@@ -120,7 +129,7 @@
     .images img:hover {
         border-width: 3px;
         border-color: gray;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .right>.images {
@@ -145,36 +154,42 @@
         margin: 9px;
         margin-left: 0px;
     }
-    .text-box:hover{
+
+    .text-box:hover {
         border-color: #6FABEE;
         border-width: 0 0 2px;
-        
+
     }
-    .text-1{
+
+    .text-1 {
         color: #505050;
         font-size: 16px;
         font-weight: 700;
         line-height: 27px;
-        font-family: adobe-clean,Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+        font-family: adobe-clean, Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
     }
-    .text-2{
+
+    .text-2 {
         color: #505050;
         font-size: 17px;
         font-weight: 500;
         line-height: 27px;
         margin: 3px 0 10px;
     }
-    p a{
+
+    p a {
         color: #0060B6;
         text-decoration: none;
         margin-bottom: 5px;
     }
-    p a:hover{
-        color:#00A0C6; 
-        cursor:pointer;
-        text-decoration: underline; 
+
+    p a:hover {
+        color: #00A0C6;
+        cursor: pointer;
+        text-decoration: underline;
     }
-    .labels{
+
+    .labels {
         display: block;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -189,7 +204,8 @@
         /* font-smoothing: subpixel-antialiased; */
         margin-bottom: -13px;
     }
-    #submit{
+
+    #submit {
         display: flex;
         justify-content: flex-end;
         margin-top: 5%;
@@ -207,30 +223,46 @@
         padding-bottom: 7px;
         position: relative;
     }
-    #submit:hover{
+
+    #submit:hover {
         cursor: pointer;
         background-color: white;
         color: black;
         border-color: black;
     }
+
+    input {
+        outline: none;
+        font-size: 18px;
+        height: 25px !important;
+
+    }
+
+    .text-box {
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
+
     /* right ends */
     @media (min-width: 300px) and (max-width: 2900px) {
         .left {
             display: none;
         }
+
         .main {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
-        #submit{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+        #submit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .right>form>button{
+        .right>form>button {
             justify-content: center;
         }
     }
@@ -248,11 +280,12 @@
         <!-- this is right part (the signUp form) -->
         <div class="right">
             <header class="right-header">
-                <strong class="signup-step">Step<span> 1</span> of <span> 2</span></strong>
+                <!-- <strong class="signup-step">Step<span> 1</span> of <span> 2</span></strong> -->
                 <h1 class="create-account">Create an account</h1>
             </header>
             <div class="images">
-                <img src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png" id="google" alt="">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png"
+                    id="google" alt="">
                 <img id="facebook"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQgOEDUS3cCP5GsfADjV2W0BkZdMK17FAiQ&usqp=CAU"
                     alt="">
@@ -266,8 +299,8 @@
                 </div>
                 <section class="signup-text">
                     <p class="text-1">Sign up with email</p>
-                    <p class="text-2">Already have an account? <a class="spectrum-Link"
-                        href="signin.html"> Sign in </a></p>
+                    <p class="text-2">Already have an account? <a class="spectrum-Link" href="signin.html"> Sign in </a>
+                    </p>
                 </section>
 
                 <label id="label-for-email" for="email" class="labels">Email address</label><br>
@@ -284,10 +317,11 @@
 
 </html>
 <script type="module">
+    import API from "/components/api.js"
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-    
+    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -305,41 +339,37 @@
     const app = initializeApp(firebaseConfig);
     // console.log(app);
 
-    document.getElementById("submit").addEventListener("click", (event)=>{
+    document.getElementById("submit").addEventListener("click", (event) => {
         event.preventDefault();
 
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
-        if(email == '' || password == ''){
+        if (email == '' || password == '') {
             alert("Please fill in the credentials");
-        }else{
+        } else {
             const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
-                // console.log(email, password);   
-                alert("Account Successfully Registered")
-                window.location.href = "signin.html"
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(error);
-                // ..
-            });
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                    alert("Account created, you may login now")
+                    window.location.href = "signin.html"
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(error);
+                });
         }
-        
-        
-
     });
 
-    document.getElementById("google").addEventListener("click", ()=>{
+
+
+    document.getElementById("google").addEventListener("click", (event) => {
         event.preventDefault();
-            const auth = getAuth();
-            const provider = new GoogleAuthProvider();
-            signInWithPopup(auth, provider)
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -348,7 +378,34 @@
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
-                window.location.href = "signin.html";
+                // getDataa(user);
+
+
+                fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
+                    const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
+
+                    const options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(userObject)
+                    }
+
+                    fetch(`${API}/users`, options).then(res => res.json()).then(data => {
+                        console.log(data);
+
+                        localStorage.setItem("userObject", JSON.stringify(data));
+                        localStorage.setItem("logged", true)
+                        localStorage.setItem("userid", data.id);
+                        localStorage.setItem("cart-total-items", data.cart.length || 0);
+                        alert("Signup successful --> Redirecting");
+                        window.location.href = "/index.html";
+                    })
+                }).catch((er) => {
+                    console.error(er);
+                })
+
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -360,12 +417,61 @@
                 // ...
             });
     });
-    
 
-    
+    async function getDataa(user) {
+        const res = await fetch(`${API}/users?email=${user.email}`);
+        const data = await res.json();
+        // if (data.length != 0) {
+        //     alert("User already exist sign in");
+        // } else {
+        const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
+        uploadUser(userObject);
+        getData(user.email)
+    }
+
+    async function getData(email) {
+        try {
+            const res = await fetch(`${API}/users?email=${email}`);
+            const data = await res.json();
+            console.log(data);
+            localStorage.setItem("userObject", JSON.stringify(data[0]));
+            localStorage.setItem("logged", true)
+            localStorage.setItem("userid", data[0].id);
+            alert("Signup successful --> Redirecting");
+            window.location.href = "/index.html";
+        } catch (err) {
+        }
+    }
 
 
+    function createUser(name, email, phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = {
+            fullname: "",
+            mobile_no: "",
+            full_address: "",
+            locality: "",
+            district: "",
+            pin_code: "",
+            state: ""
+        };
+        this.cart = [];
+        this.order = [];
+    }
 
-    
+    async function uploadUser(userObject) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userObject)
+        }
+        const res = await fetch(`${API}/users`, options);
+        const data = await res.json();
+        console.log(data);
+    }
 
 </script>

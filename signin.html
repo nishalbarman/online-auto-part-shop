@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup page</title>
+    <link rel="stylesheet" href="./styles/navbar.css">
 </head>
 <style>
     * {
@@ -13,24 +14,24 @@
         padding: 0;
     }
 
-    body {
-        background-image: url('https://www.supercars.net/blog/wp-content/uploads/2020/09/wallpaperflare.com_wallpaper-1-1.jpg');
-        background-size: 150%;
-        /* background-position: left center; */
-
-
-    }
+    body {}
 
     .main {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        height: 100vh;
+        background-image: url('./img/background.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
     }
 
     /* css for left part starts */
     .left {
         display: flex;
+        display: none;
         flex: auto;
         justify-content: center;
         align-items: center;
@@ -42,10 +43,12 @@
     }
 
     .left>h1 {
-        font-size: 36px;
+        /* font-size: 36px;
         line-height: 47px;
         font-weight: 400;
         color: #f4f4f4;
+         */
+        text-transform: uppercase;
     }
 
     /* left part ends */
@@ -55,15 +58,20 @@
     .right {
         padding: 30px;
         width: 514px;
-        height: 600px;
+        height: fit-content;
         margin-right: 10%;
         margin-left: 10%;
         margin-top: 15px;
         background-color: white;
         border-color: 5px solid black;
         border-radius: 1%;
-
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding-bottom: 37px;
+        border-radius: 20px;
+        /* padding-bottom: 50px; */
+        padding-top: .5%;
     }
+
 
     /* header css here */
     .signup-step {
@@ -85,23 +93,26 @@
 
     /* header ends */
 
-    .new-user{
+    .new-user {
         color: #505050;
         font-size: 17px;
         font-weight: 500;
         line-height: 27px;
         margin: 3px 0 10px;
     }
-    p a{
+
+    p a {
         color: #0060B6;
         text-decoration: none;
         margin-bottom: 5px;
     }
-    p a:hover{
-        color:#00A0C6; 
-        cursor:pointer;
-        text-decoration: underline; 
+
+    p a:hover {
+        color: #00A0C6;
+        cursor: pointer;
+        text-decoration: underline;
     }
+
     .av {
         align-items: center;
         display: flex;
@@ -124,7 +135,7 @@
 
     .images img {
         width: 50px;
-        
+
     }
 
     .images img:hover {
@@ -139,7 +150,7 @@
         gap: 10px;
     }
 
-    .labels{
+    .labels {
         display: block;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -154,7 +165,8 @@
         /* font-smoothing: subpixel-antialiased; */
         margin-bottom: -13px;
     }
-    #submit{
+
+    #submit {
         display: flex;
         justify-content: flex-end;
         margin-top: 5%;
@@ -172,12 +184,14 @@
         padding-bottom: 7px;
         position: relative;
     }
-    #submit:hover{
+
+    #submit:hover {
         cursor: pointer;
         background-color: white;
         color: black;
         border-color: black;
     }
+
     .text-box {
         border-radius: 0;
         border-width: 0 0 1px;
@@ -193,12 +207,14 @@
         margin: 9px;
         margin-left: 0px;
     }
-    .text-box:hover{
+
+    .text-box:hover {
         border-color: #6FABEE;
         border-width: 0 0 2px;
-        
+
     }
-    button>span{
+
+    button>span {
         display: inline;
         vertical-align: middle;
         font-size: 15px;
@@ -208,12 +224,14 @@
         padding-right: 0;
         white-space: normal;
     }
-    .images{
+
+    .images {
         display: flex;
         flex-direction: column;
         flex-shrink: inherit;
         gap: 10px;
     }
+
     .images>button {
         display: flex;
         justify-content: center;
@@ -224,10 +242,24 @@
         border-color: #EBEAEB;
     }
 
-    .images>button:hover{
+    .images>button:hover {
         cursor: pointer;
         zoom: 105%;
     }
+
+
+    input {
+        outline: none;
+        font-size: 18px;
+        height: 25px !important;
+
+    }
+
+    .text-box {
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
+
     /* right ends */
     @media (min-width: 300px) and (max-width: 860px) {
         .left {
@@ -248,9 +280,9 @@
     <div class="main">
         <!-- this is the left part of the page (img and name)-->
         <div class="left">
-            <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png"
-                alt="">
-            <h1>AutoPart</h1>
+            <!-- <img src="https://static.adobelogin.com/clients/behance-2020/4x_b431ffdf8fed1c95074548ecb9d4920e.png"
+                alt=""> -->
+            <h1 class="logo-text">AutoPart</h1>
         </div>
         <!-- this is right part (the signUp form) -->
         <div class="right">
@@ -274,9 +306,14 @@
 
                 <!-- <button id="googlesign">sign in using google</button> -->
                 <div class="images">
-                    <button id="googlesign"><img src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png" alt=""><span>Sign in with Google</span></button>
-                    <button><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQgOEDUS3cCP5GsfADjV2W0BkZdMK17FAiQ&usqp=CAU" alt=""><span>Sign in with FaceBook</span></button>
-                    <button><img src="https://img.freepik.com/free-icon/mac-os_318-10374.jpg" alt=""><span>Sign in with Apple</span></button>
+                    <button id="googlesign"><img
+                            src="https://cdn.freebiesupply.com/logos/large/2x/google-g-2015-logo-png-transparent.png"
+                            alt=""><span>Sign in with Google</span></button>
+                    <button><img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQgOEDUS3cCP5GsfADjV2W0BkZdMK17FAiQ&usqp=CAU"
+                            alt=""><span>Sign in with FaceBook</span></button>
+                    <button><img src="https://img.freepik.com/free-icon/mac-os_318-10374.jpg" alt=""><span>Sign in with
+                            Apple</span></button>
                 </div>
             </form>
             <div></div>
@@ -286,6 +323,9 @@
 
 </html>
 <script type="module">
+
+    import API from "/components/api.js"
+
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
@@ -319,9 +359,25 @@
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    // ...
-                    window.location.href = "index.html";
-                    alert("Logged in Successfully");
+                    console.log(user);
+                    // alert("Logged in Successfully");
+                    // getData(user.email);
+
+                    fetch(`${API}/users?email=${email}`).then(res => res.json()).then(data => {
+                        console.log(data);
+                        if (data.length == 0) {
+                            alert("Account doesn't exist");
+                            window.location.href = "/signup.html";
+                        } else {
+                            localStorage.setItem("userObject", JSON.stringify(data[0]));
+                            localStorage.setItem("logged", true)
+                            localStorage.setItem("userid", data[0].id);
+                            alert("Signin successful --> Redirecting");
+                            // window.location.href = "/index.html";
+                        }
+                    }).catch((er) => {
+                        console.log(er);
+                    })
 
                 })
                 .catch((error) => {
@@ -335,43 +391,62 @@
 
     });
 
-
-    document.getElementById("googlesign").addEventListener("click", () => {
+    document.getElementById("googlesign").addEventListener("click", (event) => {
         event.preventDefault();
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
+                console.log(result);
                 const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-                window.location.href = "index.html";
+                // getData(user.email);
+
+                fetch(`${API}/users?email=${email}`).then(res => res.json()).then(data => {
+                    console.log(data);
+                    if (data.length == 0) {
+                        alert("Account doesn't exist");
+                        window.location.href = "/signup.html";
+                    } else {
+                        localStorage.setItem("userObject", JSON.stringify(data[0]));
+                        localStorage.setItem("logged", true)
+                        localStorage.setItem("userid", data[0].id);
+                        localStorage.setItem("cart-total-items", data.cart.length || 0);
+                        alert("Signin successful --> Redirecting");
+                        // window.location.href = "/index.html";
+                    }
+                }).catch((er) => {
+                    console.log(er);
+                })
+
             }).catch((error) => {
-                // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // The email of the user's account used.
                 const email = error.customData.email;
-                // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
             });
     });
 
-        //logout button
-    // document.getElementById("logout").addEventListener("click", function () {
-    //     signOut(auth)
-    //     .then(() => {
-    //         // Sign-out successful.
-    //         alert("logout successfully");
-    //         location.href = "./index.html";
-    //     })
-    //     .catch((error) => {
-    //         // An error happened.
-    //     });
-    // });
+    // async function getData(email) {
+    //     try {
+    //         const res = await fetch(`${API}/users?email=${email}`);
+    //         const data = await res.json();
+    //         console.log(data);
+    //         if (data.length == 0) {
+    //             alert("Account doesn't exist");
+    //             window.location.href = "/signup.html";
+    //         } else {
+    //             localStorage.setItem("userObject", JSON.stringify(data[0]));
+    //             localStorage.setItem("logged", true)
+    //             localStorage.setItem("userid", data[0].id);
+    //             alert("Signin successful --> Redirecting");
+    //             window.location.href = "/index.html";
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         alert("some technical error occured => ", error);
+    //     }
+    // }
+
 </script>

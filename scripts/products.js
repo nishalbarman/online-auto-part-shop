@@ -70,7 +70,7 @@ window.onload = () => {
   const inputListener = inputSearchEventListener(searchAppend, 400); // searchbar listener from component
   inputListener(); // input listener initialised
 
-  // cartItemUpdate(); // Update the cart items
+  cartItemUpdate(); // Update the cart items
 
   filterFunction();
   sideBarRatingFunction();
@@ -1273,7 +1273,7 @@ function productAppend(list) {
     p += `</p>`;
     append.append(
       getProductCards(element, p, (event) => {
-        fetch(`${API}/users/1`)
+        fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
           .then((res) => {
             return res.json();
           })
@@ -1291,12 +1291,20 @@ function productAppend(list) {
               }),
             };
 
-            fetch(`${API}/users/1`, options)
+            fetch(
+              `${API}/users/${localStorage.getItem("userid") || 1}`,
+              options
+            )
               .then((res) => {
                 return res.json();
               })
-              .then((data) => {})
-              .catch((err) => {});
+              .then((data) => {
+                localStorage.setItem(
+                  "cart-total-items",
+                  +(localStorage.getItem("cart-total-items") || 0) + 1
+                );
+                cartItemUpdate();
+              });
           })
           .catch((error) => {});
       })
