@@ -1,72 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payment</title>
-    <link rel="stylesheet" href="../styles/orderconfirmation.css" />
-  </head>
-  <body>
-    <div id="parent">
-      <div id="part1">
-        <div>
-          <img src="https://shorturl.at/fjrI9" alt="" />
-          <h1>Thank You For Your Order!</h1>
-          <p>
-            Good news,<span id="name"></span>! A shipment from <br />
-            our company is headed your way
-          </p>
-        </div>
-      </div>
-      <div id="part2">
-        <div>
-          <h3>SHIPPING ADDRESS:</h3>
-          <p id="address">
-            675 Massachusetts Avenue 
-            11th Floor
-            Cambridge, MA 02139
-          </p>
-        </div>
-        <div>
-              <h3>SUMMARY:</h3>
-              <div>
-                <p>Order #:<p>
-                <p id="orderno"></p>
-              </div>
-              <div>
-                <p>Order Total:<p>
-                <p id="totalprice"></p>
-              </div>
-            </div>
-      </div>
-      <div id="part3">
-         <div>
-            <h1>Get 30% off your next order.</h1>
-            <button id="shopagain"><h2>Shop Again</h2></button>
-         </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment</title>
+  <link rel="stylesheet" href="../styles/orderconfirmation.css" />
+</head>
+<body>
+  <div id="parent">
+
+  </div>
+</body>
+</html>
+<script type="module">
+  import API from '/components/api.js';
+  async function getdata() {
+    try {
+      let response = await fetch(`${API}/users/${localStorage.getItem('userid') || 1}`);
+      let data = await response.json();
+      var amount = localStorage.getItem("Total_Amount")
+      document.querySelector("#parent").innerHTML = ` <div id="part1">
+      <div>
+        <img
+          src="https://media.istockphoto.com/id/1034249292/photo/set-of-car-parts-isolated-on-white-background-3d.jpg?s=612x612&w=0&k=20&c=BwXl3LzQau4v40nl9INYToE0mC1SYDA4gBkylspbYis="
+          alt="" style="mix-blend-mode: darken;" />
+        <h1>Thank You For Your Order!</h1>
+        <p>Good news,<span id="name"> ${data.address.fullname} !</span> A shipment from <br />
+          our company is headed your way
+        </p>
       </div>
     </div>
-  </body>
-</html>
-<script>
+    <div id="part2">
+      <div>
+        <h3>SHIPPING ADDRESS:</h3>
+        <p id="address">
+          ${data.address.full_address}
+        </p>
+      </div>
+      <div>
+        <h3>SUMMARY:</h3>
+        <div>
+          <p>Payment id: ${localStorage.getItem('txn_id')}<p>
+          <p>Order Total: ${localStorage.getItem("Total_Amount")}<p>
+        </div>
+      </div >
+    </div >
+    <p id="timer" class="timer">Redirecting in 8 sec</p>`
+      localStorage.removeItem("cart-total-items");
+      data.cart = [];
+      let opt = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+      fetch(`${API}/users/${localStorage.getItem("userid") || 1}`, opt).then(res => res.json()).then((data) => {
+        console.log(data);
+        localStorage.setItem("Total_Amount", 0);
+        let count = 8;
+        let interval = setInterval(() => {
+          count--;
+          document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
+          if (count < 0) {
+            window.location.assign('/index.html');
+          }
+        }, 1000)
+      })
 
-  async function getdata(){
-    try{
-    let response=await fetch('https://dark-gold-meerkat-shoe.cyclic.cloud/users/1');
-    let data=await response.json();
-    var amount=localStorage.getItem("Total_Amount")
-    document.querySelector('#address').innerText=`${data.address.full_address} \n  ${data.address.state} ${data.address.pin_code}`
-    document.querySelector('#totalprice').innerText=`Rs.${amount}`;
-    document.querySelector('#name').innerText=data.address.fullname;
-    document.querySelector('#orderno').innerText=Math.round(Math.random()*100000);
 
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
-  getdata()
 
-  document.querySelector('#shopagain').addEventListener("click",function(){
-    location.href
-  })
+  window.onload = () => {
+    getdata()
+  }
+
+
 </script>
