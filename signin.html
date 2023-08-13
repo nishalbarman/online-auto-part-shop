@@ -14,8 +14,6 @@
         padding: 0;
     }
 
-    body {}
-
     .main {
         display: flex;
         justify-content: center;
@@ -334,12 +332,13 @@
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyCmlAudB7h-7HUnd2ALxmtVm2rHBsr4dKc",
-        authDomain: "cw-project-893df.firebaseapp.com",
-        projectId: "cw-project-893df",
-        storageBucket: "cw-project-893df.appspot.com",
-        messagingSenderId: "350845505692",
-        appId: "1:350845505692:web:23d6c82acf6203679f5d59"
+        apiKey: "AIzaSyDp8tNKZyA8o0KsWTLKMiUYyEt3JEIZJGs",
+        authDomain: "construct-week-895c9.firebaseapp.com",
+        projectId: "construct-week-895c9",
+        storageBucket: "construct-week-895c9.appspot.com",
+        messagingSenderId: "918785667604",
+        appId: "1:918785667604:web:ea95ae322e22bd0d9d2d01",
+        measurementId: "G-E50H0ME8VZ"
     };
 
     // Initialize Firebase
@@ -403,8 +402,8 @@
                 const user = result.user;
                 // getData(user.email);
 
-                fetch(`${API}/users?email=${email}`).then(res => res.json()).then(data => {
-                    console.log(data);
+                fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
+                    console.log("User array => ", data);
                     if (data.length == 0) {
                         alert("Account doesn't exist");
                         window.location.href = "/signup.html";
@@ -412,9 +411,9 @@
                         localStorage.setItem("userObject", JSON.stringify(data[0]));
                         localStorage.setItem("logged", true)
                         localStorage.setItem("userid", data[0].id);
-                        localStorage.setItem("cart-total-items", data.cart.length || 0);
+                        localStorage.setItem("cart-total-items", data[0].cart.length || 0);
                         alert("Signin successful --> Redirecting");
-                        // window.location.href = "/index.html";
+                        window.location.href = "/index.html";
                     }
                 }).catch((er) => {
                     console.log(er);

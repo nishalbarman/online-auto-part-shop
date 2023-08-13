@@ -1273,41 +1273,108 @@ function productAppend(list) {
     p += `</p>`;
     append.append(
       getProductCards(element, p, (event) => {
-        fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            let carts = data.cart;
-            carts.push(element);
-
-            let options = {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                cart: carts,
-              }),
-            };
-
-            fetch(
-              `${API}/users/${localStorage.getItem("userid") || 1}`,
-              options
-            )
-              .then((res) => {
-                return res.json();
-              })
-              .then((data) => {
-                localStorage.setItem(
-                  "cart-total-items",
-                  +(localStorage.getItem("cart-total-items") || 0) + 1
-                );
-                cartItemUpdate();
-              });
-          })
-          .catch((error) => {});
+        addToCart(element, event);
+        // if (
+        //   event.target.innerHTML ==
+        //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+        // ) {
+        //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+        // } else if (
+        //   event.target.innerHTML == "" &&
+        //   event.target.parentNode.innerHTML ==
+        //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+        // ) {
+        //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+        // }
+        // fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
+        //   .then((res) => {
+        //     return res.json();
+        //   })
+        //   .then((data) => {
+        // let carts = data.cart;
+        // carts.push(element);
+        // let options = {
+        //   method: "PATCH",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     cart: carts,
+        //   }),
+        // };
+        // fetch(
+        //   `${API}/users/${localStorage.getItem("userid") || 1}`,
+        //   options
+        // )
+        //   .then((res) => {
+        //     return res.json();
+        //   })
+        //   .then((data) => {
+        //     localStorage.setItem(
+        //       "cart-total-items",
+        //       +(localStorage.getItem("cart-total-items") || 0) + 1
+        //       );
+        //       cartItemUpdate();
+        //     });
+        // })
+        // .catch((error) => {});
       })
     );
   });
+}
+
+async function addToCart(element, event) {
+  try {
+    const res = await fetch(
+      `${API}/users/${localStorage.getItem("userid") || 1}`
+    );
+    const data = await res.json();
+
+    let carts = data.cart;
+    carts.push(element);
+    localStorage.setItem(
+      "cart-total-items",
+      +(localStorage.getItem("cart-total-items") || 0) + 1
+    );
+    cartItemUpdate();
+    postTheItemToserver(carts);
+    console.log(event.target);
+    if (
+      event.target.innerHTML ==
+      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    } else if (
+      event.target.innerHTML == "" &&
+      event.target.parentNode.innerHTML ==
+        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    }
+  } catch (error) {
+    console.error();
+  }
+}
+
+async function postTheItemToserver(carts) {
+  try {
+    let options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: carts,
+      }),
+    };
+
+    const res = await fetch(
+      `${API}/users/${localStorage.getItem("userid") || 1}`,
+      options
+    );
+    const data = res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 }

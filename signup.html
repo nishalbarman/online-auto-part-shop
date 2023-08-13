@@ -327,12 +327,13 @@
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyCmlAudB7h-7HUnd2ALxmtVm2rHBsr4dKc",
-        authDomain: "cw-project-893df.firebaseapp.com",
-        projectId: "cw-project-893df",
-        storageBucket: "cw-project-893df.appspot.com",
-        messagingSenderId: "350845505692",
-        appId: "1:350845505692:web:23d6c82acf6203679f5d59"
+        apiKey: "AIzaSyDp8tNKZyA8o0KsWTLKMiUYyEt3JEIZJGs",
+        authDomain: "construct-week-895c9.firebaseapp.com",
+        projectId: "construct-week-895c9",
+        storageBucket: "construct-week-895c9.appspot.com",
+        messagingSenderId: "918785667604",
+        appId: "1:918785667604:web:ea95ae322e22bd0d9d2d01",
+        measurementId: "G-E50H0ME8VZ"
     };
 
     // Initialize Firebase
@@ -382,30 +383,35 @@
 
 
                 fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
-                    const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
+                    if (data.length != 0) {
+                        alert("User already exist sign in");
+                    } else {
+                        fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
+                            const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
 
-                    const options = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(userObject)
+                            const options = {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(userObject)
+                            }
+
+                            fetch(`${API}/users`, options).then(res => res.json()).then(data => {
+                                console.log(data);
+
+                                localStorage.setItem("userObject", JSON.stringify(data));
+                                localStorage.setItem("logged", true)
+                                localStorage.setItem("userid", data.id);
+                                localStorage.setItem("cart-total-items", data.cart.length || 0);
+                                alert("Signup successful --> Redirecting");
+                                window.location.href = "/index.html";
+                            })
+                        }).catch((er) => {
+                            console.error(er);
+                        })
                     }
-
-                    fetch(`${API}/users`, options).then(res => res.json()).then(data => {
-                        console.log(data);
-
-                        localStorage.setItem("userObject", JSON.stringify(data));
-                        localStorage.setItem("logged", true)
-                        localStorage.setItem("userid", data.id);
-                        localStorage.setItem("cart-total-items", data.cart.length || 0);
-                        alert("Signup successful --> Redirecting");
-                        window.location.href = "/index.html";
-                    })
-                }).catch((er) => {
-                    console.error(er);
                 })
-
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -419,14 +425,8 @@
     });
 
     async function getDataa(user) {
-        const res = await fetch(`${API}/users?email=${user.email}`);
-        const data = await res.json();
-        // if (data.length != 0) {
-        //     alert("User already exist sign in");
-        // } else {
-        const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
-        uploadUser(userObject);
-        getData(user.email)
+
+
     }
 
     async function getData(email) {

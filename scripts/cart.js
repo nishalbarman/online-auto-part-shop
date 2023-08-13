@@ -24,6 +24,14 @@ window.onload = () => {
   const scrollAdd = scrollTop();
   scrollAdd(); // calling this will add scroll to top funcion
 
+  const logo = document.querySelector("#logo_click");
+  logo.addEventListener("click", () => {
+    let url = window.location.pathname;
+    if (url !== "/index.html") {
+      window.location.assign("/index.html");
+    }
+  });
+
   const item_cart = document.querySelector("#item_count_cart");
   let cartItems = localStorage.getItem("cart-total-items") || 0;
   if (!(cartItems == 0 || cartItems == null)) {
@@ -296,7 +304,7 @@ function UpdateDisplay(arr) {
       CheckOut_button.addEventListener("click", function (event) {
         event.preventDefault();
         localStorage.setItem("Total_Amount", Total);
-        window.location.assign("/checkout/");
+        window.location.assign("/checkout/checkout.html");
       });
     });
   } else {
@@ -322,12 +330,13 @@ function UpdateDisplay(arr) {
 function apply_code(Total) {
   let coupons = null;
   let code = document.getElementById("coupon_code").value;
-  let total = Total;
+
   console.log("Total just calling apply =>", Total);
 
   if (code === "") {
     alert("Please Enter Your coupon code");
   } else {
+    console.log("Calling pop up");
     let popup = document.getElementById("popup");
     fetch(`${API}/coupons`)
       .then((res) => {
@@ -396,12 +405,19 @@ function apply_code(Total) {
 
           bottom.innerHTML = cart_bottom;
 
+          document
+            .getElementById("coupon_button")
+            .addEventListener("click", function () {
+              console.log("Total before coupon =>", Total);
+              apply_code(Total);
+            });
+
           let CheckOut_button = document.getElementById("Checkout");
           CheckOut_button.addEventListener("click", function () {
             event.preventDefault();
             localStorage.setItem("Total_Amount", Total);
             console.log("clicked");
-            window.location.assign("/checkout/");
+            window.location.assign("/checkout/checkout.html");
           });
         } else {
           // alert("invalid Coupon");
@@ -414,6 +430,9 @@ function apply_code(Total) {
               popup.classList.remove("open-popup");
             });
         }
+      })
+      .catch((err) => {
+        console.log("Coupon catching error => ", err);
       });
   }
 }
