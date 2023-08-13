@@ -28,19 +28,22 @@ window.onload = () => {
 
 var api=`http://localhost:3000/users/${localStorage.getItem("userid") || 1}`
 
+  async function fetch_data(){
+    try{
+      let response=await fetch(api);
+      let data=await response.json();
+      console.log(data.cart);
+      UpdateDisplay(data.cart);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+  fetch_data(); 
 
-async function fetch_data(){
-  try{
-    let response=await fetch(api);
-    let data=await response.json();
-    console.log(data.cart);
-    UpdateDisplay(data.cart);
-  }
-  catch(error){
-    console.log(error);
-  }
-}
-fetch_data();
+
+
+
 
 
 
@@ -241,7 +244,14 @@ const debounce = (duration=400)=>{
     // appending to main cart
     tr.append(td1,td2,td3,td4,td6,td5);
     tbody.append(tr);
+    
 
+    let del_charge=0;
+    let sub_total=Total;
+    if(Total<500){
+      del_charge=99;
+        Total+=99;
+    }
     
     // for bottom part
     document.getElementById("cart-bottom").style="display=block";
@@ -262,11 +272,11 @@ const debounce = (duration=400)=>{
           <h5>Cart Total</h5>
           <div class="b_cart">
             <h6>Subtotal</h6>
-            <p>Rs. ${Total}</p>
+            <p>Rs. ${sub_total}</p>
           </div>
           <div class="b_cart">
             <h6>Delivery Charges</h6>
-            <p>Free</p>
+            <p>Rs.${del_charge}</p>
           </div>
           <hr class="second-hr">
           <div class="b_cart">
@@ -292,6 +302,7 @@ const debounce = (duration=400)=>{
       event.preventDefault();
       
       localStorage.setItem("Total_Amount",Total);
+      window.location.assign("../checkout/checkout.html");
       
       console.log("clicked");
     })
@@ -318,6 +329,11 @@ upload.innerHTML=empty;
  
 }
 }
+
+
+
+
+
 
 // for coupon code
 function apply_code(Total){
@@ -389,8 +405,13 @@ function apply_code(Total){
       event.preventDefault();
       
       localStorage.setItem("Total_Amount",Total);
-      
       console.log("clicked");
+      window.location.assign("../checkout/checkout.html");
+    })
+
+    document.getElementById("coupon_button").addEventListener("click",function(){
+      Total=apply_code(Total);
+      console.log(Total);
     })
 
 
@@ -402,6 +423,55 @@ function apply_code(Total){
 
       document.getElementById("ok_btn1").addEventListener("click",function(){
         popup.classList.remove("open-popup");
+      })
+
+      var bottom=document.getElementById("cart-bottom");
+      bottom.innerHTML=null;
+      var cart_bottom=`
+      <div class="row">
+        <div class="coupon col-lg-6 col-md-6 col-12 mb-4">
+          <div>
+            <h5>COUPON</h5>
+            <p>Enter your coupon code</p>
+            <input type="text" placeholder="Coupon Code" id="coupon_code">
+            <button id="coupon_button">Apply Coupon</button>
+          </div>
+        </div>
+        <div class="total col-lg-6 col-md-6 col-12" >
+          <div>
+            <h5>Cart Total</h5>
+            <div class="b_cart">
+              <h6>Subtotal</h6>
+              <p>Rs. ${Total}</p>
+            </div>
+            <div class="b_cart">
+              <h6>Delivery Charges</h6>
+              <p>Free</p>
+            </div>
+            <hr class="second-hr">
+            <div class="b_cart">
+              <h6>Total</h6>
+              <p>Rs. ${Total}</p>
+            </div>
+            <button id="Checkout">Proceed To CheckOut </button>
+          </div>
+        </div>
+      </div>`
+  
+      bottom.innerHTML=cart_bottom;
+  
+      let CheckOut_button=document.getElementById("Checkout");
+      CheckOut_button.addEventListener("click",function(){
+        event.preventDefault();
+        
+        localStorage.setItem("Total_Amount",Total);
+        console.log("clicked");
+        window.location.assign("../checkout/checkout.html");
+      })
+
+      document.getElementById("coupon_button").addEventListener("click",function(){
+        Total=apply_code(Total);
+        console.log(Total);
       })
     }
 
