@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Payment</title>
     <link rel="stylesheet" href="../styles/orderconfirmation.css" />
   </head>
   <body>
@@ -54,9 +54,9 @@
     try{
     let response=await fetch('https://dark-gold-meerkat-shoe.cyclic.cloud/users/1');
     let data=await response.json();
-
+    var amount=localStorage.getItem("Total_Amount")
     document.querySelector('#address').innerText=`${data.address.full_address} \n  ${data.address.state} ${data.address.pin_code}`
-    document.querySelector('#totalprice').innerText=`₹2020`;
+    document.querySelector('#totalprice').innerText=`Rs.${amount}`;
     document.querySelector('#name').innerText=data.address.fullname;
     document.querySelector('#orderno').innerText=Math.round(Math.random()*100000);
 

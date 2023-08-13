@@ -235,10 +235,7 @@ function UpdateDisplay(arr) {
         };
 
         fetch(api, options)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("cart-total-items", data.cart.length);
+          .then(() => {
             UpdateDisplay(cartarray);
           })
           .catch((error) => {
@@ -254,35 +251,35 @@ function UpdateDisplay(arr) {
       var bottom = document.getElementById("cart-bottom");
       bottom.innerHTML = null;
       var cart_bottom = `
-      <div class="row">
-        <div class="coupon col-lg-6 col-md-6 col-12 mb-4">
-          <div>
-            <h5>COUPON</h5>
-            <p>Enter your coupon code</p>
-            <input type="text" placeholder="Coupon Code" id="coupon_code">
-            <button id="coupon_button">Apply Coupon</button>
-          </div>
+    <div class="row">
+      <div class="coupon col-lg-6 col-md-6 col-12 mb-4">
+        <div>
+          <h5>COUPON</h5>
+          <p>Enter your coupon code</p>
+          <input type="text" placeholder="Coupon Code" id="coupon_code">
+          <button id="coupon_button">Apply Coupon</button>
         </div>
-        <div class="total col-lg-6 col-md-6 col-12" >
-          <div>
-            <h5>Cart Total</h5>
-            <div class="b_cart">
-              <h6>Subtotal</h6>
-              <p>Rs. ${Total}</p>
-            </div>
-            <div class="b_cart">
-              <h6>Delivery Charges</h6>
-              <p>Free</p>
-            </div>
-            <hr class="second-hr">
-            <div class="b_cart">
-              <h6>Total</h6>
-              <p>Rs. ${Total}</p>
-            </div>
-            <button id="Checkout">Proceed To CheckOut </button>
+      </div>
+      <div class="total col-lg-6 col-md-6 col-12" >
+        <div>
+          <h5>Cart Total</h5>
+          <div class="b_cart">
+            <h6>Subtotal</h6>
+            <p>Rs. ${Total}</p>
           </div>
+          <div class="b_cart">
+            <h6>Delivery Charges</h6>
+            <p>Free</p>
+          </div>
+          <hr class="second-hr">
+          <div class="b_cart">
+            <h6>Total</h6>
+            <p>Rs. ${Total}</p>
+          </div>
+          <button id="Checkout">Proceed To CheckOut </button>
         </div>
-      </div>`;
+      </div>
+    </div>`;
 
       bottom.innerHTML = cart_bottom;
 
@@ -402,14 +399,15 @@ function apply_code(Total) {
           let CheckOut_button = document.getElementById("Checkout");
           CheckOut_button.addEventListener("click", function () {
             event.preventDefault();
-
             localStorage.setItem("Total_Amount", Total);
-
             console.log("clicked");
+            window.location.assign("/checkout/");
           });
         } else {
+          // alert("invalid Coupon");
           let popup = document.getElementById("popup1");
           popup.classList.add("open-popup");
+
           document
             .getElementById("ok_btn1")
             .addEventListener("click", function () {
