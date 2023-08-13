@@ -116,12 +116,12 @@ function bottom_navbar() {
 
         <a href="/products.html?category=exterior">Exterior</a>
         <a href="/products.html?category=interior">Interior</a>
-        <a href="#">Performance</a>
-        <a href="/products.html?category=wheels%20and%20tires">Wheels and Tires</a>
-        <a href="#">Body parts</a>
-        <a href="#">Repair parts</a>
-        <a href="#">Electronics</a>
-        <a href="#">Tools & Garage</a>
+        <a href="/products.html?category=performance">Performance</a>
+        <a href="/products.html?category=wheels%20and%20tyres">Wheels and Tyres</a>
+        <a href="/products.html?category=car body parts">Body parts</a>
+        <a href="/products.html?category=repair parts">Repair parts</a>
+        <a href="/products.html?category=electronics">Electronics</a>
+        <a href="/products.html?category=tools and garage">Tools & Garage</a>
 
     </div>
     <!---------------------------------------------->

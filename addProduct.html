@@ -69,6 +69,7 @@
             return res.json();
         }).then(data => {
             const select = document.querySelector("#category");
+            console.log(data);
             data.forEach(element => {
                 const option = document.createElement(`option`);
                 let category = element.name + "";
