@@ -369,7 +369,7 @@
                     // alert("Logged in Successfully");
                     // getData(user.email);
 
-                    fetch(`${API}/users?email=${email}`).then(res => res.json()).then(data => {
+                    fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
                         console.log(data);
                         if (data.length == 0) {
                             alert("Account doesn't exist");
@@ -390,7 +390,7 @@
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     alert(`${error}`);
-                    reset();
+                    // reset();
                 });
         }
 
@@ -456,8 +456,8 @@
     // }
 
 
-    function reset() {
-        var form = document.getElementById("myform");
-        form.reset();
-    }
+    // function reset() {
+    //     var form = document.getElementById("myform");
+    //     form.reset();
+    // }
 </script>

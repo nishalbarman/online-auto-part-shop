@@ -354,13 +354,36 @@
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
-                    alert("Account created, you may login now")
-                    window.location.href = "signin.html"
+
+                    fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
+                        if (data.length != 0) {
+                            alert("User already exist sign in");
+                        } else {
+                            const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
+
+                            const options = {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(userObject)
+                            }
+
+                            fetch(`${API}/users`, options).then(res => res.json()).then(data => {
+                                console.log(data);
+                                alert("Account created, you may login now")
+                                window.location.href = "/signin.html"
+                            })
+
+                        }
+                    }).catch(err => {
+                        alert("Some error occured, you may use google sign in instead");
+                    })
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    reset()
+                    // reset()
                     alert(error);
                 });
         }
@@ -388,27 +411,25 @@
                     if (data.length != 0) {
                         alert("User already exist sign in");
                     } else {
-                        fetch(`${API}/users?email=${user.email}`).then(res => res.json()).then(data => {
-                            const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
+                        const userObject = new createUser(user.displayName, user.email, user.phoneNumber)
 
-                            const options = {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify(userObject)
-                            }
+                        const options = {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(userObject)
+                        }
 
-                            fetch(`${API}/users`, options).then(res => res.json()).then(data => {
-                                console.log(data);
+                        fetch(`${API}/users`, options).then(res => res.json()).then(data => {
+                            console.log(data);
 
-                                localStorage.setItem("userObject", JSON.stringify(data));
-                                localStorage.setItem("logged", true)
-                                localStorage.setItem("userid", data.id);
-                                localStorage.setItem("cart-total-items", data.cart.length || 0);
-                                alert("Signup successful --> Redirecting");
-                                window.location.href = "/index.html";
-                            })
+                            localStorage.setItem("userObject", JSON.stringify(data));
+                            localStorage.setItem("logged", true)
+                            localStorage.setItem("userid", data.id);
+                            localStorage.setItem("cart-total-items", data.cart.length || 0);
+                            alert("Signup successful --> Redirecting");
+                            window.location.href = "/index.html";
                         }).catch((er) => {
                             console.error(er);
                         })
@@ -426,16 +447,11 @@
             });
     });
 
-    async function getDataa(user) {
 
-
-    }
-
-
-    function reset() {
-        var form = document.getElementById("myform");
-        form.reset();
-    }
+    // function reset() {
+    //     var form = document.getElementById("myform");
+    //     form.reset();
+    // }
 
     async function getData(email) {
         try {
