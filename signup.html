@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.ico">
-    <title>Adobe ID</title>
+    <title>SignUp Page</title>
 </head>
 
 <style>
@@ -16,13 +16,6 @@
         padding: 0;
     }
 
-    body {
-        /* background-image: url('https://auth.services.adobe.com/img/canvas/Fotolia_158229208_XL.jpg');
-        background-size: 150%; */
-        /* background-position: left center; */
-
-
-    }
 
     .main {
         display: flex;
@@ -42,6 +35,7 @@
         flex: auto;
         justify-content: center;
         align-items: center;
+        display: none;
     }
 
     .left>img {
@@ -63,6 +57,7 @@
     .right {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         padding: 30px;
         width: 514px;
         height: fit-content;
@@ -266,6 +261,13 @@
             justify-content: center;
         }
     }
+
+    @media screen and (max-width: 860px) {
+
+        #submit {
+            margin-left: 26%;
+        }
+    }
 </style>
 
 <body>
@@ -303,14 +305,13 @@
                     </p>
                 </section>
 
-                <label id="label-for-email" for="email" class="labels">Email address</label><br>
+                <label id="label-for-email" for="email" class="labels">Email Address</label><br>
                 <input type="email" id="email" class="text-box"><br>
                 <label for="password" class="labels">Password</label><br>
                 <input type="password" name="password" id="password" class="text-box"> <br>
                 <!-- <input type="submit" id="submit" name="Continue" value="Continue"> -->
                 <button id="submit">Continue</button>
             </form>
-            <div></div>
         </div>
     </div>
 </body>
@@ -359,6 +360,7 @@
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    reset()
                     alert(error);
                 });
         }
@@ -427,6 +429,12 @@
     async function getDataa(user) {
 
 
+    }
+
+
+    function reset() {
+        var form = document.getElementById("myform");
+        form.reset();
     }
 
     async function getData(email) {

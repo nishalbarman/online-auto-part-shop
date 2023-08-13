@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup page</title>
-    <link rel="stylesheet" href="./styles/navbar.css">
+    <title>SignIn page</title>
 </head>
 <style>
     * {
@@ -33,6 +32,7 @@
         flex: auto;
         justify-content: center;
         align-items: center;
+        display: none;
     }
 
     .left>img {
@@ -238,6 +238,9 @@
         border-radius: 30px;
         background-color: #FFFFFF;
         border-color: #EBEAEB;
+        border-right-color: #EBEAEB;
+        border-bottom-color: #EBEAEB;
+        border-left-color: #EBEAEB;
     }
 
     .images>button:hover {
@@ -259,7 +262,7 @@
     }
 
     /* right ends */
-    @media (min-width: 300px) and (max-width: 860px) {
+    @media screen and (max-width: 860px) {
         .left {
             display: none;
         }
@@ -269,6 +272,10 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+        }
+
+        #submit {
+            margin-left: 26%;
         }
     }
 </style>
@@ -288,7 +295,7 @@
                 <h1 class="create-account">Sign In</h1>
             </header>
             <p class="new-user">New user? <a class="newuser-link" href="signup.html"> Create an account </a></p>
-            <form action="">
+            <form action="" id="myform">
                 <label class="labels" for="email">Email Address</label><br>
                 <input type="email" class="text-box" id="email" autocomplete="current-email"><br>
                 <label class="labels" for="password">Password</label><br>
@@ -372,7 +379,7 @@
                             localStorage.setItem("logged", true)
                             localStorage.setItem("userid", data[0].id);
                             alert("Signin successful --> Redirecting");
-                            // window.location.href = "/index.html";
+                            window.location.href = "/index.html";
                         }
                     }).catch((er) => {
                         console.log(er);
@@ -383,7 +390,7 @@
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     alert(`${error}`);
-
+                    reset();
                 });
         }
 
@@ -448,4 +455,9 @@
     //     }
     // }
 
+
+    function reset() {
+        var form = document.getElementById("myform");
+        form.reset();
+    }
 </script>
