@@ -1,36 +1,54 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&family=Roboto:wght@300;400;500;700&display=swap");
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: interregular, sans-serif, monospace, arial, helvetica neue,
+    helvetica, arial, geneva, times new roman;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+#container{
+  width: 100%;
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: fefffa;
+}
 form{
-    height:74%;
-    width: 30%;
-    box-shadow: 0 0px 10px yellow;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  margin: auto;
-  padding: 2%;
-  border-radius: 5%;
-  background-color: white;
+  width: 80%;
+  margin: 80px;
 }
 #parent { 
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 10px;
+  padding: 20px;
 }
 #addressdetail {
   display: flex;
+  width: 50%;
+  gap: 20px;
   flex-direction: column;
 }
 #convinientfee{
   text-decoration: line-through;
 }
-h2{
-  background-color: yellow;
+.heding{
+  height: 50px;
+  background-color: #f8c808;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
-  border-radius: 6px;
+  border-radius: 8px;
 }
+h2{
+  padding: 10px;
+}
+
 #error{
   display: none;
   margin: auto;
@@ -42,20 +60,32 @@ form input {
   border-radius: 6px;
   margin-bottom: 20px;
   border: none;
-  padding: 0 0  0 10px;
+  padding: 20px;
+
 }
 form input:focus{
-  outline: solid yellow;
+  outline: solid #f8c808;
+}
+#paymentdetails{
+  width: 40%;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 10px;
 }
 #paymentdetails > div {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  margin: 20px;
 }
-button{
-    width: 100%;
-    background-color: yellow;
+#orderBtn{
+    width: 60%;
+    margin: auto;
+    background-color: #f8c808;
     border: none;
-    height: 8%;
-    border-radius: 6px;
+    height: 50px;
+    font-weight: 700;
+    border-radius: 8px;
+}
+#paymentdetails div button:hover{
+  transform: scale(1.07);
 }
