@@ -21,16 +21,17 @@
   width: 70rem;
   width: 60rem;
   -webkit-user-drag: none;
-  animation: car_animate 2s infinite alternate;
+  animation: mover 2s infinite alternate;
   transition-timing-function: ease-in-out;
 }
 
-@keyframes car_animate {
+@keyframes mover {
   0% {
     transform: translateY(10px);
     transform: translateX(10px);
   }
   100% {
+    /* right: -80px; */
     transform: translate(-8px, -18px);
   }
 }

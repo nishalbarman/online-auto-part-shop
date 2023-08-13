@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            background-color: white;
+            gap: 10px;
+        }
+
+        input,
+        select {
+            height: 30px;
+            width: 40%;
+        }
+
+        textarea {
+            height: 300px;
+            width: 40%;
+        }
+
+        button {
+            height: 40px;
+            width: 40%;
+        }
+
+        div.cart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: green;
+            color: white;
+            font-size: 30px;
+            height: 200px;
+            width: 200px;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <form>
+            <input type="text" id="title" placeholder="Title of the product" /><br><br>
+            <select id="category"></select><br><br>
+            <input type="number" id="oprice" placeholder="Original Price" /><br><br>
+            <input type="number" id="dprice" placeholder="Discounted Price" /><br><br>
+            <input type="url" id="main_image" placeholder="Main Image URL" /><br><br>
+            <input type="url" id="small_urls" placeholder="Small urls , seprated" /><br><br>
+            <input type="number" id="rating" placeholder="Rating" /><br><br>
+            <input type="number" id="rcount" placeholder="Rating Count" /><br><br>
+            <textarea type="text" id="highlights" placeholder="Hightlights HTML"></textarea><br><br>
+            <textarea type="text" id="specs" placeholder="Specifications"></textarea><br><br>
+            <textarea type="text" id="description" placeholder="Description"></textarea><br><br>
+            <textarea type="text" id="terms" placeholder="Terms and Conditons"><p>The images represent actual product though color of the image and product may slightly differ.</p>
+                <p>For warranty-related claims, please contact the brand service centre.</p></textarea><br><br>
+            <button type="submit">Add Products</button>
+        </form>
+    </center>
+    <script type="module">
+        import API from "/components/api.js";
+        fetch(`${API}/category`).then(res => {
+            return res.json();
+        }).then(data => {
+            const select = document.querySelector("#category");
+            console.log(data);
+            data.forEach(element => {
+                const option = document.createElement(`option`);
+                let category = element.name + "";
+                option.value = category.toLowerCase();
+                option.textContent = category;
+                select.append(option);
+            });
+        })
+
+        document.querySelector("form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            let object = {
+                image_url: event.target.main_image.value,
+                name: event.target.title.value,
+                category: event.target.category.value,
+                discounted_price: +event.target.dprice.value,
+                original_price: +event.target.oprice.value,
+                small_images: event.target.small_urls.value.split(","),
+                rating: +event.target.rating.value,
+                rating_count: +event.target.rcount.value,
+                description: {
+                    highlights: event.target.highlights.value,
+                    other_specs: event.target.specs.value,
+                    description: event.target.description.value,
+                    terms_conditon: event.target.terms.value,
+                }
+            }
+            addProduct(object);
+        })
+        // add to cart function
+        async function addProduct(object) {
+
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(object),
+            };
+
+            fetch(`${API}/products`, options)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((err) => { });
+        }
+
+    </script>
+</body>
+</html>

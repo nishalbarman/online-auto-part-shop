@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto part : Get your desired vehicle parts from comfort of your home</title>
+    <!---------------------------->
+    <!-- static css files below -->
+    <!---------------------------->
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/products.css">
+
+    <!---------------------------->
+    <!-- static css files above -->
+    <!---------------------------->
+
+
+    <!--------------------------------->
+    <!-- font awesome cdn link below -->
+    <!--------------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--------------------------------->
+    <!-- font awesome cdn link done  -->
+    <!--------------------------------->
+
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+    <link href="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+" rel="stylesheet">
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container">
+        <div class="side_bar">
+            <p class="sidbar_title">Customer Rating</p>
+            <div class="vertical-line"></div>
+            <div class="rating_filter">
+                <div id="none" class="rating_box ">
+                    <input id="check" type="checkbox" class="checkedcheck" />
+                    <p>No filter</p>
+                </div>
+                <div id="4andUp" class="rating_box">
+                    <input id="check" type="checkbox" />
+                    <p>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                    </p>
+                    <p>& Up</p>
+                </div>
+                <div class="rating_box" id="3andUp">
+                    <input type="checkbox" id="4andUp" />
+                    <p>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                    </p>
+                    <p>& Up</p>
+                </div>
+                <div class="rating_box" id="2andUp">
+                    <input type="checkbox" id="4andUp" />
+                    <p>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                    </p>
+                    <p>& Up</p>
+                </div>
+                <div class="rating_box" id="1andUp">
+                    <input type="checkbox" id="4andUp" />
+                    <p>
+                        <i class="fa-solid fa-star" style="color: rgb(243,182,9);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+
+                    </p>
+                    <p>& Up</p>
+                </div>
+                <div class="rating_box" id="0andUp">
+                    <input type="checkbox" id="4andUp" />
+                    <p>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                        <i class="fa-regular fa-star fa-sm" style="color: rgb(0, 0, 0, 0.6);"></i>
+                    </p>
+                    <p>& Up</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <p class="sidbar_title">Discount</p>
+            <div class="vertical-line"></div>
+            <div class="rating_filter">
+                <div id="no_discount" class="rating_box ">
+                    <input id="check" type="checkbox" class="checkedcheck" />
+                    <p>No filter</p>
+                </div>
+                <div class="rating_box" id="10to20">
+                    <input type="checkbox" />
+                    <p>10 - 30 % Discount</p>
+                </div>
+                <div class="rating_box" id="21to30">
+                    <input type="checkbox" id="4andUp" />
+                    <p>31 - 50 % Discount</p>
+                </div>
+                <div class="rating_box" id="31to40">
+                    <input type="checkbox" id="4andUp" />
+                    <p>51 - 70 % Discount</p>
+                </div>
+                <div class="rating_box" id="41to50">
+                    <input type="checkbox" id="4andUp" />
+                    <p>71 - 100 % Discount</p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <p class="sidbar_title">Price</p>
+            <div class="vertical-line"></div>
+            <div class="rating_filter">
+                <div class="rating_box" id="no_price">
+                    <input type="checkbox" class="checkedcheck" />
+                    <p>No filter</p>
+                </div>
+                <div class="rating_box" id="0to100">
+                    <input type="checkbox" />
+                    <p>0 - 100 Price</p>
+                </div>
+                <div class="rating_box" id="101to200">
+                    <input type="checkbox" id="4andUp" />
+                    <p>101 - 200 Price</p>
+                </div>
+                <div class="rating_box" id="201to300">
+                    <input type="checkbox" id="4andUp" />
+                    <p>201 - 300 Price</p>
+                </div>
+                <div class="rating_box" id="301toAbove">
+                    <input type="checkbox" id="4andUp" />
+                    <p>301 & Above</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="grid_outer">
+            <div class="short_title">
+                <p id="title"></p>
+                <select id="sort">
+                    <option value="">Select</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                    <option value="lth">Low to High</option>
+                    <option value="htl">High to Low</option>
+                </select>
+            </div>
+            <div class="main_grid" id="list">
+
+                <!-- list will be here -->
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <footer id="footer"></footer>
+    <script src="./scripts/products.js" type="module"></script>
+</body>
+</html>

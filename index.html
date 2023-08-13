@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto part : Get your desired vehicle parts from comfort of your home</title>
+    <!---------------------------->
+    <!-- static css files below -->
+    <!---------------------------->
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+
+    <!---------------------------->
+    <!-- static css files above -->
+    <!---------------------------->
+
+
+    <!--------------------------------->
+    <!-- font awesome cdn link below -->
+    <!--------------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--------------------------------->
+    <!-- font awesome cdn link done  -->
+    <!--------------------------------->
+
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+    <link href="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+" rel="stylesheet">
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+</head>
+<body>
+    <!------------------->
+    <!-- navbar starts -->
+    <!------------------->
+    <div id="navbar"></div>
+    <!------------------->
+    <!-- navbar ends -->
+    <!------------------->
+
+
+    <div class="con-first-half">
+        <img src="./img/car_image25.png" />
+        <div>
+            <h1>Select your vehicle</h1>
+            <p>Customize, Modify, Upgrade, Repair, Replace</p>
+            <div id="select_year" class="sl_option">
+                <div id="row_number" class="row_number">
+                    1
+                </div>
+                <p>Year</p>
+                <i class="fa-solid fa-angle-down fa-sm" style="color:  rgba(255, 255, 255, 0.7)"></i>
+            </div>
+            <div id="select_make" class="sl_option">
+                <div id="row_number" class="row_number">
+                    2
+                </div>
+                <p>Make</p>
+                <i class="fa-solid fa-angle-down fa-sm" style="color:  rgba(255, 255, 255, 0.7)"></i>
+            </div>
+            <div id="select_model" class="sl_option">
+                <div id="row_number" class="row_number">
+                    3
+                </div>
+                <p>Model</p>
+                <i class="fa-solid fa-angle-down fa-sm" style="color:  rgba(255, 255, 255, 0.7)"></i>
+            </div>
+
+            <div id="select_model" class="sl_option" style="text-align: center; background-color: rgb(248,200,8); color: black
+                ; font-weight: bold;">
+                <p>Shop Now</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------------------------------->
+    <!-- category slider container starts -->
+    <!-------------------------------------->
+    <div class="category_container">
+        <div class="category_title">
+            <h1>browse by categories</h1>
+            <div class="nextprev">
+                <div id="prevButton">
+                    <i class="fa-solid fa-angle-left" style="color: #000000;"></i>
+                </div>
+                <div id="nextButton"><i class="fa-solid fa-angle-right" style="color: #000000;"></i></div>
+            </div>
+        </div>
+        <!-------------------------------------->
+        <!-- category slider starts from here -->
+        <!-------------------------------------->
+        <section id="splide_container" class="splide splideCategory" aria-label="browse by categories">
+            <div class="splide__track">
+                <ul id="category_list" class="splide__list">
+                    <li class="splide__slide category_card"></li>
+                </ul>
+            </div>
+        </section>
+        <!-------------------------------------->
+        <!-- category option slider ends here -->
+        <!-------------------------------------->
+    </div>
+    <!-------------------------------------->
+    <!-- category slider container ended  -->
+    <!-------------------------------------->
+
+
+    <!---------------------------------------------->
+    <!-- featured product slider container ended  -->
+    <!---------------------------------------------->
+    <div class="featured_product_container">
+        <h1 class="headings">Featured Products</h1>
+        <!-------------------------------------->
+        <!-- feature slider starts from here -->
+        <!-------------------------------------->
+        <section id="feature_slider" class="splide splideFeature" aria-label="Featured Products">
+
+            <div class="splide__arrows splide__arrows--ltr">
+                <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous slide"
+                    aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                    height:40px !important;
+                    width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                        focusable="false">
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="splide__arrow splide__arrow--next" type="button" aria-label="Go to first slide"
+                    aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                    height:40px !important;
+                    width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                        focusable="false">
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="splide__track">
+                <ul id="feature_list" class="splide__list">
+                    <li class="splide__slide feature_card">
+                        <p>CRUST CS30 Car Bluetooth Device with Call Receiver, FM Transmitter for Music System & Dual
+                            USB + Type C Fast Charger; 7 Colour LED Lights; 6 Equalizer Presets;</p>
+                        <div>
+                            <p>Learn More</p>
+                            <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i>
+                        </div>
+                        <img
+                            src="https://n4.sdlcdn.com/imgs/k/b/y/large/Crust-Black-Bluetooth-Device-SDL029208845-1-14527.webp" />
+                    </li>
+                    <li class="splide__slide feature_card">
+                        <p>HOMETALES - Grey Car Body Cover For Mahindra Xylo Without Mirror Pocket (Pack Of1)</p>
+                        <div>
+                            <p>Learn More</p>
+                            <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i>
+                        </div>
+                        <img
+                            src="https://n1.sdlcdn.com/imgs/k/k/v/large/HOMETALES-Grey-Car-Body-Cover-SDL055874052-1-81bda.jpeg" />
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-------------------------------------->
+        <!-- feature product slider ends here -->
+        <!-------------------------------------->
+    </div>
+
+
+
+
+
+
+    <!----------------------->
+    <!-- Deals of the week -->
+    <!----------------------->
+    <div class="deals_container">
+        <h1 class="headings">Deal of the week</h1>
+        <div id="deals_list" class="deals_list">
+
+        </div>
+    </div>
+    <!----------------------->
+    <!-- Deals of the week -->
+    <!----------------------->
+
+
+
+
+    <!----------------------------------->
+    <!-- ourblogs slider starting here -->
+    <!----------------------------------->
+
+    <div class="our_blogs">
+        <div class="yellow-background"></div>
+        <div class="blogs_outer">
+            <h1 class="headings">Our Blogs</h1>
+            <!----------------------------------->
+            <!-- blogs slider starts from here -->
+            <!----------------------------------->
+            <section id="blog_slider" class="splide splideBlog" aria-label="Our Blogs">
+                <div class="splide__arrows splide__arrows--ltr">
+                    <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous slide"
+                        aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                        height:40px !important;
+                        width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                            focusable="false">
+                            <path
+                                d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="splide__arrow splide__arrow--next" type="button" aria-label="Go to first slide"
+                        aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                        height:40px !important;
+                        width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                            focusable="false">
+                            <path
+                                d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="splide__track">
+                    <ul id="blog_list" class="splide__list">
+                        <li class="blog_card splide__slide">
+                            <img
+                                src="https://img-ik.cars.co.za/ik-seo/carsimages/7663936/2019-Ford-Ranger-20D-Bi-Turbo-Raptor-4x4-Auto-Double-Cab.jpg?v=1179341415&tr=h-450%2Cw-600" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Exterior</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Top Ford Ranger Products For Fall</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+                        <li class="blog_card splide__slide">
+                            <img src="https://media.solvay.com/medias/domain1446/media1148/182194-u8hwjc47do.jpg" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Wheels and Tires</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Headline options for 2018-2020 F150s</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+                        <li class="blog_card splide__slide">
+                            <img
+                                src="https://www.luxurylifestylemag.co.uk/wp-content/uploads/2020/05/bigstock-131693096-1.jpg" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Interior</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Top Ford Ranger Products For Fall</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+
+                        <li class="blog_card splide__slide">
+                            <img
+                                src="https://img-ik.cars.co.za/ik-seo/carsimages/7663936/2019-Ford-Ranger-20D-Bi-Turbo-Raptor-4x4-Auto-Double-Cab.jpg?v=1179341415&tr=h-450%2Cw-600" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Exterior</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Top Ford Ranger Products For Fall</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+                        <li class="blog_card splide__slide">
+                            <img src="https://media.solvay.com/medias/domain1446/media1148/182194-u8hwjc47do.jpg" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Wheels and Tires</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Headline options for 2018-2020 F150s</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+                        <li class="blog_card splide__slide">
+                            <img
+                                src="https://www.luxurylifestylemag.co.uk/wp-content/uploads/2020/05/bigstock-131693096-1.jpg" />
+                            <div class="blog_body">
+                                <div>
+                                    <p>Interior</p>
+                                    <p>14 Dec</p>
+                                </div>
+                                <p>Top Ford Ranger Products For Fall</p>
+                                <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!----------------------------------->
+            <!-- ourblogs slider starting here -->
+            <!----------------------------------->
+        </div>
+    </div>
+
+
+
+
+
+    <!------------------------------------>
+    <!-- offer product slider ends here -->
+    <!------------------------------------>
+    <div class="offer_container">
+        <h1 class="headings">Our offers</h1>
+        <!-------------------------------------->
+        <!-- feature slider starts from here -->
+        <!-------------------------------------->
+        <section id="offer_slider" class="splide splideOffer" aria-label="Our offers">
+            <div class="splide__arrows splide__arrows--ltr">
+                <button class="splide__arrow splide__arrow--prev" type="button" aria-label="Previous slide"
+                    aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                    height:40px !important;
+                    width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                        focusable="false">
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="splide__arrow splide__arrow--next" type="button" aria-label="Go to first slide"
+                    aria-controls="feature_slider-track" style="border-radius: 5px !important;
+                    height:40px !important;
+                    width: 40px !important; background-color: rgba(165, 165, 165, 0.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"
+                        focusable="false">
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="splide__track">
+                <ul id="offer_list" class="splide__list">
+                    <li class="splide__slide offer_card">
+                        <img
+                            src="https://blog.bindy.com/wp-content/uploads/2022/10/shutterstock_1124428316-1024x682.jpg" />
+                        <div class="offer_card_body">
+                            <p>LIMITED OFFER REPAIR PARTS</p>
+                            <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                        </div>
+
+                    </li>
+                    <li class="splide__slide offer_card">
+                        <img
+                            src="https://www.progressive.com/lifelanes/wp-content/uploads/2023/02/PR1627_LL_HowToFindAutoMechanic_Header.jpg" />
+                        <div class="offer_card_body">
+                            <p>BODY PART BEST OFFER</p>
+                            <p>Learn More <i class="fa-solid fa-angle-right fa-sm" style="color: #000000;"></i></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!------------------------------------>
+        <!-- offer product slider ends here -->
+        <!------------------------------------>
+    </div>
+
+
+    <div class="last_half_outer">
+        <div class="last_first">
+            <p>Featured Makes</p>
+            <p>Featured Models</p>
+        </div>
+        <div class="last_second">
+            <div class="last_buttons">
+                <p>Kai</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Honda</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Subaru</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Chevy</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Ford</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Nissan</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Dodge</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Ram</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Toyota</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Jeep</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>GMC</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Hyundai</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Cadillc</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Mercedes</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+            <div class="last_buttons">
+                <p>Lexus</p>
+                <i class="fa-solid fa-angle-right fa-sm" style="color: rgb(0, 0, 0, 0.5);"></i>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer id="footer"></footer>
+
+
+
+    <script src="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+"></script>
+    <script src="./scripts/index.js" type="module"></script>
+    <script src="./scripts/footer.js" type="module"></script>
+</body>
+</html>
