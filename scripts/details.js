@@ -7,8 +7,8 @@ import {
 } from "/components/navbar.js";
 import { getImages, getThumbnails } from "/components/details_image_card.js";
 import { getFooter, scrollTop } from "/components/footer.js";
-import API from "/components/api.js";
 import { searchCardAppend } from "/components/search_card.js";
+import addToCart from "../components/add_to_cart.js";
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
@@ -29,9 +29,13 @@ async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
 
+  const prod_name = document.querySelector("#prod_name");
+  prod_name.textContent = product.name;
+
   const addToC = document.querySelector("#addToCart");
   addToC.addEventListener("click", (event) => {
-    addToCart(product, event);
+    addToCart(product, event, true);
+    console.log("click");
   });
 
   document.title = product.name;

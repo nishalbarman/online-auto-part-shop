@@ -9,6 +9,7 @@ import { getFooter, scrollTop } from "/components/footer.js";
 import API from "/components/api.js";
 import { searchCardAppend } from "/components/search_card.js";
 import getProductCards from "/components/product_card.js";
+import addToCart from "../components/add_to_cart.js";
 
 let productList = [];
 let selectArray = [];
@@ -27,7 +28,8 @@ if (url.includes("=")) {
       const product_heading = document.querySelector("#title");
       product_heading.textContent = `Category : ${category_query[1]
         .toUpperCase()
-        .replace("%20", " ")}`;
+        .split("%20")
+        .join(" ")}`;
       productRequest(`?category=${category_query[1]}`);
     });
   } else if (category_query[0] == "search") {
@@ -36,10 +38,9 @@ if (url.includes("=")) {
       console.log("I am running");
       const product_heading = document.querySelector("#title");
       console.log(product_heading);
-      product_heading.textContent = `Search result for : '${category_query[1].replace(
-        "%20",
-        " "
-      )}'`;
+      product_heading.textContent = `Search result for : '${category_query[1]
+        .split("%20")
+        .join(" ")}}'`;
       productRequest(`?q=${category_query[1]}`);
     });
   } else {
@@ -59,7 +60,7 @@ if (url.includes("=")) {
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
-  nav.innerHTML = top_navbar() + middle_navbar();
+  nav.innerHTML = top_navbar() + middle_navbar() + bottom_navbar();
   const footer = document.querySelector("#footer");
   footer.innerHTML = getFooter();
   // scroll to top adding
@@ -1278,50 +1279,6 @@ function productAppend(list) {
         (event) => {
           event.stopPropagation();
           addToCart(element, event);
-          // if (
-          //   event.target.innerHTML ==
-          //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-          // ) {
-          //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-          // } else if (
-          //   event.target.innerHTML == "" &&
-          //   event.target.parentNode.innerHTML ==
-          //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-          // ) {
-          //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-          // }
-          // fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
-          //   .then((res) => {
-          //     return res.json();
-          //   })
-          //   .then((data) => {
-          // let carts = data.cart;
-          // carts.push(element);
-          // let options = {
-          //   method: "PATCH",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify({
-          //     cart: carts,
-          //   }),
-          // };
-          // fetch(
-          //   `${API}/users/${localStorage.getItem("userid") || 1}`,
-          //   options
-          // )
-          //   .then((res) => {
-          //     return res.json();
-          //   })
-          //   .then((data) => {
-          //     localStorage.setItem(
-          //       "cart-total-items",
-          //       +(localStorage.getItem("cart-total-items") || 0) + 1
-          //       );
-          //       cartItemUpdate();
-          //     });
-          // })
-          // .catch((error) => {});
         },
         (event) => {
           event.stopPropagation();
@@ -1334,91 +1291,81 @@ function productAppend(list) {
   });
 }
 
-async function addToCart(element, event) {
-  try {
-    if (
-      localStorage.getItem("logged") != true &&
-      localStorage.getItem("logged") != "true"
-    ) {
-      alert("You need to login first --> Redirecting");
-      window.location.assign("/signin.html");
-      return false;
-    }
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    }
+// async function addToCart(element, event) {
+//   try {
+//     if (
+//       localStorage.getItem("logged") != true &&
+//       localStorage.getItem("logged") != "true"
+//     ) {
+//       alert("You need to login first --> Redirecting");
+//       window.location.assign("/signin.html");
+//       return false;
+//     }
+//     if (
+//       event.target.innerHTML ==
+//       'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+//     ) {
+//       event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+//     } else if (
+//       event.target.innerHTML == "" &&
+//       event.target.parentNode.innerHTML ==
+//         'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+//     ) {
+//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+//     } else {
+//       return false;
+//     }
 
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`
-    );
-    const data = await res.json();
+//     const res = await fetch(
+//       `${API}/users/${localStorage.getItem("userid") || 1}`
+//     );
+//     const data = await res.json();
 
-    let carts = data.cart;
-    carts.push(element);
-    localStorage.setItem(
-      "cart-total-items",
-      +(localStorage.getItem("cart-total-items") || 0) + 1
-    );
-    cartItemUpdate();
-    postTheItemToserver(carts);
-    console.log(event.target);
-    // if (
-    //   event.target.innerHTML ==
-    //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    // ) {
-    //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    // } else if (
-    //   event.target.innerHTML == "" &&
-    //   event.target.parentNode.innerHTML ==
-    //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    // ) {
-    //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    // }
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    }
-  } catch (error) {
-    console.error();
-  }
-}
+//     let carts = data.cart;
+//     carts.push(element);
+//     localStorage.setItem(
+//       "cart-total-items",
+//       +(localStorage.getItem("cart-total-items") || 0) + 1
+//     );
+//     cartItemUpdate();
+//     postTheItemToserver(carts);
+//     console.log(event.target);
+//     if (
+//       event.target.innerHTML ==
+//       'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+//     ) {
+//       event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+//     } else if (
+//       event.target.innerHTML == "" &&
+//       event.target.parentNode.innerHTML ==
+//         'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+//     ) {
+//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+//     }
+//   } catch (error) {
+//     console.error();
+//   }
+// }
 
-async function postTheItemToserver(carts) {
-  try {
-    let options = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        cart: carts,
-      }),
-    };
+// async function postTheItemToserver(carts) {
+//   try {
+//     let options = {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         cart: carts,
+//       }),
+//     };
 
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`,
-      options
-    );
-    const data = res.json();
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-}
+//     const res = await fetch(
+//       `${API}/users/${localStorage.getItem("userid") || 1}`,
+//       options
+//     );
+//     const data = res.json();
+//     console.log(data);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
