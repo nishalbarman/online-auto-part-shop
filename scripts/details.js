@@ -30,6 +30,12 @@ window.onload = () => {
 async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
+
+  const addToC = document.querySelector("#addToCart");
+  addToC.addEventListener("click", (event) => {
+    addToCart(product, event);
+  });
+
   document.title = product.name;
   const original = document.querySelector("#original");
   const discount = document.querySelector("#discount");
@@ -38,11 +44,11 @@ async function detailsImageReq() {
 
   discount.innerHTML = `<p>Rs. ${
     product.discounted_price
-  } </p><span class="discount">${
-    Math.round(((product.original_price -
-      product.discounted_price) / product.original_price) *
-    100)
-  }% OFF</span>`;
+  } </p><span class="discount">${Math.round(
+    ((product.original_price - product.discounted_price) /
+      product.original_price) *
+      100
+  )}% OFF</span>`;
 
   const category = document.querySelector("#category");
   category.textContent = product.category;
@@ -178,4 +184,85 @@ function detailsImageAppend(list) {
   main.sync(thumbnails);
   main.mount();
   thumbnails.mount();
+}
+
+async function addToCart(element, event) {
+  try {
+    if (
+      localStorage.getItem("logged") != true &&
+      localStorage.getItem("logged") != "true"
+    ) {
+      alert("You need to login first --> Redirecting");
+      window.location.assign("/signin.html");
+      return false;
+    }
+    if (
+      event.target.innerHTML ==
+      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    } else if (
+      event.target.innerHTML == "" &&
+      event.target.parentNode.innerHTML ==
+        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    }
+
+    const res = await fetch(
+      `${API}/users/${localStorage.getItem("userid") || 1}`
+    );
+    const data = await res.json();
+
+    let carts = data.cart;
+    element.quantity =
+      +document.querySelector("#quantity").value < 1
+        ? 1
+        : +document.querySelector("#quantity").value;
+    carts.push(element);
+    localStorage.setItem(
+      "cart-total-items",
+      +(localStorage.getItem("cart-total-items") || 0) + 1
+    );
+    cartItemUpdate();
+    postTheItemToserver(carts);
+    console.log(event.target);
+    if (
+      event.target.innerHTML ==
+      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+    ) {
+      event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    } else if (
+      event.target.innerHTML == "" &&
+      event.target.parentNode.innerHTML ==
+        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+    ) {
+      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    }
+  } catch (error) {
+    console.error();
+  }
+}
+
+async function postTheItemToserver(carts) {
+  try {
+    let options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: carts,
+      }),
+    };
+
+    const res = await fetch(
+      `${API}/users/${localStorage.getItem("userid") || 1}`,
+      options
+    );
+    const data = res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 }
