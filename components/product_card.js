@@ -1,4 +1,4 @@
-function getDealsWeekCard(element, ptagrate, callback) {
+function getDealsWeekCard(element, ptagrate, callback, card_callback) {
   const {
     name,
     image_url,
@@ -10,6 +10,8 @@ function getDealsWeekCard(element, ptagrate, callback) {
 
   const card = document.createElement("div");
   card.classList.add("deals_card");
+
+  card.addEventListener("click", card_callback);
 
   // card.addEventListener("click", callback);
 

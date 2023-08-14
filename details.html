@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product details page</title>
 
+    <!-- static links -->
+    <link rel="stylesheet" href="./styles/details.css">
+    <!-- <link rel="stylesheet" href="./styles/index.css"> -->
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <!-- static link ends -->
+
     <!--------------------------------->
     <!-- font awesome cdn link below -->
     <!--------------------------------->
@@ -27,6 +34,66 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 </head>
 </head>
 <body>
+    <div id="navbar"></div>
+    <div class="container">
+        <div class="details_first">
+            <div class="images_left">
+                <section id="details_image_slider" class="splide splideImage" aria-label="Details slider">
+                    <div class="splide__track">
+                        <ul id="image_list" class="splide__list">
 
+                        </ul>
+                    </div>
+                </section>
+                <br>
+                <section id="thumbnail-slider" class="splide thumbnail_image" aria-label="thumbnail_list">
+                    <div class="splide__track">
+                        <ul id="thumbnail_list" class="splide__list">
+
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <div class="product_details_right">
+                <p>Category</p>
+                <p>Rear Center View Mirror 7N2Z17000AB – Fits Ford Figo (Type 1) / Fiesta / Fiesta Classic</p>
+                <p id="rating">Rating 42 - 342</p>
+                <p>MRP <span class="strike-through">Rs. 2000</span> </p>
+                <div>
+                    <p>Rs. 825</p><span class="discount">59% OFF</span>
+                </div>
+                <div>
+                    <input type="text" inputmode="numeric" id="quantity" value="1"><button id="addToCart">Add to
+                        Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></button>
+                </div>
+                <div id="hightlights" class="hightlights">
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="other_specs">
+            <div class="spec_title">
+                <p id="specs" class="headings t-active">Specifications</p>
+                <p id="desc" class="headings">Description</p>
+                <p id="terms" class="headings">Terms & Condition</p>
+            </div>
+            <div id="detail_append">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer id="footer"></footer>
+    <script src="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+"></script>
+    <script src="./scripts/details.js" type="module"></script>
 </body>
 </html>

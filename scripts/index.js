@@ -164,9 +164,18 @@ function dealsWeekAppend(list) {
     }
     p += `</p>`;
     append.append(
-      getDealsWeekCard(element, p, (event) => {
-        addToCart(element, event);
-      })
+      getDealsWeekCard(
+        element,
+        p,
+        (event) => {
+          addToCart(element, event);
+        },
+        (event) => {
+          localStorage.setItem("product_details", JSON.stringify(element));
+          window.location.assign("/details/html");
+          // POP UP SHOULD BE here
+        }
+      )
     );
   });
 }
