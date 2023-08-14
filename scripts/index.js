@@ -174,7 +174,7 @@ function dealsWeekAppend(list) {
         (event) => {
           event.stopPropagation();
           localStorage.setItem("product_details", JSON.stringify(element));
-          window.location.assign("/details/html");
+          window.location.assign("/details.html");
           // POP UP SHOULD BE here
         }
       )
