@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   <link rel="stylesheet" href="../styles/checkout.css">
+  </head>
+  <body>
+    <form action="">
+      <div id="parent">
+        <div id="addressdetail">
+          <h2>CONTACT DETAILS</h2>
+          <input id="name" type="text" placeholder="Full Name" />
+          <input id="phoneno" type="text" placeholder="Mobile No" />
+          <h2 style="margin-top: 0%">ADDRESS</h2>
+          <input
+          id="fulladdress"
+            type="text"
+            placeholder="Full Address(House no,area/street etc.)"
+          />
+          <input id="town" type="text" placeholder="Locality/Town" />
+          <input id="distric" type="text" placeholder="District" />
+          <input id="pincode" type="number" placeholder="Pin Code" />
+          <input id="state" type="text" placeholder="State" />
+        </div>
+        <div id="paymentdetails">
+          <h2>PAYMENT</h2>
+          <div>
+            <p>Subtotal</p>
+            <p>₹2000</p>
+          </div>
+          <div>
+            <p>Convenience Fees</p>
+            <p id="convinientfee">₹99</p>
+          </div>
+          <div>
+            <p>Shipping Cost</p>
+            <p>₹20</p>
+          </div>
+          <hr />
+          <div>
+            <p>Total</p>
+            <p>₹2020</p>
+          </div>
+        </div>
+      </div>
+
+        <button id="orderBtn"><h2 style="line-height: 8%;">Place Order</h2></button>
+        <p id="error">*Please fill out all the field </p>
+    </form>
+  </body>
+</html>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    key: "rzp_test_y0dj0ip5NJmJJs", // Enter the Key ID generated from the Dashboard
+    amount: 2020 * 100,
+    currency: "INR",
+    description: "Acme Corp",
+    image: "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
+    prefill: {
+      email: "gaurav.kumar@example.com",
+      contact: +919900000000,
+    },
+    "handler": function (response) {
+      location.href='./orderconfirmation.html';
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById("orderBtn").onclick = function (e) {
+    let name=document.querySelector('#name').value
+    let phoneno=document.querySelector('#phoneno').value
+    let address=document.querySelector('#fulladdress').value
+    let town=document.querySelector('#town').value
+    let distric=document.querySelector('#distric').value
+    let pincode=document.querySelector('#pincode').value
+    let state=document.querySelector('#state').value
+    if(name && phoneno && address && town && distric && pincode && state){
+
+    rzp1.open();
+    e.preventDefault();
+    document.querySelector("#error").style.display="none";
+    savedata();
+  }
+  else{
+    e.preventDefault();
+    document.querySelector("#error").style.display="block";
+    e.preventDefault()
+    }
+  };
+
+  async function savedata(){
+      let name=document.querySelector('#name').value
+    let phoneno=document.querySelector('#phoneno').value
+    let address=document.querySelector('#fulladdress').value
+    let town=document.querySelector('#town').value
+    let distric=document.querySelector('#distric').value
+    let pincode=document.querySelector('#pincode').value
+    let state=document.querySelector('#state').value
+    let obj = {
+      fullname: name,
+      mobile_no: phoneno,
+      full_address: address,
+      locality: town,
+      district: distric,
+      pin_code: pincode,
+      state: state,
+    };
+    try {
+      let response = await fetch(
+        "https://dark-gold-meerkat-shoe.cyclic.cloud/users/1"
+      );
+      let data = await response.json();
+      let object = data.address;
+      fetch("https://dark-gold-meerkat-shoe.cyclic.cloud/users/1", {
+        method: "PATCH",
+        body: JSON.stringify({ address: obj }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(object);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+</script>

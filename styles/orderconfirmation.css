@@ -1,0 +1,114 @@
+/* #part1 {
+  background-color: yellow;
+} */
+
+* {
+  font-family: interregular, sans-serif, monospace, arial, helvetica neue,
+    helvetica, arial, geneva, times new roman;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  /* border: 1px solid black; */
+  font-size: 18px;
+}
+
+#part1 > div {
+  margin: auto;
+  width: 50%;
+  /* border: solid black; */
+  padding: 10px;
+}
+#part3 > div {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+#part3 {
+  background-color: black;
+}
+#part3 h1 {
+  color: whitesmoke;
+}
+#part2 {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 50%;
+
+  padding: 10px;
+}
+#part2 > div {
+  width: 50%;
+
+  padding: 10px;
+}
+
+#part2 > div:nth-of-type(2) p {
+  text-align: left;
+}
+
+#part2 > div > div p {
+  margin-top: 0;
+}
+#part1 > div > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+h1,
+p,
+h3 {
+  text-align: center;
+}
+h3 {
+  line-height: 20px;
+}
+button {
+  display: flex;
+  justify-content: center;
+  background-color: #898989;
+  border: none;
+  height: 8%;
+  margin: auto;
+  border-radius: 6px;
+}
+button > h2 {
+  color: black;
+  line-height: 8%;
+  text-align: center;
+}
+button:hover {
+  background-color: #f6f2e3;
+}
+
+.timer {
+  font-size: 20px;
+}
+
+#part2 p {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+#part2 div {
+  width: 90%;
+}
+
+span#name {
+  font-weight: bold;
+}
+
+h3 {
+  background-color: #f4dd82;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  #part2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
