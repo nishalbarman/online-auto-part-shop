@@ -28,7 +28,8 @@ if (url.includes("=")) {
       const product_heading = document.querySelector("#title");
       product_heading.textContent = `Category : ${category_query[1]
         .toUpperCase()
-        .replace("%20", " ")}`;
+        .split("%20")
+        .join(" ")}`;
       productRequest(`?category=${category_query[1]}`);
     });
   } else if (category_query[0] == "search") {
@@ -37,10 +38,9 @@ if (url.includes("=")) {
       console.log("I am running");
       const product_heading = document.querySelector("#title");
       console.log(product_heading);
-      product_heading.textContent = `Search result for : '${category_query[1].replace(
-        "%20",
-        " "
-      )}'`;
+      product_heading.textContent = `Search result for : '${category_query[1]
+        .split("%20")
+        .join(" ")}}'`;
       productRequest(`?q=${category_query[1]}`);
     });
   } else {
