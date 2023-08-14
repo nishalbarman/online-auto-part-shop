@@ -173,6 +173,19 @@ function dealsWeekAppend(list) {
 
 async function addToCart(element, event) {
   try {
+    if (
+      event.target.innerHTML ==
+      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    } else if (
+      event.target.innerHTML == "" &&
+      event.target.parentNode.innerHTML ==
+        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    }
+
     const res = await fetch(
       `${API}/users/${localStorage.getItem("userid") || 1}`
     );
@@ -182,15 +195,28 @@ async function addToCart(element, event) {
     carts.push(element);
     postTheItemToserver(carts);
     console.log(event.target);
+    // if (
+    //   event.target.innerHTML ==
+    //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    // ) {
+    //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    // } else if (
+    //   event.target.innerHTML == "" &&
+    //   event.target.parentNode.innerHTML ==
+    //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    // ) {
+    //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    // }
+
     if (
       event.target.innerHTML ==
-      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
     ) {
       event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
     } else if (
       event.target.innerHTML == "" &&
       event.target.parentNode.innerHTML ==
-        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
     ) {
       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
     }
@@ -249,7 +275,7 @@ function featuredAppend(list) {
   list.forEach((element, index) => {
     append.append(
       getFeaturedCard(element, (event) => {
-        alert("Clicked");
+        // alert("Clicked");
         console.log(event);
       })
     );

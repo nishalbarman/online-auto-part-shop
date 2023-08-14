@@ -1325,6 +1325,19 @@ function productAppend(list) {
 
 async function addToCart(element, event) {
   try {
+    if (
+      event.target.innerHTML ==
+      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    } else if (
+      event.target.innerHTML == "" &&
+      event.target.parentNode.innerHTML ==
+        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    ) {
+      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    }
+
     const res = await fetch(
       `${API}/users/${localStorage.getItem("userid") || 1}`
     );
@@ -1339,15 +1352,27 @@ async function addToCart(element, event) {
     cartItemUpdate();
     postTheItemToserver(carts);
     console.log(event.target);
+    // if (
+    //   event.target.innerHTML ==
+    //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    // ) {
+    //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    // } else if (
+    //   event.target.innerHTML == "" &&
+    //   event.target.parentNode.innerHTML ==
+    //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+    // ) {
+    //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+    // }
     if (
       event.target.innerHTML ==
-      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
     ) {
       event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
     } else if (
       event.target.innerHTML == "" &&
       event.target.parentNode.innerHTML ==
-        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
     ) {
       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
     }
