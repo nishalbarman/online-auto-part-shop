@@ -7,8 +7,8 @@ import {
 } from "/components/navbar.js";
 import { getImages, getThumbnails } from "/components/details_image_card.js";
 import { getFooter, scrollTop } from "/components/footer.js";
-import API from "/components/api.js";
 import { searchCardAppend } from "/components/search_card.js";
+import addToCart from "../components/add_to_cart.js";
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
@@ -29,9 +29,13 @@ async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
 
+  const prod_name = document.querySelector("#prod_name");
+  prod_name.textContent = product.name;
+
   const addToC = document.querySelector("#addToCart");
   addToC.addEventListener("click", (event) => {
-    addToCart(product, event);
+    addToCart(product, event, true);
+    console.log("click");
   });
 
   document.title = product.name;
@@ -182,87 +186,4 @@ function detailsImageAppend(list) {
   main.sync(thumbnails);
   main.mount();
   thumbnails.mount();
-}
-
-async function addToCart(element, event) {
-  try {
-    if (
-      localStorage.getItem("logged") != true &&
-      localStorage.getItem("logged") != "true"
-    ) {
-      alert("You need to login first --> Redirecting");
-      window.location.assign("/signin.html");
-      return false;
-    }
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    } else {
-      return false;
-    }
-
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`
-    );
-    const data = await res.json();
-
-    let carts = data.cart;
-    element.quantity =
-      +document.querySelector("#quantity").value < 1
-        ? 1
-        : +document.querySelector("#quantity").value;
-    carts.push(element);
-    localStorage.setItem(
-      "cart-total-items",
-      +(localStorage.getItem("cart-total-items") || 0) + 1
-    );
-    cartItemUpdate();
-    postTheItemToserver(carts);
-    console.log(event.target);
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    }
-  } catch (error) {
-    console.error();
-  }
-}
-
-async function postTheItemToserver(carts) {
-  try {
-    let options = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        cart: carts,
-      }),
-    };
-
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`,
-      options
-    );
-    const data = res.json();
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
 }

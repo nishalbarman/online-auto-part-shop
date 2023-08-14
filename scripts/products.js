@@ -9,6 +9,7 @@ import { getFooter, scrollTop } from "/components/footer.js";
 import API from "/components/api.js";
 import { searchCardAppend } from "/components/search_card.js";
 import getProductCards from "/components/product_card.js";
+import addToCart from "../components/add_to_cart.js";
 
 let productList = [];
 let selectArray = [];
@@ -1290,93 +1291,81 @@ function productAppend(list) {
   });
 }
 
-async function addToCart(element, event) {
-  try {
-    if (
-      localStorage.getItem("logged") != true &&
-      localStorage.getItem("logged") != "true"
-    ) {
-      alert("You need to login first --> Redirecting");
-      window.location.assign("/signin.html");
-      return false;
-    }
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-    } else {
-      return false;
-    }
+// async function addToCart(element, event) {
+//   try {
+//     if (
+//       localStorage.getItem("logged") != true &&
+//       localStorage.getItem("logged") != "true"
+//     ) {
+//       alert("You need to login first --> Redirecting");
+//       window.location.assign("/signin.html");
+//       return false;
+//     }
+//     if (
+//       event.target.innerHTML ==
+//       'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+//     ) {
+//       event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+//     } else if (
+//       event.target.innerHTML == "" &&
+//       event.target.parentNode.innerHTML ==
+//         'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+//     ) {
+//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+//     } else {
+//       return false;
+//     }
 
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`
-    );
-    const data = await res.json();
+//     const res = await fetch(
+//       `${API}/users/${localStorage.getItem("userid") || 1}`
+//     );
+//     const data = await res.json();
 
-    let carts = data.cart;
-    carts.push(element);
-    localStorage.setItem(
-      "cart-total-items",
-      +(localStorage.getItem("cart-total-items") || 0) + 1
-    );
-    cartItemUpdate();
-    postTheItemToserver(carts);
-    console.log(event.target);
-    // if (
-    //   event.target.innerHTML ==
-    //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    // ) {
-    //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    // } else if (
-    //   event.target.innerHTML == "" &&
-    //   event.target.parentNode.innerHTML ==
-    //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-    // ) {
-    //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    // }
-    if (
-      event.target.innerHTML ==
-      'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    } else if (
-      event.target.innerHTML == "" &&
-      event.target.parentNode.innerHTML ==
-        'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-    ) {
-      event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-    }
-  } catch (error) {
-    console.error();
-  }
-}
+//     let carts = data.cart;
+//     carts.push(element);
+//     localStorage.setItem(
+//       "cart-total-items",
+//       +(localStorage.getItem("cart-total-items") || 0) + 1
+//     );
+//     cartItemUpdate();
+//     postTheItemToserver(carts);
+//     console.log(event.target);
+//     if (
+//       event.target.innerHTML ==
+//       'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+//     ) {
+//       event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+//     } else if (
+//       event.target.innerHTML == "" &&
+//       event.target.parentNode.innerHTML ==
+//         'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
+//     ) {
+//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+//     }
+//   } catch (error) {
+//     console.error();
+//   }
+// }
 
-async function postTheItemToserver(carts) {
-  try {
-    let options = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        cart: carts,
-      }),
-    };
+// async function postTheItemToserver(carts) {
+//   try {
+//     let options = {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         cart: carts,
+//       }),
+//     };
 
-    const res = await fetch(
-      `${API}/users/${localStorage.getItem("userid") || 1}`,
-      options
-    );
-    const data = res.json();
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-}
+//     const res = await fetch(
+//       `${API}/users/${localStorage.getItem("userid") || 1}`,
+//       options
+//     );
+//     const data = res.json();
+//     console.log(data);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
