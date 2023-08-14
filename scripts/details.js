@@ -21,9 +21,7 @@ window.onload = () => {
   const searchAppend = searchCardAppend(); //getting the appending function for search result
   const inputListener = inputSearchEventListener(searchAppend, 700); // searchbar listener from component
   inputListener(); // input listener initialised
-
   cartItemUpdate(); // Update the cart items
-
   detailsImageReq();
 };
 
