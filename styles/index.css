@@ -25,15 +25,6 @@
   transition-timing-function: ease-in-out;
 }
 
-.discount {
-  font-size: 12px;
-  vertical-align: middle;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  border-radius: 4px;
-  padding: 3px 5px;
-  color: rgb(124, 124, 124);
-}
-
 @keyframes car_animate {
   0% {
     transform: translateY(10px);

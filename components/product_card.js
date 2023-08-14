@@ -32,12 +32,7 @@ function getDealsWeekCard(element, ptagrate, callback, card_callback) {
     ${ptagrate}
     <p>${rating_count}</p>
 </div>
-<p><span style="text-decoration: line-through!important; font-size: 15px;">Rs. ${original_price}</span> Rs. ${discounted_price}</p>
-<span class="discount"> ${Math.round(
-    ((element.original_price - element.discounted_price) /
-      element.original_price) *
-      100
-  )}% OFF</span>`;
+<p><span style="text-decoration: line-through!important; font-size: 15px;">Rs. ${original_price}</span> Rs. ${discounted_price}</p>`;
 
   const addToCart = document.createElement("button");
   addToCart.innerHTML = `Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>`;
