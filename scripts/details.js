@@ -30,9 +30,19 @@ window.onload = () => {
 async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
+  document.title = product.name;
+  const original = document.querySelector("#original");
+  const discount = document.querySelector("#discount");
 
-  const prev = document.querySelector("#prev");
-  const next = document.querySelector("#next");
+  original.innerHTML = `MRP <span class="strike-through">Rs. ${product.original_price}</span> `;
+
+  discount.innerHTML = `<p>Rs. ${
+    product.discounted_price
+  } </p><span class="discount">${
+    Math.round(((product.original_price -
+      product.discounted_price) / product.original_price) *
+    100)
+  }% OFF</span>`;
 
   const category = document.querySelector("#category");
   category.textContent = product.category;
