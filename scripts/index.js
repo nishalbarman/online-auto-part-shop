@@ -173,6 +173,12 @@ function dealsWeekAppend(list) {
 
 async function addToCart(element, event) {
   try {
+    if (localStorage.getItem("logged") == false) {
+      alert("You need to login first -> Redirecting");
+      window.location.assign("/signin.html");
+      return false;
+    }
+
     if (
       event.target.innerHTML ==
       'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
