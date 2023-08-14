@@ -70,7 +70,7 @@ window.onload = () => {
   const inputListener = inputSearchEventListener(searchAppend, 400); // searchbar listener from component
   inputListener(); // input listener initialised
 
-  // cartItemUpdate(); // Update the cart items
+  cartItemUpdate(); // Update the cart items
 
   filterFunction();
   sideBarRatingFunction();
