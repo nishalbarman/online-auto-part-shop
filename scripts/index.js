@@ -164,16 +164,28 @@ function dealsWeekAppend(list) {
     }
     p += `</p>`;
     append.append(
-      getDealsWeekCard(element, p, (event) => {
-        addToCart(element, event);
-      })
+      getDealsWeekCard(
+        element,
+        p,
+        (event) => {
+          addToCart(element, event);
+        },
+        (event) => {
+          localStorage.setItem("product_details", JSON.stringify(element));
+          window.location.assign("/details/html");
+          // POP UP SHOULD BE here
+        }
+      )
     );
   });
 }
 
 async function addToCart(element, event) {
   try {
-    if (localStorage.getItem("logged") != true) {
+    if (
+      localStorage.getItem("logged") != true &&
+      localStorage.getItem("logged") != "true"
+    ) {
       alert("You need to login first -> Redirecting");
       window.location.assign("/signin.html");
       return false;

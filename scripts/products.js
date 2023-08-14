@@ -1272,60 +1272,72 @@ function productAppend(list) {
     }
     p += `</p>`;
     append.append(
-      getProductCards(element, p, (event) => {
-        addToCart(element, event);
-        // if (
-        //   event.target.innerHTML ==
-        //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-        // ) {
-        //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-        // } else if (
-        //   event.target.innerHTML == "" &&
-        //   event.target.parentNode.innerHTML ==
-        //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-        // ) {
-        //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-        // }
-        // fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
-        //   .then((res) => {
-        //     return res.json();
-        //   })
-        //   .then((data) => {
-        // let carts = data.cart;
-        // carts.push(element);
-        // let options = {
-        //   method: "PATCH",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     cart: carts,
-        //   }),
-        // };
-        // fetch(
-        //   `${API}/users/${localStorage.getItem("userid") || 1}`,
-        //   options
-        // )
-        //   .then((res) => {
-        //     return res.json();
-        //   })
-        //   .then((data) => {
-        //     localStorage.setItem(
-        //       "cart-total-items",
-        //       +(localStorage.getItem("cart-total-items") || 0) + 1
-        //       );
-        //       cartItemUpdate();
-        //     });
-        // })
-        // .catch((error) => {});
-      })
+      getProductCards(
+        element,
+        p,
+        (event) => {
+          addToCart(element, event);
+          // if (
+          //   event.target.innerHTML ==
+          //   'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+          // ) {
+          //   event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+          // } else if (
+          //   event.target.innerHTML == "" &&
+          //   event.target.parentNode.innerHTML ==
+          //     'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
+          // ) {
+          //   event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
+          // }
+          // fetch(`${API}/users/${localStorage.getItem("userid") || 1}`)
+          //   .then((res) => {
+          //     return res.json();
+          //   })
+          //   .then((data) => {
+          // let carts = data.cart;
+          // carts.push(element);
+          // let options = {
+          //   method: "PATCH",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify({
+          //     cart: carts,
+          //   }),
+          // };
+          // fetch(
+          //   `${API}/users/${localStorage.getItem("userid") || 1}`,
+          //   options
+          // )
+          //   .then((res) => {
+          //     return res.json();
+          //   })
+          //   .then((data) => {
+          //     localStorage.setItem(
+          //       "cart-total-items",
+          //       +(localStorage.getItem("cart-total-items") || 0) + 1
+          //       );
+          //       cartItemUpdate();
+          //     });
+          // })
+          // .catch((error) => {});
+        },
+        (event) => {
+          localStorage.setItem("product_details", JSON.stringify(element));
+          window.location.assign("/details.html");
+          // POP UP SHOULD BE here
+        }
+      )
     );
   });
 }
 
 async function addToCart(element, event) {
   try {
-    if (localStorage.getItem("logged") != true) {
+    if (
+      localStorage.getItem("logged") != true &&
+      localStorage.getItem("logged") != "true"
+    ) {
       alert("You need to login first --> Redirecting");
       window.location.assign("/signin.html");
       return false;

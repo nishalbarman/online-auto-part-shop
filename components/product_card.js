@@ -1,4 +1,4 @@
-function getDealsWeekCard(element, ptagrate, callback) {
+function getDealsWeekCard(element, ptagrate, callback, card_callback) {
   const {
     name,
     image_url,
@@ -10,6 +10,8 @@ function getDealsWeekCard(element, ptagrate, callback) {
 
   const card = document.createElement("div");
   card.classList.add("deals_card");
+
+  card.addEventListener("click", card_callback);
 
   // card.addEventListener("click", callback);
 
@@ -30,7 +32,12 @@ function getDealsWeekCard(element, ptagrate, callback) {
     ${ptagrate}
     <p>${rating_count}</p>
 </div>
-<p><span style="text-decoration: line-through!important; font-size: 15px;">Rs. ${original_price}</span> Rs. ${discounted_price}</p>`;
+<p><span style="text-decoration: line-through!important; font-size: 15px;">Rs. ${original_price}</span> Rs. ${discounted_price}</p>
+<span class="discount"> ${Math.round(
+    ((element.original_price - element.discounted_price) /
+      element.original_price) *
+      100
+  )}% OFF</span>`;
 
   const addToCart = document.createElement("button");
   addToCart.innerHTML = `Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>`;
