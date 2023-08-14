@@ -31,6 +31,12 @@ async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
 
+  const prev = document.querySelector("#prev");
+  const next = document.querySelector("#next");
+
+  const category = document.querySelector("#category");
+  category.textContent = product.category;
+
   let p = `<p>`;
   if (product.rating > 5) {
     product.rating = 5;
@@ -96,7 +102,9 @@ async function detailsImageReq() {
     event.target.classList.add("t-active");
 
     const details_ = document.querySelector("#detail_append");
-    details_.innerHTML = product.description.description;
+    details_.innerHTML = product.description.description
+      .replace("Other Details", "")
+      .replace('<tr><th colspan="2"> </th></tr>', "");
   });
 
   termsBtn.addEventListener("click", (event) => {
@@ -108,7 +116,9 @@ async function detailsImageReq() {
     event.target.classList.add("t-active");
 
     const details_ = document.querySelector("#detail_append");
-    details_.innerHTML = product.description.terms_conditon;
+    details_.innerHTML =
+      product.description.terms_conditon ||
+      "The images represent actual product though color of the image and product may slightly differ.";
   });
 
   detailsImageAppend(product.small_images);
@@ -142,6 +152,7 @@ function detailsImageAppend(list) {
     focus: "center",
     pagination: false,
     cover: true,
+    autoplay: true,
     dragMinThreshold: {
       mouse: 4,
       touch: 10,

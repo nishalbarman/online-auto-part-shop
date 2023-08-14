@@ -29,19 +29,21 @@ function middle_navbar(hide = false) {
   const logged = localStorage.getItem("logged") || false;
   let data = null;
   if (logged == true || logged === "true") {
-    const object = JSON.parse(localStorage.getItem("userInfo")) || {
+    const object = JSON.parse(localStorage.getItem("userObject")) || {
       name: "Demo User",
     };
     data = `<div class="myaccount">
     <a href="#">My Account</a>
     <div class="myaccount-details">
-        <a href=""><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, ${object.name}</a>
+        <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, ${
+          object.name || "Anonymous"
+        }</a>
         <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
                 style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
     </div>
   </div>`;
   } else {
-    data = `<a href="/login.html" style="font-weight: bold;">Login</a>`;
+    data = `<a href="/signin.html" style="font-weight: bold;">Login</a>`;
   }
 
   let middle = null;
@@ -88,7 +90,7 @@ function middle_navbar(hide = false) {
 
               </i>
           </a>
-          <a href="#">
+          <a href="/cart.html">
               <i class="fa-solid fa-cart-shopping fa-lg" style="color: rgb(0, 0, 0, 0.4);">
                   <div id="item_count_cart" class="item_count" style="display:none;">
                       0
@@ -183,7 +185,9 @@ function inputSearchEventListener(callback, duration = 300) {
     const logo = document.querySelector("#logo_click");
     logo.addEventListener("click", () => {
       let url = window.location.pathname;
-      if (url !== "/index.html") window.location.assign("/index.html");
+      if (url !== "/index.html") {
+        window.location.assign("/index.html");
+      }
     });
   };
 }
