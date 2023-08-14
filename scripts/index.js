@@ -204,6 +204,8 @@ async function addToCart(element, event) {
         'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
     ) {
       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
+    } else {
+      return false;
     }
 
     const res = await fetch(
