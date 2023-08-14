@@ -1276,6 +1276,7 @@ function productAppend(list) {
         element,
         p,
         (event) => {
+          event.stopPropagation();
           addToCart(element, event);
           // if (
           //   event.target.innerHTML ==
@@ -1323,6 +1324,7 @@ function productAppend(list) {
           // .catch((error) => {});
         },
         (event) => {
+          event.stopPropagation();
           localStorage.setItem("product_details", JSON.stringify(element));
           window.location.assign("/details.html");
           // POP UP SHOULD BE here
