@@ -119,3 +119,69 @@ select {
 .checkedcheck {
   background-color: gray !important;
 }
+
+.main_grid {
+  width: 100% !important;
+}
+
+.deals_card > .deals_body > button {
+  background-color: rgb(210, 210, 210, 0.5);
+}
+
+@media only screen and (max-width: 1359px) {
+  .main_grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media only screen and (max-width: 1138px) {
+  .main_grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .main_grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .main_grid {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media only screen and (max-width: 665px) {
+  .main_grid {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .main_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .deals_card {
+    width: 80%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 432px) {
+  .main_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .deals_card {
+    width: 90%;
+    max-width: 100%;
+  }
+}

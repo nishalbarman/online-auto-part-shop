@@ -28,6 +28,7 @@ function top_navbar() {
 function middle_navbar(hide = false) {
   const logged = localStorage.getItem("logged") || false;
   let data = null;
+  let sidebar_login = null;
   if (logged == true || logged === "true") {
     const object = JSON.parse(localStorage.getItem("userObject")) || {
       name: "Demo User",
@@ -42,8 +43,18 @@ function middle_navbar(hide = false) {
                 style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
     </div>
   </div>`;
+    sidebar_login = ` <div class="myaccount sidebar_account">
+      <a href="#">My Account</a>
+      <div class="myaccount-details">
+          <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, RooT
+              BattleGrounds</a>
+          <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
+                  style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
+      </div>
+    </div>`;
   } else {
     data = `<a href="/signin.html" style="font-weight: bold;">Login</a>`;
+    sidebar_login = `<a class="login_sidebar" href="/signin.html" style="font-weight: bold;">Login</a>`;
   }
 
   let middle = null;
@@ -116,15 +127,8 @@ function middle_navbar(hide = false) {
               <a href="/products.html?category=tools and garage">Tools &amp; Garage</a>
 
               <div class="vertical-line"></div>
-              <div class="myaccount sidebar_account">
-                  <a href="#">My Account</a>
-                  <div class="myaccount-details">
-                      <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, RooT
-                          BattleGrounds</a>
-                      <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
-                              style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
-                  </div>
-              </div>
+              ${sidebar_login}
+             
           </div>
       </div>
 
@@ -276,6 +280,12 @@ function inputSearchEventListener(callback, duration = 300) {
       sidebar.classList.remove("hide_sidebar");
       document.querySelector(".black").style.display = "block";
       console.log(sidebar);
+    });
+
+    document.querySelector(".black").addEventListener("click", () => {
+      const sidebar = document.querySelector("#sidebar");
+      sidebar.classList.add("hide_sidebar");
+      document.querySelector(".black").style.display = "none";
     });
 
     const logo = document.querySelector("#logo_click");

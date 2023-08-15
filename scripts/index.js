@@ -64,10 +64,10 @@ function ourOfferAppend(list) {
     rewind: true,
     breakpoints: {
       1024: {
-        perPage: 2,
+        perPage: 1,
       },
       767: {
-        perPage: 2,
+        perPage: 1,
       },
       640: {
         perPage: 1,
@@ -117,11 +117,14 @@ function ourBlogAppend(list) {
     perPage: 3,
     rewind: true,
     breakpoints: {
+      1130: {
+        perPage: 1,
+      },
       1024: {
-        perPage: 2,
+        perPage: 1,
       },
       767: {
-        perPage: 2,
+        perPage: 1,
       },
       640: {
         perPage: 1,
@@ -296,11 +299,14 @@ function featuredAppend(list) {
     perPage: 2,
     rewind: true,
     breakpoints: {
+      1130: {
+        perPage: 1,
+      },
       1024: {
-        perPage: 2,
+        perPage: 1,
       },
       767: {
-        perPage: 2,
+        perPage: 1,
       },
       640: {
         perPage: 1,

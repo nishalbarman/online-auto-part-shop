@@ -40,7 +40,7 @@ if (url.includes("=")) {
       console.log(product_heading);
       product_heading.textContent = `Search result for : '${category_query[1]
         .split("%20")
-        .join(" ")}}'`;
+        .join(" ")}'`;
       productRequest(`?q=${category_query[1]}`);
     });
   } else {

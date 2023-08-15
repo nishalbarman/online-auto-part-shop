@@ -11,6 +11,10 @@
   /* border: 1px solid black; */
 }
 
+::selection {
+  background-color: rgb(242, 208, 71);
+}
+
 ::-webkit-scrollbar {
   width: 14px;
 }
@@ -399,7 +403,7 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
   display: none;
   flex-direction: column;
   background-color: white;
-  width: 280px;
+  width: 300px;
   padding: 20px;
   left: 0;
   top: 0;
@@ -530,6 +534,10 @@ div.sidebar_account {
   /* width: 0px; */
 }
 
+a[href="/signin.html"].login_sidebar {
+  padding-left: 23px;
+}
+
 @media screen and (max-width: 1150px) {
   .sidebar {
     display: flex;
@@ -543,7 +551,8 @@ div.sidebar_account {
   .bottom_nav,
   div.middle_nav > div.middle_second,
   .myaccount,
-  a.garage {
+  a.garage,
+  a[href="/signin.html"]:not(.login_sidebar) {
     display: none;
   }
 
