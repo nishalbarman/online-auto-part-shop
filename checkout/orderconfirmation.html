@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment</title>
+  <title>Get your desired vehicle part at afordable price...</title>
   <link rel="stylesheet" href="../styles/orderconfirmation.css" />
 </head>
 <body>
-  <div id="parent">
-
-  </div>
+  <div id="parent"></div>
 </body>
 </html>
 <script type="module">
   import API from '/components/api.js';
+
+  window.onload = () => {
+    getdata()
+  }
+
   async function getdata() {
     try {
       let response = await fetch(`${API}/users/${localStorage.getItem('userid') || 1}`);
@@ -59,13 +62,13 @@
         console.log(data);
         localStorage.setItem("Total_Amount", 0);
         let count = 8;
-        let interval = setInterval(() => {
-          count--;
-          document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
-          if (count < 0) {
-            window.location.assign('/index.html');
-          }
-        }, 1000)
+        // let interval = setInterval(() => {
+        //   count--;
+        //   document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
+        //   if (count < 0) {
+        //     window.location.assign('/index.html');
+        //   }
+        // }, 1000)
       })
 
 
@@ -73,10 +76,5 @@
       console.log(error)
     }
   }
-
-  window.onload = () => {
-    getdata()
-  }
-
 
 </script>
