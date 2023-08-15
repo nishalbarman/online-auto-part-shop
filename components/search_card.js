@@ -49,8 +49,11 @@ function searchCardAppend() {
       p += `</p>`;
       append.append(
         getSearchCard(element, p, (event) => {
-          alert("Search Item Clicked");
-          console.log(event);
+          // console.log(event);
+          event.stopPropagation();
+          localStorage.setItem("product_details", JSON.stringify(element));
+          window.location.assign("/details.html");
+          // POP UP SHOULD BE here
         })
       );
       if (index !== arr.length - 1)
