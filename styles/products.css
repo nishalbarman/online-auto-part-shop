@@ -57,9 +57,10 @@ body {
   cursor: pointer;
 }
 
-.rating_box > input:checked {
+/* .rating_box > input:checked {
   background-color: gray;
-}
+  background-color: black;
+} */
 
 .rating_box {
   display: flex;
@@ -118,6 +119,7 @@ select {
 
 .checkedcheck {
   background-color: gray !important;
+  background-color: black !important;
 }
 
 .main_grid {

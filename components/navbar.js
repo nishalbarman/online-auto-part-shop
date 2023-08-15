@@ -12,7 +12,7 @@ function top_navbar() {
             <a href="#">Order Status</a>
         </div>
         <div class="top_second">
-            <span><strong>Free shipping</strong> : On All U.S. Orders Over $100</span>
+            <span><strong>Free shipping</strong> : On All Indian Orders Over Rs. 500</span>
         </div>
         <div class="top_third">
             <i class="fa-solid fa-phone fa-sm" style="color: rgb(0, 0, 0, 0.4);"></i>

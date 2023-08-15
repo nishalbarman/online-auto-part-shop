@@ -165,6 +165,7 @@
   position: absolute;
   font-size: 18px;
   color: rgb(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0, 0.6);
   bottom: 24px;
   left: 50%;
   transform: translate(-50%);
@@ -314,6 +315,7 @@
   gap: 14px;
   align-items: center;
   color: rgb(0, 0, 0, 0.6);
+  color: rgb(0, 0, 0, 0.7);
   margin-top: 20px;
 }
 
@@ -529,6 +531,7 @@ div.offer_card_body > p:nth-child(2) {
 .last_buttons:hover {
   background-color: rgb(248, 200, 8);
   transition-duration: 300ms;
+  color: black;
 }
 
 body ~ * {
@@ -726,6 +729,11 @@ body ~ * {
 }
 
 @media only screen and (max-width: 568px) {
+  .con-first-half {
+    display: flex;
+    align-items: center;
+  }
+
   .deals_list {
     display: flex;
     flex-direction: column;
