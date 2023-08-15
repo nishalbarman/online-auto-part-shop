@@ -61,7 +61,7 @@ function UpdateDisplay(arr) {
   localStorage.setItem("cart-total-items", arr.length);
   cartItemUpdate();
 
-  if (arr.length != 0) {
+  if (arr.length > 0) {
     arr.forEach(function (ele, index, cartarray) {
       var tr = document.createElement("tr");
       var td1 = document.createElement("td");
@@ -226,7 +226,8 @@ function UpdateDisplay(arr) {
       console.log(Total);
 
       // remove function
-      remove.addEventListener("click", function () {
+      remove.addEventListener("click", function (event) {
+        event.preventDefault();
         cartarray.splice(index, 1);
         Total -= +ele.discounted_price * +(ele.quantity || 1);
         console.log(cartarray.length);

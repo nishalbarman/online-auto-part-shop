@@ -304,6 +304,9 @@ function cartItemUpdate(selector = "#item_count_cart") {
   if (!(cartItems == 0 || cartItems == null)) {
     item_count_cart.textContent = cartItems;
     item_count_cart.style.display = "flex";
+  } else {
+    item_count_cart.textContent = 0;
+    item_count_cart.style.display = "none";
   }
 }
 
