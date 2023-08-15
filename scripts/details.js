@@ -7,8 +7,8 @@ import {
 } from "/components/navbar.js";
 import { getImages, getThumbnails } from "/components/details_image_card.js";
 import { getFooter, scrollTop } from "/components/footer.js";
-import API from "/components/api.js";
 import { searchCardAppend } from "/components/search_card.js";
+import addToCart from "../components/add_to_cart.js";
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
@@ -21,15 +21,23 @@ window.onload = () => {
   const searchAppend = searchCardAppend(); //getting the appending function for search result
   const inputListener = inputSearchEventListener(searchAppend, 700); // searchbar listener from component
   inputListener(); // input listener initialised
-
   cartItemUpdate(); // Update the cart items
-
   detailsImageReq();
 };
 
 async function detailsImageReq() {
   const product = JSON.parse(localStorage.getItem("product_details"));
   console.log(product);
+
+  const prod_name = document.querySelector("#prod_name");
+  prod_name.textContent = product.name;
+
+  const addToC = document.querySelector("#addToCart");
+  addToC.addEventListener("click", (event) => {
+    addToCart(product, event, true);
+    console.log("click");
+  });
+
   document.title = product.name;
   const original = document.querySelector("#original");
   const discount = document.querySelector("#discount");
@@ -38,11 +46,11 @@ async function detailsImageReq() {
 
   discount.innerHTML = `<p>Rs. ${
     product.discounted_price
-  } </p><span class="discount">${
-    Math.round(((product.original_price -
-      product.discounted_price) / product.original_price) *
-    100)
-  }% OFF</span>`;
+  } </p><span class="discount">${Math.round(
+    ((product.original_price - product.discounted_price) /
+      product.original_price) *
+      100
+  )}% OFF</span>`;
 
   const category = document.querySelector("#category");
   category.textContent = product.category;

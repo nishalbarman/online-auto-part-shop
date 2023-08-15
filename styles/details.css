@@ -90,6 +90,10 @@ body {
   width: 35%;
 }
 
+.product_details_right {
+  width: 65%;
+}
+
 .thumbnails {
   border: 1px solid rgb(0, 0, 0, 0.1) !important;
   border-radius: 4px !important;
@@ -132,6 +136,7 @@ body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-height: 36px;
 }
 
 .product_details_right > p:nth-child(4) {
