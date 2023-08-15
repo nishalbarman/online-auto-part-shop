@@ -69,19 +69,75 @@ function middle_navbar(hide = false) {
   }
 
   return ` <!---------------------------------------------->
-  <!-- Middle/Common part of the navigation bar -->
-  <!---------------------------------------------->
-  <div class="middle_nav">
+    <!-- Middle/Common part of the navigation bar -->
+    <!---------------------------------------------->
+    <div class="middle_nav">
+
+    <div id="menu-btn" class="menu">
+        <div>
+        <i id="menu-icon" class="fa-solid fa-bars fa-xl" style="color: rgb(243,183,11);"></i>
+        </div>
+        
+          <div class="black"></div>
+          <div id="sidebar" class="sidebar hide_sidebar">
+              <div class="middle_first">
+                  <h1 id="logo_cl" class="logo-text">AUTO PART</h1>
+                  <div id="side_close">
+                      <i class="fa-solid fa-xmark fa-xl" style="color: #000000;"></i>
+                  </div>
+              </div>
+
+              <div class="search_outer_mob">
+                  <input type="text" id="mobile-search" placeholder="Search" />
+                  <button id="mobile-s-button"><i class="fa-solid fa-magnifying-glass"
+                          style="color: #000000;"></i></button>
+              </div>
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=exterior">Exterior</a>
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=interior">Interior</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=performance">Performance</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=wheels%20and%20tyres">Wheels and Tyres</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=car body parts">Body parts</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=repair parts">Repair parts</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=electronics">Electronics</a>
+
+              <div class="vertical-line"></div>
+              <a href="/products.html?category=tools and garage">Tools &amp; Garage</a>
+
+              <div class="vertical-line"></div>
+              <div class="myaccount sidebar_account">
+                  <a href="#">My Account</a>
+                  <div class="myaccount-details">
+                      <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, RooT
+                          BattleGrounds</a>
+                      <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
+                              style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
       <div class="middle_first">
           <h1 id="logo_click" class="logo-text">AUTO PART</h1>
       </div>
      ${middle}
       <div class="middle_third">
           ${data}
-          <a href="#">Garage&nbsp;<i class="fa-solid fa-angle-down fa-sm"
+          <a class="garage" href="#">Garage&nbsp;<i class="fa-solid fa-angle-down fa-sm"
                   style="color: rgb(0, 0, 0, 0.4);"></i></a>
 
-          <a href="#">
+          <a class="favorite" href="#">
               <i class="fa-solid fa-heart fa-lg" style="color: rgb(0, 0, 0, 0.4);">
 
                   <div id="item_count_fav" class="item_count" style="display:none;">
@@ -170,16 +226,56 @@ function inputSearchEventListener(callback, duration = 300) {
     search_result_container.style.display = "none";
     document.querySelector("#blackscreen").style.display = "none";
     document.querySelector(".uparrow").style.display = "none";
+
+    const sidebar = document.querySelector("#sidebar");
+    console.log(sidebar);
+    sidebar.classList.add("hide_sidebar");
   });
 
   return () => {
     const input = document.querySelector("#searchbar");
     input.addEventListener("keyup", (event) => {
       if (event.key == "Enter") {
-        window.location.assign(`/products.html?search=${event.target.value}`);
+        if (event.target.value != "") {
+          window.location.assign(`/products.html?search=${event.target.value}`);
+        }
       } else {
         debounceData(event.target.value);
       }
+    });
+
+    const search_input = document.querySelector("#mobile-search");
+    search_input.addEventListener("keyup", (event) => {
+      if (event.key == "Enter") {
+        if (event.target.value != "") {
+          window.location.assign(`/products.html?search=${event.target.value}`);
+        }
+      }
+    });
+
+    const search_input_btn = document.querySelector("#mobile-s-button");
+    search_input_btn.addEventListener("click", () => {
+      const search_input = document.querySelector("#mobile-search");
+      let q = search_input.value;
+      if (q != "") {
+        window.location.assign(`/products.html?search=${q}`);
+      }
+    });
+
+    const close_button = document.querySelector("#side_close");
+    close_button.addEventListener("click", () => {
+      const sidebar = document.querySelector("#sidebar");
+      console.log(sidebar);
+      sidebar.classList.add("hide_sidebar");
+      document.querySelector(".black").style.display = "none";
+    });
+
+    const menu_btn = document.querySelector("#menu-icon");
+    menu_btn.addEventListener("click", () => {
+      const sidebar = document.querySelector("#sidebar");
+      sidebar.classList.remove("hide_sidebar");
+      document.querySelector(".black").style.display = "block";
+      console.log(sidebar);
     });
 
     const logo = document.querySelector("#logo_click");
