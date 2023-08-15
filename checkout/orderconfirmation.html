@@ -62,13 +62,13 @@
         console.log(data);
         localStorage.setItem("Total_Amount", 0);
         let count = 8;
-        // let interval = setInterval(() => {
-        //   count--;
-        //   document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
-        //   if (count < 0) {
-        //     window.location.assign('/index.html');
-        //   }
-        // }, 1000)
+        let interval = setInterval(() => {
+          count--;
+          document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
+          if (count < 0) {
+            window.location.assign('/index.html');
+          }
+        }, 1000)
       })
 
 
