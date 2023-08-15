@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+
+    <!---------------------------->
+    <!-- static css files above -->
+    <!---------------------------->
+
+
+    <!--------------------------------->
+    <!-- font awesome cdn link below -->
+    <!--------------------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--------------------------------->
+    <!-- font awesome cdn link done  -->
+    <!--------------------------------->
+
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+    <link href="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+" rel="stylesheet">
+    <!-------------------------------------->
+    <!-- swipper js javascript framework  -->
+    <!-------------------------------------->
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="navbar"><!------------------------------------>
+        <!-- Top part of the navigation bar -->
+        <!------------------------------------>
+
+        <div id="top_nav" class="nav_top">
+            <div class="top_first">
+                <a href="#">Help</a>
+                <div class="vertical_line"></div>
+                <a href="#">Order Status</a>
+            </div>
+            <div class="top_second">
+                <span><strong>Free shipping</strong> : On All U.S. Orders Over $100</span>
+            </div>
+            <div class="top_third">
+                <i class="fa-solid fa-phone fa-sm" style="color: rgb(0, 0, 0, 0.4);"></i>
+                <span>123.456.7890</span>
+            </div>
+        </div>
+
+        <!------------------------------------>
+        <!-- Top part of the navigation bar -->
+        <!------------------------------------> <!---------------------------------------------->
+        <!-- Middle/Common part of the navigation bar -->
+        <!---------------------------------------------->
+        <div class="middle_nav">
+            <div class="menu">
+                <i id="menu-icon" class="fa-solid fa-bars fa-xl" style="color: black;"></i>
+                <div id="sidebar" class="sidebar">
+                    <div class="middle_first">
+                        <h1 id="logo_cl" class="logo-text">AUTO PART</h1>
+                        <div id="side_close">
+                            <i class="fa-solid fa-xmark fa-xl" style="color: #000000;"></i>
+                        </div>
+                    </div>
+
+                    <div class="search_outer_mob">
+                        <input type="text" id="mobile-search" placeholder="Search" />
+                        <button id="mobile-s-button"><i class="fa-solid fa-magnifying-glass"
+                                style="color: #000000;"></i></button>
+                    </div>
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=exterior">Exterior</a>
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=interior">Interior</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=performance">Performance</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=wheels%20and%20tyres">Wheels and Tyres</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=car body parts">Body parts</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=repair parts">Repair parts</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=electronics">Electronics</a>
+
+                    <div class="vertical-line"></div>
+                    <a href="/products.html?category=tools and garage">Tools &amp; Garage</a>
+
+                    <div class="vertical-line"></div>
+                    <div class="myaccount sidebar_account">
+                        <a href="#">My Account</a>
+                        <div class="myaccount-details">
+                            <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, RooT
+                                BattleGrounds</a>
+                            <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
+                                    style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle_first">
+                <h1 id="logo_click" class="logo-text">AUTO PART</h1>
+            </div>
+            <div class="middle_second">
+                <div class="searchbox_outer">
+
+                    <!-- make this input text display to one to hide this -->
+                    <input type="text" placeholder="Search by Make Model Year, Product Type Part Number ..."
+                        id="searchbar">
+                    <div id="searchbtn">
+                        <i class="fa-solid fa-magnifying-glass " style="color: #000000;"></i>
+                    </div>
+                    <div id="searchresult" class="search_result_list"></div>
+                    <div class="uparrow">
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div id="blackscreen" class="blackBack"></div>
+                </div>
+            </div>
+            <div class="middle_third">
+                <div class="myaccount">
+                    <a href="#">My Account</a>
+                    <div class="myaccount-details">
+                        <a href="#"><i class="fa-solid fa-user" style="color: #000000;"></i>&nbsp;&nbsp;Hi, RooT
+                            BattleGrounds</a>
+                        <a href="/logout.html"><i class="fa-solid fa-right-from-bracket"
+                                style="color: #000000;"></i>&nbsp;&nbsp;LogOut</a>
+                    </div>
+                </div>
+                <a class="garage" href="#">Garage&nbsp;<i class="fa-solid fa-angle-down fa-sm"
+                        style="color: rgb(0, 0, 0, 0.4);"></i></a>
+
+                <a class="favorite" href="#">
+                    <i class="fa-solid fa-heart fa-lg" style="color: rgb(0, 0, 0, 0.4);">
+
+                        <div id="item_count_fav" class="item_count" style="display:none;">
+                            0
+                        </div>
+
+                    </i>
+                </a>
+                <a href="/cart.html">
+                    <i class="fa-solid fa-cart-shopping fa-lg" style="color: rgb(0, 0, 0, 0.4);">
+                        <div id="item_count_cart" class="item_count" style="display:none;">
+                            0
+                        </div>
+                    </i>
+                </a>
+
+
+            </div>
+        </div>
+        <!---------------------------------------------->
+        <!-- End of Middle part of the navigation bar -->
+        <!----------------------------------------------> <!---------------------------------------------->
+        <!-- Bottom part of the navigation bar starts -->
+        <!---------------------------------------------->
+        <div id="bottom_nav" class="bottom_nav">
+
+            <a href="/products.html?category=exterior">Exterior</a>
+            <a href="/products.html?category=interior">Interior</a>
+            <a href="/products.html?category=performance">Performance</a>
+            <a href="/products.html?category=wheels%20and%20tyres">Wheels and Tyres</a>
+            <a href="/products.html?category=car body parts">Body parts</a>
+            <a href="/products.html?category=repair parts">Repair parts</a>
+            <a href="/products.html?category=electronics">Electronics</a>
+            <a href="/products.html?category=tools and garage">Tools &amp; Garage</a>
+
+        </div>
+        <!---------------------------------------------->
+        <!-- Bottom part of  the navigation bar ends  -->
+        <!---------------------------------------------->
+    </div>
+    <script src="./scripts/navbar.js" type="module"></script>
+</body>
+</html>

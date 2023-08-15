@@ -124,3 +124,23 @@ html {
   -webkit-user-drag: none;
   user-select: none;
 }
+
+@media screen and (max-width: 1150px) {
+  .top_footer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: fit-content;
+  }
+
+  .footer_bottom {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  #fifth_footer {
+    top: 30px;
+    right: 30px;
+  }
+}

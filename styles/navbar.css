@@ -393,3 +393,167 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
   border-right: 20px solid transparent;
   border-bottom: 20px solid rgb(255, 255, 255);
 }
+
+.sidebar {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  width: 280px;
+  padding: 20px;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  height: 100vh;
+  animation: sidebar_an 80ms 1 alternate;
+}
+
+@keyframes sidebar_an {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.black {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  opacity: 0.1;
+  z-index: 1;
+  top: 0;
+  right: 0;
+}
+
+.sidebar > .middle_first > .logo-text {
+  font-size: 25px;
+  width: 100%;
+  white-space: nowrap;
+  filter: drop-shadow(0px 2px 1px black);
+}
+
+.sidebar > .middle_first {
+  padding: 0px 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.sidebar > a {
+  text-decoration: none;
+  padding: 10px 20px;
+  width: 100%;
+  color: black;
+  border-radius: 5px;
+  margin: -4px 0px;
+}
+
+div.sidebar_account > .myaccount-details {
+  top: 20px;
+  position: absolute;
+  left: 120px;
+}
+
+div.sidebar_account > a {
+  color: black;
+  cursor: pointer;
+  height: auto !important;
+}
+div.sidebar_account {
+  position: relative;
+  width: 100%;
+  padding: 5px 20px;
+  display: block;
+  color: black;
+}
+
+.sidebar > a:hover {
+  background-color: rgb(243, 182, 87);
+}
+
+.middle_first {
+  display: flex;
+  align-items: center;
+}
+
+.middle_first > div:hover {
+  background-color: rgb(243, 182, 87);
+}
+.middle_first > div:hover > i {
+  color: white !important;
+  transition-duration: 500ms;
+}
+.middle_first > div {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  right: -35px;
+  background-color: white;
+}
+
+.menu {
+  display: none;
+  cursor: pointer;
+}
+
+.search_outer_mob {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 20px;
+}
+
+.search_outer_mob > input {
+  height: 37px;
+  outline: none;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 0px 10px;
+}
+
+.search_outer_mob > button {
+  background-color: rgb(243, 182, 87);
+  outline: none;
+  border: none;
+  padding: 0px 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.hide_sidebar {
+  display: none !important;
+  /* width: 0px; */
+}
+
+@media screen and (max-width: 1150px) {
+  .sidebar {
+    display: flex;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .nav_top,
+  .bottom_nav,
+  div.middle_nav > div.middle_second,
+  .myaccount,
+  a.garage {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 24px;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .middle_third {
+    justify-content: flex-end;
+  }
+}
