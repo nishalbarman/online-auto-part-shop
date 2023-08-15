@@ -52,7 +52,7 @@ function getFooter() {
             <p>All rights reserved.</p>
         </div>
         <div>
-            <img class="pay_logo_image" src="./img/payment_logos.png" />
+            <img class="pay_logo_image" src="/img/payment_logos.png" />
         </div>
 
     </div>
