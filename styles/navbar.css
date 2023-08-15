@@ -35,6 +35,7 @@
   justify-content: space-evenly;
   gap: 30px;
   color: rgb(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0, 0.5);
   height: 48px;
   align-items: center;
   padding: 16px 0px;
@@ -53,6 +54,7 @@
 .top_first > a {
   text-decoration: none;
   color: rgb(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0, 0.5);
   font-size: 15px;
 }
 
@@ -146,6 +148,7 @@
 
 .middle_nav > .middle_second > .searchbox_outer > input::placeholder {
   color: rgb(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
@@ -166,6 +169,7 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
 .myaccount > a {
   text-decoration: none;
   color: rgb(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   -webkit-box-align: center;
   height: 100% !important;
@@ -226,6 +230,7 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
 .bottom_nav > a {
   text-decoration: none;
   color: rgb(0, 0, 0, 0.5);
+  color: rgb(0, 0, 0, 0.6);
   font-weight: 500;
   height: inherit;
   display: -webkit-box;
@@ -410,6 +415,7 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
   z-index: 5;
   height: 100vh;
   animation: sidebar_an 80ms 1 alternate;
+  overflow-y: auto;
 }
 
 @keyframes sidebar_an {
