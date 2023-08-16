@@ -267,11 +267,19 @@ function dealsWeekAppend(list) {
 // }
 
 async function categoryRequest() {
-  const res = await fetch(`${API}/category`);
-  const data = await res.json();
-  categoryList = data;
-  console.log(categoryList);
-  categoryAppend(data);
+  try {
+    const res = await fetch(`${API}/category`);
+    const data = await res.json();
+    categoryList = data;
+    console.log(categoryList);
+    categoryAppend(data);
+  } catch (er) {
+    if (er.includes("insecure resource")) {
+      alert(
+        "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
+      );
+    }
+  }
 }
 
 async function featuredProductRequest() {
