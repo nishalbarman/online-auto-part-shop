@@ -43,10 +43,12 @@ window.onload = () => {
 };
 
 async function ourOfferRequest() {
-  const res = await fetch(`${API}/offers?_limit=10`);
-  const data = await res.json();
-  dealsList = data;
-  ourOfferAppend(data);
+  try {
+    const res = await fetch(`${API}/offers?_limit=10`);
+    const data = await res.json();
+    dealsList = data;
+    ourOfferAppend(data);
+  } catch (er) {}
 }
 
 function ourOfferAppend(list) {
@@ -86,19 +88,23 @@ function ourOfferAppend(list) {
 }
 
 async function dealsWeekRequest() {
-  const res = await fetch(`${API}/products?_limit=10`);
-  const data = await res.json();
-  dealsList = data;
-  console.log(dealsList);
-  dealsWeekAppend(data);
+  try {
+    const res = await fetch(`${API}/products?_limit=10`);
+    const data = await res.json();
+    dealsList = data;
+    console.log(dealsList);
+    dealsWeekAppend(data);
+  } catch (er) {}
 }
 
 async function ourBlogRequest() {
-  const res = await fetch(`${API}/blogs?_limit=10`);
-  const data = await res.json();
-  // dealsList = data;
-  console.log(data);
-  ourBlogAppend(data);
+  try {
+    const res = await fetch(`${API}/blogs?_limit=10`);
+    const data = await res.json();
+    // dealsList = data;
+    console.log(data);
+    ourBlogAppend(data);
+  } catch (er) {}
 }
 
 function ourBlogAppend(list) {
@@ -274,20 +280,23 @@ async function categoryRequest() {
     console.log(categoryList);
     categoryAppend(data);
   } catch (er) {
-    if (er.includes("insecure resource")) {
-      alert(
-        "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
-      );
-    }
+    console.log(er);
+    // if (er.toString().includes("insecure resource")) {
+    alert(
+      "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
+    );
+    // }
   }
 }
 
 async function featuredProductRequest() {
-  const res = await fetch(`${API}/featured_products`);
-  const data = await res.json();
-  featuredList = data;
-  console.log(featuredList);
-  featuredAppend(data);
+  try {
+    const res = await fetch(`${API}/featured_products`);
+    const data = await res.json();
+    featuredList = data;
+    console.log(featuredList);
+    featuredAppend(data);
+  } catch (er) {}
 }
 
 function featuredAppend(list) {
