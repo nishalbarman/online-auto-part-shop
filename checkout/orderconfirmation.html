@@ -61,11 +61,11 @@
       fetch(`${API}/users/${localStorage.getItem("userid") || 1}`, opt).then(res => res.json()).then((data) => {
         console.log(data);
         localStorage.setItem("Total_Amount", 0);
-        let count = 8;
+        let count = 5;
         let interval = setInterval(() => {
           count--;
           document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
-          if (count < 0) {
+          if (count <= 0) {
             window.location.assign('/index.html');
           }
         }, 1000)
