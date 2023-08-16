@@ -73,7 +73,7 @@ After entering the address and detail in checkout page, you will see the payment
 ## Chetan Patil
 
 - https://github.com/Chetn11
-- Cart page, Checkout Logic and styling
+- Cart page, Checkout styling
 
 ## Prasad Pawar
 
@@ -83,4 +83,4 @@ After entering the address and detail in checkout page, you will see the payment
 ## Ashish Roul
 
 - https://github.com/Ashishroul
-- Checkout structure
+- Checkout page and payment logic
