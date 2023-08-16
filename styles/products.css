@@ -10,14 +10,6 @@ body {
   gap: 20px;
 }
 
-.side_bar {
-  width: 20%;
-  padding: 10px;
-  font-family: font-regular, font-bold, snapdeal_font2, times new roman,
-    helvetica neue, helvetica, arial, geneva, sans-serif;
-  border-right: 1px solid rgb(0, 0, 0, 0.1);
-}
-
 .sidbar_title {
   font-weight: 600;
   font-size: 14px;
@@ -31,11 +23,10 @@ body {
 
 .main_grid {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
   /* place-content: center; */
   justify-content: flex-start;
   gap: 20px;
-  /* align-items: center; */
 }
 
 .rating_filter {
@@ -57,14 +48,9 @@ body {
   cursor: pointer;
 }
 
-/* .rating_box > input:checked {
-  background-color: gray;
-  background-color: black;
-} */
-
 .rating_box {
   display: flex;
-  gap: 15px;
+  gap: 8px;
   cursor: pointer;
 }
 
@@ -97,9 +83,11 @@ div.deals_card:hover {
 .short_title {
   display: flex;
   justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   height: 70px;
   width: 100% !important;
+  /* flex-wrap: wrap; */
 }
 .short_title > p {
   font-size: 18px;
@@ -117,6 +105,10 @@ select {
   font-size: 17px;
 }
 
+select::selection {
+  background-color: rgb(248, 200, 8);
+}
+
 .checkedcheck {
   background-color: gray !important;
   background-color: black !important;
@@ -126,8 +118,124 @@ select {
   width: 100% !important;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
 .deals_card > .deals_body > button {
   background-color: rgb(210, 210, 210, 0.5);
+}
+
+.filter_outer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter_outer > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+
+.filter_outer > div:hover {
+  border-radius: 10px;
+  background-color: rgba(106, 106, 106, 0.1);
+}
+
+.filter_outer > div > span {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.filter_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.1;
+  z-index: 1;
+  display: none;
+}
+
+.side_bar {
+  font-family: font-regular, font-bold, snapdeal_font2, times new roman,
+    helvetica neue, helvetica, arial, geneva, sans-serif;
+  position: fixed;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  min-width: 35%;
+  padding: 40px;
+  padding-top: 10px;
+  gap: 30px;
+  display: none;
+  background-color: white !important;
+  border-radius: 10px;
+  opacity: 10;
+}
+
+.rating_box > p {
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.sidbar_title {
+  margin-bottom: 5px;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+#close_filter {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#close_filter:hover {
+  background-color: rgb(248, 200, 8);
+  color: white !important;
+  transition-duration: 300ms;
+}
+
+.pagination {
+  margin-top: 5%;
+  padding: 0% 10%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  bottom: 0;
+  width: 100%;
+}
+
+.prev_page,
+.next_page {
+  padding: 10px 15px;
+  border-radius: 4px;
+  background-color: rgb(225, 225, 225);
+  cursor: pointer;
+}
+
+.page_number {
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 1359px) {
@@ -145,6 +253,10 @@ select {
 @media only screen and (max-width: 890px) {
   .main_grid {
     grid-template-columns: repeat(3, auto);
+  }
+
+  .container {
+    padding: 0px 5%;
   }
 }
 
@@ -169,7 +281,7 @@ select {
   }
 
   .deals_card {
-    width: 80%;
+    width: 90%;
     max-width: 100%;
   }
 }

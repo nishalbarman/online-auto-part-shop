@@ -18,6 +18,9 @@ let currentRating = 0;
 let currentDiscount = 0;
 let currentPrice = 0;
 
+let pages = 0;
+let currentPage = 1;
+
 let url = document.location.search.replace("?", "");
 console.log(url);
 if (url.includes("=")) {
@@ -1173,6 +1176,22 @@ function sideBarPriceFunction() {
 }
 
 function filterFunction() {
+  const filter = document.querySelector("#filter");
+  filter.addEventListener("click", () => {
+    document.querySelector("#filter_black").style.display = "block";
+    document.querySelector("#filter_pop").style.display = "block";
+  });
+
+  document.querySelector("#filter_black").addEventListener("click", () => {
+    document.querySelector("#filter_black").style.display = "none";
+    document.querySelector("#filter_pop").style.display = "none";
+  });
+
+  document.querySelector("#close_filter").addEventListener("click", () => {
+    document.querySelector("#filter_black").style.display = "none";
+    document.querySelector("#filter_pop").style.display = "none";
+  });
+
   const sort_ = document.querySelector("#sort");
   sort_.addEventListener("change", (event) => {
     const [...rest] = selectArray;
@@ -1230,29 +1249,40 @@ async function productRequest(query = "?_limit=10") {
   productList = data;
   selectArray = data;
   console.log(data);
+
+  if (data.length == 0 || data == null) {
+    const select = document.querySelector("#sort");
+    select.style.display = "none";
+    document.querySelector("#filter").style.display = "none";
+    const append = document.querySelector("#list");
+    append.classList.add("center");
+    append.innerHTML = `<img style="height: 300px; display: block;" src="https://cdni.iconscout.com/illustration/premium/thumb/confusing-woman-due-to-empty-cart-4558760-3780056.png"><h3 style="color: rgb(255,142,85)">No items found</h3>`;
+    return false;
+  }
   productAppend(data);
+  paginationUpdate(data);
 }
 
-function productAppend(list) {
+function productAppend(list, start = 0) {
   const append = document.querySelector("#list");
   append.innerHTML = "";
   const select = document.querySelector("#sort");
 
   console.log(list);
 
-  if (list.length == 0 || list == null) {
-    const product_heading = document.querySelector("#title");
-    product_heading.textContent = `No items found`;
-    select.style.display = "none";
-    return false;
-  }
-
   select.style.display = "inline-block";
 
-  list.forEach((element, index) => {
+  // list.forEach((element, index) => {
+
+  let end = start + 10 > list.length ? list.length : start + 10;
+
+  for (let i = start; i < end; i++) {
+    let element = list[i];
+    console.log("Append for loop => ", i, element);
+
     let p = `<p>`;
 
-    if (element.rating > 5) {
+    if (element.rating || element.rating > 5) {
       element.rating = 5;
     }
     // element.rating = 3;
@@ -1288,84 +1318,43 @@ function productAppend(list) {
         }
       )
     );
-  });
+  }
+  // });
 }
 
-// async function addToCart(element, event) {
-//   try {
-//     if (
-//       localStorage.getItem("logged") != true &&
-//       localStorage.getItem("logged") != "true"
-//     ) {
-//       alert("You need to login first --> Redirecting");
-//       window.location.assign("/signin.html");
-//       return false;
-//     }
-//     if (
-//       event.target.innerHTML ==
-//       'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-//     ) {
-//       event.target.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-//     } else if (
-//       event.target.innerHTML == "" &&
-//       event.target.parentNode.innerHTML ==
-//         'Add to Cart <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>'
-//     ) {
-//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>`;
-//     } else {
-//       return false;
-//     }
+function paginationUpdate(data, currentPage = 1) {
+  let number = Math.floor(data.length / 10);
+  pages = number;
 
-//     const res = await fetch(
-//       `${API}/users/${localStorage.getItem("userid") || 1}`
-//     );
-//     const data = await res.json();
+  document.querySelector(
+    "#pagination"
+  ).innerHTML = `<div id="prev_p" class="prev_page">
+      <i class="fa-solid fa-chevron-left" style="color: #000000;"></i>
+    </div>
+    <div class="page_number">
+      ${currentPage} / ${number}
+    </div>
+    <div id="next_p" class="next_page">
+      <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+    </div>`;
 
-//     let carts = data.cart;
-//     carts.push(element);
-//     localStorage.setItem(
-//       "cart-total-items",
-//       +(localStorage.getItem("cart-total-items") || 0) + 1
-//     );
-//     cartItemUpdate();
-//     postTheItemToserver(carts);
-//     console.log(event.target);
-//     if (
-//       event.target.innerHTML ==
-//       'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-//     ) {
-//       event.target.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-//     } else if (
-//       event.target.innerHTML == "" &&
-//       event.target.parentNode.innerHTML ==
-//         'Add to Cart <i style="margin-left: 2px;" class="fa-solid fa-spinner fa-spin"></i>'
-//     ) {
-//       event.target.parentNode.innerHTML = `Add to Cart <i style="margin-left: 5px;" class="fa-solid fa-check" style="color: #000000;"></i>`;
-//     }
-//   } catch (error) {
-//     console.error();
-//   }
-// }
+  document.querySelector("#prev_p").addEventListener("click", () => {
+    currentPage -= 1;
+    if (currentPage < 1) {
+      currentPage = 1;
+      return;
+    }
+    productAppend(productList, currentPage * 10);
+    return paginationUpdate(data, currentPage);
+  });
 
-// async function postTheItemToserver(carts) {
-//   try {
-//     let options = {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         cart: carts,
-//       }),
-//     };
-
-//     const res = await fetch(
-//       `${API}/users/${localStorage.getItem("userid") || 1}`,
-//       options
-//     );
-//     const data = res.json();
-//     console.log(data);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
+  document.querySelector("#next_p").addEventListener("click", () => {
+    currentPage += 1;
+    if (currentPage > number) {
+      currentPage = number;
+      return;
+    }
+    productAppend(productList, currentPage * 10);
+    return paginationUpdate(data, currentPage);
+  });
+}
