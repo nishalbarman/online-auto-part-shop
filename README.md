@@ -63,7 +63,7 @@ After entering the address and detail in checkout page, you will see the payment
 ![2023-08-16 (5)](./redme%20img/payment.JPG)
 ![2023-08-16 (5)](./redme%20img/payment%202.JPG)
 
-#Authors
+# Authors
 
 ## Nishal Barman
 
