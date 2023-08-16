@@ -274,7 +274,7 @@ async function categoryRequest() {
     console.log(categoryList);
     categoryAppend(data);
   } catch (er) {
-    if (er.includes("insecure resource")) {
+    if (er.toString().includes("insecure resource")) {
       alert(
         "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
       );
