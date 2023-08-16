@@ -62,3 +62,25 @@ After entering the address and detail in checkout page, you will see the payment
 
 ![2023-08-16 (5)](./redme%20img/payment.JPG)
 ![2023-08-16 (5)](./redme%20img/payment%202.JPG)
+
+#Authors
+
+## Nishal Barman
+
+- https://github.com/nishalbarman
+- Home, Product, Details page, Navbar, Footer
+
+## Chetan Patil
+
+- https://github.com/Chetn11
+- Cart page, Checkout Logic and styling
+
+## Prasad Pawar
+
+- https://github.com/hrc1s
+- Login and SignUp page
+
+## Ashish Roul
+
+- https://github.com/Ashishroul
+- Checkout structure
