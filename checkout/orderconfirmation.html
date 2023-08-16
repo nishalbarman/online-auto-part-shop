@@ -48,7 +48,7 @@
         </div>
       </div >
     </div >
-    <p id="timer" class="timer">Redirecting in 8 sec</p>`
+    <p id="timer" class="timer">Redirecting in 5 sec</p>`
       localStorage.removeItem("cart-total-items");
       data.cart = [];
       let opt = {
@@ -61,7 +61,7 @@
       fetch(`${API}/users/${localStorage.getItem("userid") || 1}`, opt).then(res => res.json()).then((data) => {
         console.log(data);
         localStorage.setItem("Total_Amount", 0);
-        let count = 5;
+        let count = 4;
         let interval = setInterval(() => {
           count--;
           document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
