@@ -1260,10 +1260,10 @@ async function productRequest(query = "?_limit=10") {
     return false;
   }
   productAppend(data);
-  paginationUpdate(data);
 }
 
 function productAppend(list, start = 0) {
+  paginationUpdate(list);
   const append = document.querySelector("#list");
   append.innerHTML = "";
   const select = document.querySelector("#sort");
