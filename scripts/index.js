@@ -281,11 +281,11 @@ async function categoryRequest() {
     categoryAppend(data);
   } catch (er) {
     console.log(er);
-    if (er.toString().includes("insecure resource")) {
-      alert(
-        "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
-      );
-    }
+    // if (er.toString().includes("insecure resource")) {
+    alert(
+      "You need to enable insecure content inorder to visit this site, as we are not using HTTPS protocol for our API"
+    );
+    // }
   }
 }
 
