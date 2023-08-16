@@ -61,7 +61,7 @@
       fetch(`${API}/users/${localStorage.getItem("userid") || 1}`, opt).then(res => res.json()).then((data) => {
         console.log(data);
         localStorage.setItem("Total_Amount", 0);
-        let count = 4;
+        let count = 5;
         let interval = setInterval(() => {
           count--;
           document.querySelector("#timer").innerText = `Redirecting in ${count} sec`
