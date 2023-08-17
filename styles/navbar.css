@@ -415,7 +415,6 @@ div.middle_nav > div.middle_second > div.searchbox_outer > input:focus {
   z-index: 5;
   height: 100vh;
   animation: sidebar_an 80ms 1 alternate;
-  overflow-y: auto;
 }
 
 @keyframes sidebar_an {
