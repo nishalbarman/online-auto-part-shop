@@ -14,11 +14,18 @@ import getBlogCard from "/components/blog_card.js";
 import getOfferCard from "/components/offer_card.js";
 import { searchCardAppend } from "/components/search_card.js";
 import addToCart from "../components/add_to_cart.js";
+import https from "https://cdn.jsdelivr.net/npm/https@1.0.0/+esm";
 
 let categoryList = null;
 let featuredList = null;
 let dealsList = null;
 let categorySlide = null;
+
+const instance = axios.create({
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
+});
 
 window.onload = () => {
   const nav = document.querySelector("#navbar");
@@ -274,7 +281,7 @@ function dealsWeekAppend(list) {
 
 async function categoryRequest() {
   try {
-    axios
+    instance
       .get(`${API}/category`)
       .then(function (response) {
         console.log("Axios Data => ", response);
