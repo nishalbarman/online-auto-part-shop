@@ -274,15 +274,6 @@ function dealsWeekAppend(list) {
 
 async function categoryRequest() {
   try {
-    axios
-      .get(`${API}/category`)
-      .then(function (response) {
-        console.log("Axios Data => ", response);
-      })
-      .catch(function (error) {
-        console.log("Same ssl ERROR => ", error);
-      });
-
     const res = await fetch(`${API}/category`);
     const data = await res.json();
     categoryList = data;
