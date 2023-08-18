@@ -282,15 +282,15 @@ async function categoryRequest() {
   } catch (er) {
     console.log(er);
     // if (er.toString().includes("insecure resource")) {
-    document
-      .querySelector("#navbar")
-      .insertAdjacentHTML(
-        "beforebegin",
-        `<div style="height: fit-content; padding: 20px 20px; margin: auto; text-align:center; color: white; background-color: rgb(185,28,28); font-size: 20px; font-weight: bold; font-family: monospace;">As we are not using HTTPS protocol for our JSON-Server API, You need to allow 'insecure content' in the site setting for this website to load the contents of this site. Thank You.</div>`
-      );
-    alert(
-      "As we are not using HTTPS protocol for our JSON-Server API, You need to allow 'insecure content' in the site setting for this website to load the contents of this site. Thank You."
-    );
+    // document
+    //   .querySelector("#navbar")
+    //   .insertAdjacentHTML(
+    //     "beforebegin",
+    //     `<div style="height: fit-content; padding: 20px 20px; margin: auto; text-align:center; color: white; background-color: rgb(185,28,28); font-size: 20px; font-weight: bold; font-family: monospace;">As we are not using HTTPS protocol for our JSON-Server API, You need to allow 'insecure content' in the site setting for this website to load the contents of this site. Thank You.</div>`
+    //   );
+    // alert(
+    //   "As we are not using HTTPS protocol for our JSON-Server API, You need to allow 'insecure content' in the site setting for this website to load the contents of this site. Thank You."
+    // );
     // }
   }
 }
